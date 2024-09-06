@@ -1,0 +1,98 @@
+file:
+  version: 0.1
+  header_records:
+    - type: RG
+      field: ID
+      content: <read_data::run_id>_<read_data::model_version_id>_<barcode_data::arrangement>	
+      required: true
+      comments: |
+        Mandatory.
+        e.g. "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b_barcode02".
+
+            run_id is mandatory, if it is missing a read group will not be created.
+            model_version_id if missing shall be replaced with the text "unknown"
+            e.g. "12ddefc_unknown_barcode02"
+            barcode_data::arrangement if missing the suffix will not be appended.
+            e.g. "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b"
+    - type: RG
+      field: DT
+      content: <exp_start_time>	
+      required: false
+      comments: |
+        correctly formatted as ISO8601
+    - type: RG
+      field: DD
+      content: runid=<read_data::run_id> basecall_model=<read_data::model_version_id> modbase_models=<modbase model name list>
+      required: true
+      comments: |
+        Note, modbase_models only appears if modbase calling was performed, and contains a comma separated list of dorado modbase model names used.
+    - type: RG
+      field: LB
+      content: <read_data::sample_id>
+      required: false
+      comments: Included only if data is present.
+    - type: RG
+      field: PL
+      content: ONT
+      required: true
+    - type: RG
+      field: PM
+      content: <device_id>
+      required: false
+    - type: RG
+      field: PU
+      content: <flow_cell_id>
+      required: false
+    - type: RG
+      field: SM
+      content: <barcode_data::arrangement>
+      required: false
+      comment: Included only if data is present and the arrangement is not "unclassified"
+    - type: RG
+      field: al
+      content: <sample_alias>
+      required: false
+      comment: |
+        This will be the same barcode descriptor guppy uses for generating the output folder names,
+        which is the sample sheet alias if available otherwise defaulting to the arrangement name.
+  read_tags:
+    - tag: "RG:Z:"
+      comment: ID of the read group to which this read belongs. If present its value must match the ID field of a Read Group record in the header section.
+    - tag: "qs:i:"
+      comment: Mean basecall qscore rounded to the nearest integer
+    - tag: "mx:i:"
+      comment: "read mux meta: read_data::mux"
+    - tag: "ch:i:"
+      comment: "read channel meta: read_data::channel"
+    - tag: "rn:i:"
+      comment: "Read number meta: read_data::read_number"
+    - tag: "st:Z:"
+      comment: "Read start time metadata field: <read_data::time_stamp>"
+    - tag: "f5:Z:"
+      comment: "fast5 file name read_data::filename. N.B. filename only so any personally identifiable data in the path is not written."
+    - tag: "ns:i:"
+      comment: "the number of samples in the signal (read_data::duration)"
+    - tag: "ts:i:"
+      comment: |
+        "<read_data::trimmed_samples> the number of samples trimmed from the start of the signal (equivalent to read_data::duration - read_data::trimmed_duration)"
+    - tag: "mv:B:c"
+      comment: "sequence to signal move table (this has already been done as per Move table format for BAM file output)"
+    - tag: "sm:f:"
+      comment: "scaling median: basecall_data::scaling_median"
+    - tag: "sd:f:"
+      comment: "scaling dispersion (also sometimes referred to as mad, spread): basecall_data::scaling_med_abs_dev"
+    - tag: "sv:Z:"
+      comment: |
+        "med_mad" or "quantile", depending on which scaling method was used by the basecaller: basecall_data::scaling_version"
+    - tag: "du:f:"
+      comment: "duration of the read (in seconds)"
+    - tag: "pi:Z:"
+      comment: "parent read id for a split read"
+    - tag: "MN:i:"
+      comment: "Length of SEQ field when MM/ML tags were generated."
+    - tag: "dx:i:"
+      comment: "Duplex read indicator. 1 for duplex reads, 0 for simplex reads without duplex offspring, -1 for simplex reads with duplex offspring."
+    - tag: "bh:i"
+      comment: "Number of bed-file hits. This tag is only included if a bed-file was specified when aligning."
+    - tag: "pt:i"
+      comment: "Estimated number of bases in the polyA/T tail. This tag is only included if --estimate_poly_a was specified by the client"

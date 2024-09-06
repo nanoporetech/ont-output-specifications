@@ -1,0 +1,47 @@
+file:
+  version: 0.1
+  headers:
+    - name: runid
+      description: |
+        A random-generated unique identifier for the data acquisition (eg:
+        17ade39e46480582ef4b7285f3511ac2551e5d22) This consists only of lower-case ASCII letters
+        (a-z) and digits (0-9). Note that this is different to the protocol run ID used in the
+        protocol output directory name.
+    - name: read
+      description: |
+        A per-channel read counter. This number will increase for each read on a given channel, but
+        the numbers of written-out reads will not usually be consecutive.
+        It will always be at least 1.
+    - name: ch
+      description: |
+        The number of the channel the read was acquired on. The first channel is 1.
+    - name: start_time
+      description: |
+        The time the read started in RFC3339 format.
+    - name: flow_cell_id
+      description: |
+        The human-readable identifier for the flow cell (eg: FAK54854).
+    - name: protocol_group_id
+      description: |
+        Set by the user in the GUI as "Experiment ID".
+    - name: sample_id
+      description: |
+        Set by the user in the GUI as "Sample ID".
+    - name: barcode
+      description: |
+        The barcode assigned to this read by guppy (eg: "barcode01"). Omitted completely (both key
+        and value) if barcoding is not running.
+    - name: barcode_alias
+      description: |
+        The user-supplied alias for the barcode. Omitted completely (both key and value) if
+        barcoding is not running. The same as barcode if the user did not supply an alias.
+    - name: parent_read_id
+      descroption: |
+        The read_id of the read which was the source of this fastq entry. This may be the same as the
+        fastq entry id if no read splitting was performed for this read, or will be a new globally
+        unique UUID value if this read was split out of another read by guppy.
+    - name: basecall_model_version_id
+      description: |
+        The unique identifier for the basecall model used to generate
+        this fastq file, as supplied by the guppy basecaller
+        (e.g. 2021-05-17_dna_r9.4.1_minion_384_d37a2ab9).

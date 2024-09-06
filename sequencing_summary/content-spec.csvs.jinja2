@@ -1,0 +1,78 @@
+version 1.1
+@separator TAB
+filename_fastq: regex("[A-Za-z0-9\-_\.]+")  // Ident
+filename_fast5: regex("[A-Za-z0-9\-_\.]+")  // Ident
+filename_pod5: regex("[A-Za-z0-9\-_\.]+")  // Ident
+{% if alignment_enabled -%}
+    filename_bam: regex("[A-Za-z0-9\-_\.]+")  // Ident
+{% endif -%}
+parent_read_id: regex("^[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$") // accepts uuid4 and uuid5
+read_id: regex("^[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$")  // accepts uuid4 and uuid5
+run_id: regex("[a-f0-9]{40}")  // 40 hex chars
+channel: positiveInteger
+mux: positiveInteger
+minknow_events: positiveInteger
+start_time: regex("[0-9]+\.[0-9]+")  // positive decimal
+duration: regex("[0-9]+\.[0-9]+")  // positive decimal
+{% if basecalling_enabled -%}
+    passes_filtering: any("TRUE", "FALSE")
+    template_start: regex("[0-9]+\.[0-9]+")  // positive decimal
+    num_events_template: positiveInteger
+    template_duration: regex("[0-9]+\.[0-9]+")  // positive decimal
+    sequence_length_template: positiveInteger
+    mean_qscore_template: regex("[0-9]+\.[0-9]+")  // positive decimal
+    median_template: regex("-?[0-9]+\.[0-9]+")  // decimal
+    mad_template: regex("[0-9]+\.[0-9]+")  // positive decimal
+{% endif -%}
+{% if estimate_poly_a -%}
+    poly_tail_length: is("-1") or positiveInteger
+{% endif -%}
+pore_type: any("not_set", "invalid")
+experiment_id: regex("[A-Za-z0-9\-_\.]+")  // Ident
+sample_id: regex("[A-Za-z0-9\-_\.]+")  // Ident
+end_reason: any("signal_positive", "signal_negative", "mux_change", "unblock_mux_change", "data_service_unblock_mux_change")
+{% if barcoding_enabled -%}
+    alias: is("unclassified") or regex("[A-Za-z0-9\-_\.]+")  // Ident
+    type: any("na", "test_sample")
+    barcode_arrangement: is("unclassified") or regex("[A-Za-z0-9\-_\.]+")  // Ident
+    barcode_kit: regex("[A-Za-z0-9\-_\.]+")  // Ident
+    barcode_variant: is("n/a") or regex("[A-Za-z0-9\-_\.]+")  // Ident
+    barcode_score: regex("-?[0-9]+\.[0-9]+")  // decimal
+    barcode_front_score: regex("-?[0-9]+\.[0-9]+")  // decimal
+    barcode_front_foundseq_length: positiveInteger
+    barcode_front_begin_index: positiveInteger
+    barcode_rear_score: regex("-?[0-9]+\.[0-9]+")  // decimal
+    barcode_rear_foundseq_length: positiveInteger
+    barcode_rear_end_index: positiveInteger
+{% endif -%}
+{% if alignment_enabled -%}
+    alignment_genome: any("+", "-", "*") or regex("[A-Za-z0-9\-_\.]+")  // Ident
+    alignment_direction: any("+", "-", "*")
+    alignment_genome_start: is("-1") or positiveInteger
+    alignment_genome_end: is("-1") or positiveInteger
+    alignment_strand_start: is("-1") or positiveInteger
+    alignment_strand_end: is("-1") or positiveInteger
+    alignment_num_insertions: is("-1") or positiveInteger
+    alignment_num_deletions: is("-1") or positiveInteger
+    alignment_num_aligned: is("-1") or positiveInteger
+    alignment_num_correct: is("-1") or positiveInteger
+    alignment_identity: regex("-?[0-9]+\.[0-9]+")  // decimal
+    alignment_accuracy: regex("-?[0-9]+\.[0-9]+")  // decimal
+    alignment_score: regex("-?[0-9]+")  // Integer
+    alignment_coverage: regex("-?[0-9]+\.[0-9]+")  // decimal
+    alignment_bed_hits: positiveInteger
+    alignment_mapping_quality: positiveInteger
+    alignment_num_alignments: positiveInteger
+    alignment_num_secondary_alignments: positiveInteger
+    alignment_num_supplementary_alignments: positiveInteger
+{% endif -%}
+{% if lamp_enabled -%}
+    lamp_barcode_id: regex("[A-Za-z0-9\-_\.]+")  // Ident
+    lamp_barcode_score: regex("[0-9]+\.[0-9]+")  // positive decimal
+    lamp_target_id: regex("[A-Za-z0-9\-_\.]+")  // Ident
+    lamp_target_score:  regex("[0-9]+\.[0-9]+")  // positive decimal
+{% endif -%}
+{% if duplex_enabled -%}
+    duplex_parent_template: is("-") or regex("^[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$")  // hyphen, uuid4 or uuid5
+    duplex_parent_complement: is("-") or regex("^[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$")  // hyphen, uuid4 or uuid5
+{% endif -%}
