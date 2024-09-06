@@ -2,21 +2,10 @@ include:
   - project: "IONDEV/tacklebox"
     file: "gitlab_ci_templates/pre-commit.yml"
 
-.rule templates:
-  rules:
-    - &rule_base
-      if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      when: never
-  
-.run always:
-  rules:
-    - *rule_base
-    - if: '$ACTION != "remove old containers"'
-      when: on_success
-
-🅿️ pre-commit:
+pre-commit checks:
   extends:
     - .tacklebox pre-commit
-    - .run always
   stage: .pre
+
+
 
