@@ -1,0 +1,4 @@
+include:
+  - project: "IONDEV/tacklebox"
+    file: "gitlab_ci_templates/pre-commit.yml"
+    
