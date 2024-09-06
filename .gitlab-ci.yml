@@ -1,3 +1,20 @@
 include:
   - project: "IONDEV/tacklebox"
     file: "gitlab_ci_templates/pre-commit.yml"
+
+📄 docs:
+  extends: .self test template
+  before_script:
+    - python -m pip install --upgrade pip
+    - *install_tree
+    - pip install .[doc]
+  script:
+    - cd docs
+    - make html
+    - make check
+  artifacts:
+    expose_as: "Docs"
+    paths: ["docs/_build/html/index.html", "docs/_build/html"]
+  # this should pass, but we don't want to block metapackage tests if it doesn't
+  allow_failure: true
+
