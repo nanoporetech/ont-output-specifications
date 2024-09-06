@@ -3,7 +3,7 @@ file:
   header_records:
     - type: RG
       field: ID
-      content: <read_data::run_id>_<read_data::model_version_id>_<barcode_data::arrangement>	
+      content: <read_data::run_id>_<read_data::model_version_id>_<barcode_data::arrangement>
       required: true
       comments: |
         Mandatory.
@@ -16,7 +16,7 @@ file:
             e.g. "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b"
     - type: RG
       field: DT
-      content: <exp_start_time>	
+      content: <exp_start_time>
       required: false
       comments: |
         correctly formatted as ISO8601
