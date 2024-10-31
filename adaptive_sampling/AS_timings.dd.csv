@@ -1,0 +1,10 @@
+column_or_row_name,unit,definition,column_or_row_long_name,data_type,missing_value_code
+channel,N/A,Channel number for this read,Channel,numeric,
+read_id,N/A,MinKNOW assigned read ID,Read ID,UUID,
+batch_time,s,"Time, in seconds, since the epoch. Groups reads that were sent to the basecaller in the same batch.",Batch Time,numeric,
+samples,N/A,Raw data samples sent to the basecaller for this read,Samples,numeric,
+bases,N/A,Basecalled sequence length returned from the basecaller,Bases,numeric,
+barcode_arrangement,N/A,"If barcoding is enabled this is the assigned barcode classification. Either 'barcode[0-9]+', '[A-Za-z0-9\-_\.]+', 'unclassified', or ''",Barcode,text,
+mean_qscore,N/A,Mean quality score for the returned sequence,Mean Q Score,numeric,
+time_to_package_and_send,ns,"Time between packaging the read for sending to the basecaller and when it was sent.",Packaging time,numeric,
+time_in_basecaller,ns,Time between sending this read to the basecaller and it returning.,Basecall time,numeric,

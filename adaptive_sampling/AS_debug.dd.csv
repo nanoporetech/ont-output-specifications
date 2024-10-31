@@ -1,0 +1,4 @@
+column_or_row_name,unit,definition,column_or_row_long_name,data_type,missing_value_code
+perf_time_ns,ns,Performance counter timestamp from python's time.perf_counter_ns(),timestamp (ns),numeric,
+read_id,N/A,MinKNOW assigned read ID,Read ID,UUID,
+event,N/A,"Debug log event in the adaptive sampling script. Possible values: Raw_data_received_from_MinKNOW_API, Raw_data_packaged, Raw_data_sent_to_basecaller, Read_received_from_basecaller, Decision_made_and_action_generated, Action_sent, Action_response_received, Failed_to_send_to_basecaller",Event,text,
