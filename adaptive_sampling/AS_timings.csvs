@@ -1,0 +1,11 @@
+version 1.1
+@separator ','
+channel: positiveInteger
+read_id: regex("^[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$")  // accepts uuid4 and uuid5
+batch_time: regex("[0-9]+\.[0-9]+")  // positive decimal
+samples: positiveInteger
+bases: positiveInteger
+barcode_arrangement: is("unclassified") or regex("[A-Za-z0-9\-_\.]+") or empty  // Ident
+mean_qscore: regex("[0-9]+\.[0-9]+")  // positive decimal
+time_to_package_and_send: positiveInteger
+time_in_basecaller: positiveInteger
