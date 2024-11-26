@@ -7,14 +7,14 @@ protocol_spec:
   contents:
     fastq:
       path: "fastq{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fastq.gz"
-    compressed: true
-    batching:
-      duration: "3600s"
+      compressed: true
+      batching:
+        duration: "3600s"
     bam:
       bam_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam"
       bai_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam.bai"
-    batching:
-      duration: "3600s"
+      batching:
+        duration: "3600s"
     pod5:
       path: "pod5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5"
       batching:
