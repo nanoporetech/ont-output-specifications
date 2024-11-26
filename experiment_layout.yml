@@ -1,0 +1,26 @@
+protocol_spec:
+  root:
+    - pattern: "{protocol_group_id}/{sample_id}/"
+      active_when: "pooling_enabled = true"
+    - pattern: "{protocol_group_id}/{sample_id}/{start_time}_{device_id}_{flow_cell_id}_{short_protocol_run_id}/"
+      active_when: "pooling_enabled = false"
+  contents:
+    fastq:
+      path: "fastq{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fastq.gz"
+    compressed: true
+    batching:
+      duration: "3600s"
+    bam:
+      bam_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam"
+      bai_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam.bai"
+    batching:
+      duration: "3600s"
+    pod5:
+      path: "pod5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5"
+      batching:
+        duration: "3600s"
+        bases: 500000000
+    fast5:
+      path: "fast5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fast5"
+      batching:
+        read_count: 4000
