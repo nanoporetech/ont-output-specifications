@@ -1,0 +1,54 @@
+protocol_spec:
+  root:
+    - pattern: "{protocol_group_id}/{sample_id}/"
+      active_when: "pooling_enabled = true"
+    - pattern: "{protocol_group_id}/{sample_id}/{start_time}_{device_id}_{flow_cell_id}_{short_protocol_run_id}/"
+      active_when: "pooling_enabled = false"
+  contents:
+    fastq:
+      path: "fastq{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fastq.gz"
+      compressed: true
+      batching:
+        duration: "3600s"
+      available_patterns:
+        gpu_header_info: "A string description of the connected GPU (without spaces), with fastq attribute name. eg 'basecall_gpu=Nvidia_3090"
+    bam:
+      bam_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam"
+      bai_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam.bai"
+      batching:
+        duration: "3600s"
+    pod5:
+      path: "pod5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5"
+      batching:
+        duration: "3600s"
+        bases: 500000000
+    fast5:
+      path: "fast5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fast5"
+      batching:
+        read_count: 4000
+  available_patterns:
+    asic_id: "The unique numeric id stored on the asic"
+    flow_cell_id: "Identifier programmed on to the flow cell eeprom"
+    machine_id: "An identifier for the machine which is running. Sometimes the hostname, but potentially derived from other machine information instead."
+    device_id: "Identifier for the sequencing device which ran the experiment"
+    version_string: "Version information for the running software"
+    sample_id: "A user defined identifier for the library running in the protocol"
+    protocol_group_id: "A user defined identifier for a group of protocols"
+    daq_start_time: "The time acquisition started, formatted as ':%Y%m%d_%H%M', eg: '20240103_1424'"
+    run_id: "The full run id for the running acquisition, eg: 'de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3'"
+    short_run_id: "The first 8 characters of the full 'run_id'. eg: 'de9f2c7f'"
+    protocol_run_id: "The full protocol run id for the running protocol, eg: 'acde070d-8c4c-4f0d-9d8a-162843c10333'"
+    short_protocol_run_id: "The first 8 characters of the run id, eg: 'acde070d'"
+    protocol_purpose: "The purpose of the running protocol, script defined. eg: 'sequencing_run'"
+    batch_number: "The index of the file being generated, allowing a set of sequential files to be output, eg: '0', '1', '2'..."
+    type: "The type of the data the read's associated barcode is related to (see protocol.proto, BarcodeUserData.SampleType), eg 'positive_control'"
+    alias: "The user defined alias for the read's associated barcode"
+    basecall_model_version_id: "The model version id for the basecall model running"
+    duplex_status: "'_simplex' or '_duplex', depending if the read is a duplex or simplex read"
+    basecall_status_skip_or_empty: "'skip' if the read has skipped basecalling, '' otherwise"
+    basecall_status: "'pass', 'fail' or 'skip' depending on the basecall status of the read"
+    read_start_time: "The read start time as an rfc3339 string"
+    pore_type: "The type of the pore in use for this read"
+    channel_name: "The 1 indexed number for the channel the read was sequenced on"
+    read_id: "A unique UUID for the sequenced read (unique even if the read was split in the basecaller)"
+    parent_read_id: "A unique UUID for the read sent into the basecaller, potentially duplicated if split in basecaller"
