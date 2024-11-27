@@ -52,4 +52,3 @@ protocol_spec:
     channel_name: "The 1 indexed number for the channel the read was sequenced on"
     read_id: "A unique UUID for the sequenced read (unique even if the read was split in the basecaller)"
     parent_read_id: "A unique UUID for the read sent into the basecaller, potentially duplicated if split in basecaller"
-
