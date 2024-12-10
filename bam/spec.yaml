@@ -22,9 +22,13 @@ file:
         correctly formatted as ISO8601
     - type: RG
       field: DD
-      content: runid=<read_data::run_id> basecall_model=<read_data::model_version_id> modbase_models=<modbase model name list>
+      content: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([a-z0-9_@\\.]+))?"
+      examples:
+        - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0
+        - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0 modbase_models=rna004_130bps_hac@v5.1.0_inosine_m6A@v1
       required: true
       comments: |
+        `runid` Should contain the protocol_run_id from the minknow experiment that generated the bam files.
         Note, modbase_models only appears if modbase calling was performed, and contains a comma separated list of dorado modbase model names used.
     - type: RG
       field: LB
