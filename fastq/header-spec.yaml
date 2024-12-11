@@ -3,9 +3,9 @@ file:
   headers:
     - name: runid
       description: |
-        A random-generated uuid for the data acquisition (eg:
+        A random-generated uuid for the sequencing protocol (eg:
         e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII letters
-        (a-z) and digits (0-9).
+        (a-z), digits (0-9) and dashes (-). This maps to the `protocol_run_id` in the pod5 file.
       content: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
       examples:
       - e4994c62-93f9-439a-bc8f-d20c95a137a5
