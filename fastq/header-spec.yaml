@@ -3,10 +3,12 @@ file:
   headers:
     - name: runid
       description: |
-        A random-generated unique identifier for the data acquisition (eg:
-        17ade39e46480582ef4b7285f3511ac2551e5d22) This consists only of lower-case ASCII letters
-        (a-z) and digits (0-9). Note that this is different to the protocol run ID used in the
-        protocol output directory name.
+        A random-generated uuid for the sequencing protocol (eg:
+        e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII letters
+        (a-z), digits (0-9) and dashes (-). This maps to the `protocol_run_id` in the pod5 file.
+      content: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      examples:
+      - e4994c62-93f9-439a-bc8f-d20c95a137a5
     - name: read
       description: |
         A per-channel read counter. This number will increase for each read on a given channel, but
