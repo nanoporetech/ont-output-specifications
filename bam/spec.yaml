@@ -80,7 +80,8 @@ file:
       field: PN
       content: <program_name>
       required: true
-      comments: "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
+      comments: |
+        "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
     - type: PG
       field: CL
       content: command line of invoked application
@@ -101,7 +102,7 @@ file:
         Each GPU type used by the basecaller will appear once, as we’re only interested in the GPU types, not the total
         number of them.
         For a PromethION the tag would say (e.g) DS:gpu:NVIDIA A100 80GB PCIe. If there are multiple GPU types on the
-        system they will be separated by a vertical bar e.g: DS:gpu:NVIDIA A100 80GB PCIe|Quadro GV100. 
+        system they will be separated by a vertical bar e.g: DS:gpu:NVIDIA A100 80GB PCIe|Quadro GV100.
         If a GPU was not used, or the reads were called on Apple Silicon, this field will not be present.
   read_tags:
     - tag: "RG:Z:"
