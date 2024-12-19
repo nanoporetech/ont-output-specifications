@@ -6,7 +6,6 @@ file:
       content: <read_data::run_id>_<read_data::model_version_id>_<barcode_data::arrangement>
       required: true
       comments: |
-        Mandatory.
         e.g. "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b_barcode02".
 
             run_id is mandatory, if it is missing a read group will not be created.
@@ -21,7 +20,7 @@ file:
       comments: |
         correctly formatted as ISO8601
     - type: RG
-      field: DD
+      field: DS
       content: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([A-Za-z0-9_@\\.]+))?"
       examples:
         - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0
@@ -59,11 +58,56 @@ file:
       comment: |
         This will be the same barcode descriptor guppy uses for generating the output folder names,
         which is the sample sheet alias if available otherwise defaulting to the arrangement name.
+    - type: PG
+      field: ID
+      content: <program_id>{_<unique_id}>}
+      required: true
+      comments: |
+        The SAM specification requires this field to be unique within a file, and may be modified on merging to ensure
+        uniqueness. Where the program_id would not be unique within the file, e.g. when the input is a bam/sam file
+        with the program_id already present, then the @PG record will have the lowest zero based suffix that can be
+        appended to the ID to ensure its uniqueness, e.g. "_0".
+        Where an application has used the minimap aligner on reads contained in the file, as well as outputting a @PG
+        record for itself it will also output an additional @PG record for minimap
+        dorado aligner records will have the ID "dorado_aligner" to disambiguate from minimap aligner records.
+        Programs will identify themselves as follows
+        ont_basecall_client "basecaller"
+        dorado basecaller "basecaller"
+        dorado barcoder "barcoder"
+        dorado aligner "dorado_aligner"
+        minimap2 (if used in the application) "aligner"
+    - type: PG
+      field: PN
+      content: <program_name>
+      required: true
+      comments: "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
+    - type: PG
+      field: CL
+      content: command line of invoked application
+      required: false
+      comments: |
+        For dorado/core_cpp/minknow application records, the command line used to invoke the application including the application name.
+        For minimap records this field will be omitted, as it was not directly invoked from the command line.
+    - type: PG
+      field: VN
+      content: <program_version>
+      required: true
+      comments: Version number of the application or minimap version for minimap PG records
+    - type: PG
+      field: DS
+      content: gpu:<gpu_name>
+      required: false
+      comments: |
+        Each GPU type used by the basecaller will appear once, as we’re only interested in the GPU types, not the total
+        number of them.
+        For a PromethION the tag would say (e.g) DS:gpu:NVIDIA A100 80GB PCIe. If there are multiple GPU types on the
+        system they will be separated by a vertical bar e.g: DS:gpu:NVIDIA A100 80GB PCIe|Quadro GV100. 
+        If a GPU was not used, or the reads were called on Apple Silicon, this field will not be present.
   read_tags:
     - tag: "RG:Z:"
       comment: ID of the read group to which this read belongs. If present its value must match the ID field of a Read Group record in the header section.
-    - tag: "qs:i:"
-      comment: Mean basecall qscore rounded to the nearest integer
+    - tag: "qs:f:"
+      comment: Read mean basecall qscore
     - tag: "mx:i:"
       comment: "read mux meta: read_data::mux"
     - tag: "ch:i:"
