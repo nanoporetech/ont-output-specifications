@@ -48,8 +48,8 @@ def get_current_release_name():
 
 # -- Project information -----------------------------------------------------
 
-project = "Pod5 File Format"
-copyright = "2022 Oxford Nanopore Technologies plc"
+project = "ONT Output Specification"
+copyright = "2025 Oxford Nanopore Technologies plc"
 author = "Oxford Nanopore Technologies plc"
 
 release = version = get_current_release_name()
@@ -101,13 +101,7 @@ autosectionlabel_prefix_document = True
 # This is pasted to the end of every .rst file allowing us to set common hyperlinks
 # here and use them repeatedly in the source
 rst_epilog = """
-.. _arrow: https://arrow.apache.org/
-.. _fast5_api: https://pypi.org/project/ont-fast5-api/
-.. _p5_git: https://github.com/nanoporetech/pod5-file-format
 .. _ont: https://nanoporetech.com/
-.. _python: https://www.python.org/
-.. _pypi: https://pypi.org/
-.. _pip: https://pip.pypa.io/
 """
 
 

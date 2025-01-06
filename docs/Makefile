@@ -17,7 +17,6 @@ venv:
 update:
 	source ${envDir}/bin/activate \
 	&& pip install -U pip \
-	pip install -e ./ont-output-specification \
 	&& pip install -r docs/requirements.txt
 
 # Clean existing docs and re-build using the same command as used by RTD
