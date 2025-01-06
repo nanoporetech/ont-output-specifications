@@ -5,20 +5,20 @@ file:
       field: ID
       content: <read_data::run_id>_<read_data::model_version_id>_<barcode_data::arrangement>
       required: true
+      examples:
+        - "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b_barcode02"
+        - "12ddefc_unknown_barcode02"
+        - "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b"
       comments: |
-        e.g. "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b_barcode02".
+        ``model_version_id`` if missing shall be replaced with the text "unknown"
 
-            run_id is mandatory, if it is missing a read group will not be created.
-            model_version_id if missing shall be replaced with the text "unknown"
-            e.g. "12ddefc_unknown_barcode02"
-            barcode_data::arrangement if missing the suffix will not be appended.
-            e.g. "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b"
+        ``barcode_data::arrangement`` if missing the suffix will not be appended.
     - type: RG
       field: DT
       content: <exp_start_time>
       required: false
       comments: |
-        correctly formatted as ISO8601
+        Correctly formatted as ISO8601
     - type: RG
       field: DS
       content: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([A-Za-z0-9_@\\.]+))?"

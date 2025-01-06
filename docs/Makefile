@@ -19,8 +19,12 @@ update:
 	&& pip install -U pip \
 	&& pip install -r docs/requirements.txt
 
+generated:
+	source ${envDir}/bin/activate \
+	&& python ./docs/scripts/bam_spec_to_rst.py ./bam/spec.yaml ./docs/read_formats/bam.generated.rst
+
 # Clean existing docs and re-build using the same command as used by RTD
-docs:
+docs: generated
 	rm -rf _build/ public/
 	source ${envDir}/bin/activate \
 	&& python -m sphinx -T -E -b html -d _build/doctrees -D language=en docs/ _build/html
@@ -29,4 +33,4 @@ docs:
 install: clean venv update
 
 # Re-install and create docs
-all: install docs
+all: install generated docs
