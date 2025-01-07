@@ -30,6 +30,7 @@ class RstWriter:
 
     def text(self, text):
         self.lines.append(text)
+        self.lines.append("")
 
     def raw(self, text):
         self.lines.append(text)

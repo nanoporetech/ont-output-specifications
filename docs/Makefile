@@ -21,7 +21,9 @@ update:
 
 generated:
 	source ${envDir}/bin/activate \
-	&& python ./docs/scripts/bam_spec_to_rst.py ./bam/spec.yaml ./docs/read_formats/bam.generated.rst
+	&& python ./docs/scripts/bam_spec_to_rst.py ./bam/spec.yaml ./docs/read_formats/bam.spec.generated.rst
+	source ${envDir}/bin/activate \
+	&& python ./docs/scripts/layout_spec_to_rst.py ./experiment_layout.yml ./docs/
 
 # Clean existing docs and re-build using the same command as used by RTD
 docs: generated

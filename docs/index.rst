@@ -16,6 +16,7 @@ Parsable formats are available in the repository [EXTERNAL LINK TO BE ADDED], an
     software_products/software_products
     read_formats/read_formats
     protocol_formats/protocol_formats
+    file_patterns
     search
 
 :ref:`search`

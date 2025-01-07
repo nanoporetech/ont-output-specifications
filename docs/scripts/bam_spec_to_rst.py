@@ -34,21 +34,22 @@ def main():
         table.append(header_item)
 
     def format_item(writer, item):
-        examples = ""
-        required_str = ":required:" if read_group["required"] else ""
-        writer.raw(
-            f"""
-.. filefield:: {read_group["field"]}
-  :content: ``{read_group["content"]}``
-  {required_str}"""
-        )
+        writer.raw(f".. filefield:: {item['field']}")
+        writer.raw(f"  :content: {item['content']}")
 
-        writer.raw(read_group.get("comments", "").replace("\n", "\n  "))
+        if item["required"]:
+            writer.raw("  :required:")
 
-        if "examples" in read_group:
-            examples += "  **Examples:**\n\n  "
+        if "regex" in read_group:
+            writer.raw(f"  :regex: {item['regex']}")
+
+        if "comments" in item:
+            writer.raw("\n  " + item.get("comments", "").replace("\n", "\n  "))
+
+        if "examples" in item:
+            examples = "  **Examples:**\n\n  "
             examples += tabulate.tabulate(
-                [[f"``{e}``"] for e in read_group["examples"]], tablefmt="grid"
+                [[f"``{e}``"] for e in item["examples"]], tablefmt="grid"
             ).replace("\n", "\n  ")
 
             writer.raw(examples)
@@ -56,17 +57,20 @@ def main():
     writer.title(level=HeadingLevels.H3, title="Read Group")
     for read_group in read_group_table:
         format_item(writer, read_group)
+    writer.raw("\n")
 
     writer.title(level=HeadingLevels.H3, title="Program Records")
     for program_item in program_table:
         format_item(writer, program_item)
+    writer.raw("\n")
 
     writer.title(level=HeadingLevels.H3, title="Read Tags")
 
     for read_tag in input_spec["file"]["read_tags"]:
         writer.raw(f".. filefield:: {read_tag['tag']}")
 
-        writer.raw(read_tag.get("comment", "").replace("\n", "\n  "))
+        if "comment" in read_tag:
+            writer.raw("\n  " + read_tag.get("comment", "").replace("\n", "\n  "))
     writer.write(args.output_file)
 
 

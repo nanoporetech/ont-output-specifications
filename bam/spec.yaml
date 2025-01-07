@@ -3,35 +3,41 @@ file:
   header_records:
     - type: RG
       field: ID
-      content: <read_data::run_id>_<read_data::model_version_id>_<barcode_data::arrangement>
+      content: A group identifier keyed specifically to a run, basecall model, and barcode (if enabled)
+      regex: "([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})_([a-z0-9_@\\.])+(_([A-Za-z0-9_@\\.]+))?"
       required: true
       examples:
-        - "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b_barcode02"
-        - "12ddefc_unknown_barcode02"
-        - "12ddefc_2021-05-17_dna_r9.4.1_minion_96_29d8704b"
+        - "e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_barcode02"
+        - "e4994c62-93f9-439a-bc8f-d20c95a137a5_unknown_barcode02"
+        - "e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_29d8704b"
       comments: |
         ``model_version_id`` if missing shall be replaced with the text "unknown"
 
         ``barcode_data::arrangement`` if missing the suffix will not be appended.
     - type: RG
       field: DT
-      content: <exp_start_time>
+      content: The start time of the sequencing run.
+      regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}\+\d{2}:\d{2}
       required: false
+      examples:
+        - "2025-01-06T10:06:36.778368+00:00"
       comments: |
         Correctly formatted as ISO8601
     - type: RG
       field: DS
-      content: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([A-Za-z0-9_@\\.]+))?"
+      content: "``runid``, ``basecall_model`` and optionally ``modbase_models`` formatted into a space separated string"
+      regex: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([A-Za-z0-9_@\\.]+))?"
       examples:
         - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0
         - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0 modbase_models=rna004_130bps_hac@v5.1.0_inosine_m6A@v1
       required: true
       comments: |
-        `runid` Should contain the protocol_run_id from the minknow experiment that generated the bam files.
-        Note, modbase_models only appears if modbase calling was performed, and contains a comma separated list of dorado modbase model names used.
+        `runid` contains the ``protocol_run_id`` from the minknow experiment that generated the bam files.
+        Note, ``modbase_models`` only appears if modbase calling was performed, and contains a comma separated list of dorado modbase model names used.
     - type: RG
       field: LB
-      content: <read_data::sample_id>
+      content: The sample library identifier.
+      regex: "([a-zA-Z0-9_@\\.]+)"
       required: false
       comments: Included only if data is present.
     - type: RG

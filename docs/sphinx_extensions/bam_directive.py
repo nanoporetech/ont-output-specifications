@@ -33,6 +33,7 @@ class FileFieldValue(GenericObject):
         "name": directives.unchanged_required,
         "required": flag,
         "content": directives.unchanged_required,
+        "regex": directives.unchanged_required,
     }
 
     def add_target_and_index(self, name_cls, sig, signode):
@@ -54,6 +55,8 @@ class FileFieldValue(GenericObject):
             content.append(f"| **Required:** ``{strtobool(self.options['required'])}``")
         if "content" in self.options:
             content.append(f"| **Content:** {self.options['content']}")
+        if "regex" in self.options:
+            content.append(f"| **Regex:** ``{self.options['regex']}``")
         if "example" in self.options:
             content.append(f"| **Example:** {self.options['example']}")
 
