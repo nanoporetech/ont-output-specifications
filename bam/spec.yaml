@@ -81,6 +81,7 @@ file:
     - type: PG
       field: ID
       content: <program_id>{_<unique_id}>}
+      regex: "(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?"
       required: true
       comments: |
         The SAM specification requires this field to be unique within a file, and may be modified on merging to ensure
@@ -100,7 +101,7 @@ file:
       field: PN
       content: |
         "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
-      regex: "(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?"
+      regex: "(dorado|minimap2|ont_basecall_client|minknow)"
       required: true
     - type: PG
       field: CL
