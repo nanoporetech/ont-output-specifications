@@ -42,24 +42,38 @@ file:
       comments: Included only if data is present.
     - type: RG
       field: PL
+      regex: ONT
       content: ONT
       required: true
     - type: RG
       field: PM
-      content: <device_id>
+      regex: "[A-Z-0-9]+"
+      content: The device identifier used for sequencing.
       required: false
+      examples:
+        - "MN12345"
     - type: RG
       field: PU
-      content: <flow_cell_id>
+      content: The unique identifier for the flowcell.
+      regex: "[A-Z0-9]+"
+      examples:
+        - "FAB12345"
       required: false
     - type: RG
       field: SM
-      content: <barcode_data::arrangement>
+      content: The barcode identified for the read.
+      regex: "barcoee([0-9]+)"
       required: false
       comment: Included only if data is present and the arrangement is not "unclassified"
+      examples:
+        - "barcode01"
     - type: RG
       field: al
-      content: <sample_alias>
+      content: User specicied identifier used for the barcode, if available, otherwise the arrangement name.
+      regex: "([a-zA-Z0-9_@\\.]+)"
+      examples:
+        - "my_sample"
+        - "sample01"
       required: false
       comment: |
         This will be the same barcode descriptor guppy uses for generating the output folder names,
@@ -84,10 +98,10 @@ file:
         minimap2 (if used in the application) "aligner"
     - type: PG
       field: PN
-      content: <program_name>
-      required: true
-      comments: |
+      content: |
         "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
+      regex: "(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?"
+      required: true
     - type: PG
       field: CL
       content: command line of invoked application
