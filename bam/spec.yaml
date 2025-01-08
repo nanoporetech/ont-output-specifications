@@ -42,24 +42,38 @@ file:
       comments: Included only if data is present.
     - type: RG
       field: PL
+      regex: ONT
       content: ONT
       required: true
     - type: RG
       field: PM
-      content: <device_id>
+      regex: "[A-Z-0-9]+"
+      content: The device identifier used for sequencing.
       required: false
+      examples:
+        - "MN12345"
     - type: RG
       field: PU
-      content: <flow_cell_id>
+      content: The unique identifier for the flowcell.
+      regex: "[A-Z0-9-]+"
+      examples:
+        - "FAB12345"
       required: false
     - type: RG
       field: SM
-      content: <barcode_data::arrangement>
+      content: The barcode identified for the read.
+      regex: "barcode([0-9]+)"
       required: false
       comment: Included only if data is present and the arrangement is not "unclassified"
+      examples:
+        - "barcode01"
     - type: RG
       field: al
-      content: <sample_alias>
+      content: User specicied identifier used for the barcode, if available, otherwise the arrangement name.
+      regex: "([a-zA-Z0-9_@\\.]+)"
+      examples:
+        - "my_sample"
+        - "sample01"
       required: false
       comment: |
         This will be the same barcode descriptor guppy uses for generating the output folder names,
@@ -67,6 +81,7 @@ file:
     - type: PG
       field: ID
       content: <program_id>{_<unique_id}>}
+      regex: "(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?"
       required: true
       comments: |
         The SAM specification requires this field to be unique within a file, and may be modified on merging to ensure
@@ -84,10 +99,10 @@ file:
         minimap2 (if used in the application) "aligner"
     - type: PG
       field: PN
-      content: <program_name>
-      required: true
-      comments: |
+      content: |
         "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
+      regex: "(dorado|minimap2|ont_basecall_client|minknow)"
+      required: true
     - type: PG
       field: CL
       content: command line of invoked application
@@ -111,43 +126,80 @@ file:
         system they will be separated by a vertical bar e.g: DS:gpu:NVIDIA A100 80GB PCIe|Quadro GV100.
         If a GPU was not used, or the reads were called on Apple Silicon, this field will not be present.
   read_tags:
-    - tag: "RG:Z:"
+    - tag: "RG"
+      type: Z
       comment: ID of the read group to which this read belongs. If present its value must match the ID field of a Read Group record in the header section.
-    - tag: "qs:f:"
+    - tag: "qs"
+      type: f
       comment: Read mean basecall qscore
-    - tag: "mx:i:"
+    - tag: "mx"
+      type: i
       comment: "read mux meta: read_data::mux"
-    - tag: "ch:i:"
+    - tag: "ch"
+      type: i
       comment: "read channel meta: read_data::channel"
-    - tag: "rn:i:"
+    - tag: "rn"
+      type: i
       comment: "Read number meta: read_data::read_number"
-    - tag: "st:Z:"
+    - tag: "st"
+      type: Z
       comment: "Read start time metadata field: <read_data::time_stamp>"
-    - tag: "f5:Z:"
+    - tag: "f5"
+      type: Z
+      required: false
       comment: "fast5 file name read_data::filename. N.B. filename only so any personally identifiable data in the path is not written."
-    - tag: "ns:i:"
+    - tag: "ns"
+      type: i
       comment: "the number of samples in the signal (read_data::duration)"
-    - tag: "ts:i:"
+    - tag: "ts"
+      type: i
       comment: |
         "<read_data::trimmed_samples> the number of samples trimmed from the start of the signal (equivalent to read_data::duration - read_data::trimmed_duration)"
-    - tag: "mv:B:c"
+    - tag: "mv"
+      type: B
+      value: c
       comment: "sequence to signal move table (this has already been done as per Move table format for BAM file output)"
-    - tag: "sm:f:"
+    - tag: "sm"
+      type: f
       comment: "scaling median: basecall_data::scaling_median"
-    - tag: "sd:f:"
+    - tag: "sd"
+      type: f
       comment: "scaling dispersion (also sometimes referred to as mad, spread): basecall_data::scaling_med_abs_dev"
-    - tag: "sv:Z:"
+    - tag: "sv"
+      type: Z
       comment: |
         "med_mad" or "quantile", depending on which scaling method was used by the basecaller: basecall_data::scaling_version"
-    - tag: "du:f:"
+    - tag: "du"
+      type: f
       comment: "duration of the read (in seconds)"
-    - tag: "pi:Z:"
+    - tag: "pi"
+      type: Z
+      required: false
       comment: "parent read id for a split read"
-    - tag: "MN:i:"
+    - tag: "MN"
+      type: i
+      required: true
+      only_when: modified_bases
       comment: "Length of SEQ field when MM/ML tags were generated."
-    - tag: "dx:i:"
+    - tag: "ML"
+      type: B
+      value: C
+      required: true
+      only_when: modified_bases
+      comment: "Base modification probabilities"
+    - tag: "MM"
+      type: Z
+      required: true
+      only_when: modified_bases
+      comment: "Base modifications / methylation"
+    - tag: "dx"
+      type: i
       comment: "Duplex read indicator. 1 for duplex reads, 0 for simplex reads without duplex offspring, -1 for simplex reads with duplex offspring."
-    - tag: "bh:i"
+    - tag: "bh"
+      type: i
+      only_when: bed_file
       comment: "Number of bed-file hits. This tag is only included if a bed-file was specified when aligning."
-    - tag: "pt:i"
+    - tag: "pt"
+      type: i
+      only_when: poly_a_tail_estimation
       comment: "Estimated number of bases in the polyA/T tail. This tag is only included if --estimate_poly_a was specified by the client"

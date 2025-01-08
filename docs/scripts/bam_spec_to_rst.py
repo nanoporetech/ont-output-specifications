@@ -40,14 +40,14 @@ def main():
         if item["required"]:
             writer.raw("  :required:")
 
-        if "regex" in read_group:
+        if "regex" in item:
             writer.raw(f"  :regex: {item['regex']}")
 
         if "comments" in item:
             writer.raw("\n  " + item.get("comments", "").replace("\n", "\n  "))
 
         if "examples" in item:
-            examples = "  **Examples:**\n\n  "
+            examples = "\n  **Examples:**\n\n  "
             examples += tabulate.tabulate(
                 [[f"``{e}``"] for e in item["examples"]], tablefmt="grid"
             ).replace("\n", "\n  ")
