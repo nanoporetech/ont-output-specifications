@@ -18,8 +18,8 @@ pre-commit checks:
   tags:
     - linux
   script:
-    - make -f docs/Makefile all
-    - mv _build/html public
+    - pip install -r ./requirements.txt
+    - mkdocs build --strict --verbose --site-dir public
   artifacts:
     paths:
       - public
