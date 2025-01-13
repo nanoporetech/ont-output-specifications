@@ -21,8 +21,6 @@ duration: regex("[0-9]+\.[0-9]+")  // positive decimal
     template_duration: regex("[0-9]+\.[0-9]+")  // positive decimal
     sequence_length_template: positiveInteger
     mean_qscore_template: regex("[0-9]+\.[0-9]+")  // positive decimal
-    median_template: regex("-?[0-9]+\.[0-9]+")  // decimal
-    mad_template: regex("[0-9]+\.[0-9]+")  // positive decimal
 {% endif -%}
 {% if estimate_poly_a -%}
     poly_tail_length: is("-1") or positiveInteger
