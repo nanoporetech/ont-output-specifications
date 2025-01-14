@@ -168,13 +168,31 @@
     opacity: 1;
   }
 
-  div.autodoc-docstring {
+  div.doc-docstring {
     padding-left: 20px;
     margin-bottom: 30px;
     border-left: 5px solid rgba(230, 230, 230);
   }
 
-  div.autodoc-members {
+  div.doc-members {
     padding-left: 20px;
     margin-bottom: 15px;
+  }
+
+  h4.doc-fieldname_RG code {
+    color: #ffb5a7;
+    background-color: #f8edeb;
+    border: 1px solid #ffb5a7;
+  }
+
+  h4.doc-fieldname_PG code {
+    color: #bab3ac;
+    background-color: #f5ebe0;
+    border: 1px solid #bab3ac;
+  }
+
+  h4.doc-fieldname_read_tags code {
+    color: #fb6f92;
+    background-color: #ffc2d1;
+    border: 1px solid #fb6f92;
   }

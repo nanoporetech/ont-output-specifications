@@ -30,8 +30,6 @@ theme:
     - navigation.top # Back to top button
     - navigation.indexes # Makes the index of a section a page
 
-    - toc.integrate # Hide right-side toc pane
-
     - search.suggest
     - search.highlight
     - search.share
@@ -79,9 +77,14 @@ plugins:
   - search
   - macros:
       verbose: false # Set to true to debug the `find` function
+  - mkdocstrings
 
 markdown_extensions:
   - bam_field_docs
+  - admonition # Add nice Note, Warning, Error areas
+  - toc:
+      permalink: true
+      title: On this page
 
 extra:
   specification:

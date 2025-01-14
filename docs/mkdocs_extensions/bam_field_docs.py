@@ -8,25 +8,32 @@ import yaml
 
 
 class SpecProcessor(BlockProcessor):
-    def add_field_name(self, parent: etree.Element, name: str, extra: list[str] = None):
+    def add_field_heading(
+        self,
+        parent: etree.Element,
+        field_type: int,
+        heading_level: int,
+        name: str,
+        extra: list[str] = None,
+    ) -> etree.Element:
         # Eg: `some_module.attribute_name`
         signature_elem = etree.SubElement(parent, "div")
-        signature_elem.set("class", "autodoc-signature")
+        signature_elem.set("class", "doc-signature")
 
-        name_elem = etree.SubElement(signature_elem, "code")
-        main_name_elem = etree.SubElement(name_elem, "strong")
-        main_name_elem.text = name
+        heading_elem = etree.SubElement(signature_elem, f"h{heading_level}")
+        heading_elem.set("class", f"doc-fieldname_{field_type}")
+        name_elem = etree.SubElement(heading_elem, "code")
+        name_elem.text = name
 
         if extra:
             for extra_name in extra:
-                qualifier_elem = etree.SubElement(signature_elem, "em")
+                qualifier_elem = etree.SubElement(heading_elem, "em")
                 qualifier_elem.text = f"{extra_name} "
 
-    def add_field(self, parent: etree.Element) -> etree.Element:
-        docstring_elem = etree.SubElement(parent, "div")
-        docstring_elem.set("class", "autodoc-docstring")
+        content_elem = etree.SubElement(parent, "div")
+        content_elem.set("class", "doc-docstring")
 
-        return docstring_elem
+        return content_elem
 
     def add_field_content(self, parent: etree.Element, content: str):
         docstring_elem_content = etree.SubElement(parent, "div")
@@ -41,7 +48,7 @@ class SpecProcessor(BlockProcessor):
         root = etree.SubElement(parent, "div")
 
         required_elem = etree.SubElement(root, "strong")
-        required_elem.set("class", "autodoc-keyvalue")
+        required_elem.set("class", "doc-keyvalue")
         required_elem.text = f"{key} "
 
         if code:
@@ -97,6 +104,7 @@ class BamDocProcessor(SpecProcessor):
             block = block[m.end() :]  # removes the first line
 
         block, theRest = self.detab(block)
+        print(block)
 
         if m:
             doc_type = m.group(1)
@@ -119,38 +127,44 @@ class BamDocProcessor(SpecProcessor):
 
             for header_item in input_spec["file"]["header_records"]:
                 if header_item["type"] == header_type:
-                    self.add_field_name(parent, header_item["field"])
-                    field = self.add_field(parent)
+                    level = 4
+                    field_content = self.add_field_heading(
+                        parent, header_type, level, header_item["field"]
+                    )
                     if "regex" in header_item:
                         self.add_key_value(
-                            field, "Regex", header_item["regex"], code=True
+                            field_content, "Regex", header_item["regex"], code=True
                         )
                     if header_item["required"]:
-                        self.add_required(field)
+                        self.add_required(field_content)
                     if "examples" in header_item:
                         self.add_table(
-                            field,
+                            field_content,
                             [["Examples"]] + [[k] for k in header_item["examples"]],
                             code=True,
                         )
-                    self.add_field_content(field, header_item["description"])
+                    self.add_field_content(field_content, header_item["description"])
 
     def render_bam_read_tags(self, parent: etree.Element) -> None:
         # Read the input file
         with open("bam/spec.yaml", "r") as f:
             input_spec = yaml.load(f, Loader=yaml.FullLoader)
 
+            level = 4
+            field_type = "read_tags"
+
             for header_item in input_spec["file"]["read_tags"]:
                 extra = f":{header_item['type']}:{header_item.get('value', '')}"
-                self.add_field_name(parent, header_item["tag"], [extra])
-                field = self.add_field(parent)
+                field_content = self.add_field_heading(
+                    parent, field_type, level, header_item["tag"], [extra]
+                )
                 if header_item.get("required", False):
-                    self.add_required(field)
+                    self.add_required(field_content)
                 if "only_when" in header_item:
                     self.add_key_value(
-                        field, "Only When", header_item["only_when"], code=True
+                        field_content, "Only When", header_item["only_when"], code=True
                     )
-                self.add_field_content(field, header_item["description"])
+                self.add_field_content(field_content, header_item["description"])
 
 
 class MKAutoDocExtension(Extension):

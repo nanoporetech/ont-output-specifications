@@ -19,6 +19,8 @@ pre-commit checks:
     - linux
   script:
     - pip install -r ./requirements.txt
+    - export ONT_SPECIFICATION_VERSION=$(python find_current_version.py)
+    - export PYTHONPATH=./docs/mkdocs_extensions/
     - mkdocs build --strict --verbose --site-dir public
   artifacts:
     paths:
