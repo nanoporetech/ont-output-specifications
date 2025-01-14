@@ -11,7 +11,7 @@ protocol_spec:
       batching:
         duration: "3600s"
       available_patterns:
-        gpu_header_info: "A string description of the connected GPU (without spaces), with fastq attribute name. eg 'basecall_gpu=Nvidia_3090"
+        gpu_header_info: "A string description of the connected GPU (without spaces), with fastq attribute name. eg 'basecall_gpu=Nvidia_3090'"
     bam:
       bam_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam"
       bai_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam.bai"

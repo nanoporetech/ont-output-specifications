@@ -1,10 +1,14 @@
+import ast
 from pathlib import Path
+import tabulate
 import yaml
 
 
 def spec_to_path(spec: str) -> Path:
     if spec == "bam":
         return "bam/spec.yaml"
+    if spec == "fastq":
+        return "fastq/header-spec.yaml"
     return Path(f"{spec}.yaml")
 
 
@@ -30,3 +34,20 @@ def define_env(env):
                 value = value[k]
 
             return str(value)
+
+    @env.macro
+    def make_table_from_mapping(key_title: str, value_title: str, values: str) -> str:
+        """
+        Create a table from a dictionary.
+
+        :param key_title: The title of the key column.
+        :param value_title: The title of the value column.
+        :param values: The json compatible mapping to
+            create the table from, in string form.
+        """
+
+        values_json = ast.literal_eval(values)
+        list_values = [[key, value] for key, value in values_json.items()]
+        return tabulate.tabulate(
+            list_values, headers=[key_title, value_title], tablefmt="pipe"
+        )

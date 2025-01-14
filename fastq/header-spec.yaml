@@ -6,44 +6,62 @@ file:
         A random-generated uuid for the sequencing protocol (eg:
         e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII letters
         (a-z), digits (0-9) and dashes (-). This maps to the `protocol_run_id` in the pod5 file.
-      content: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      regex: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      required: true
       examples:
-      - e4994c62-93f9-439a-bc8f-d20c95a137a5
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
     - name: read
       description: |
         A per-channel read counter. This number will increase for each read on a given channel, but
         the numbers of written-out reads will not usually be consecutive.
         It will always be at least 1.
+      required: true
     - name: ch
       description: |
         The number of the channel the read was acquired on. The first channel is 1.
+      required: true
     - name: start_time
       description: |
         The time the read started in RFC3339 format.
+      required: true
     - name: flow_cell_id
       description: |
         The human-readable identifier for the flow cell (eg: FAK54854).
+      required: true
     - name: protocol_group_id
       description: |
         Set by the user in the GUI as "Experiment ID".
+      required: true
     - name: sample_id
       description: |
         Set by the user in the GUI as "Sample ID".
+      required: true
     - name: barcode
       description: |
         The barcode assigned to this read by guppy (eg: "barcode01"). Omitted completely (both key
         and value) if barcoding is not running.
+      required: true
     - name: barcode_alias
       description: |
         The user-supplied alias for the barcode. Omitted completely (both key and value) if
         barcoding is not running. The same as barcode if the user did not supply an alias.
+      required: true
     - name: parent_read_id
-      descroption: |
+      description: |
         The read_id of the read which was the source of this fastq entry. This may be the same as the
         fastq entry id if no read splitting was performed for this read, or will be a new globally
         unique UUID value if this read was split out of another read by guppy.
+      required: true
     - name: basecall_model_version_id
       description: |
         The unique identifier for the basecall model used to generate
         this fastq file, as supplied by the guppy basecaller
         (e.g. 2021-05-17_dna_r9.4.1_minion_384_d37a2ab9).
+      required: true
+    - name: basecall_gpu
+      description: |
+        A string description of the connected GPU.
+      only_when: gpu_calling
+      required: true
+      examples:
+        - Nvidia_3090
