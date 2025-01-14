@@ -74,6 +74,11 @@ theme:
         name: Switch to system preference
       # primary: deep purple
       # accent: blue
+  custom_dir: docs/extra
+
+  # 404 page
+  static_templates:
+    - 404.html
 
 plugins:
   - search
