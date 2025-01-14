@@ -37,4 +37,7 @@ Additional header patterns are available for fastq files on top of the normal [P
 
 {{ make_table_from_mapping("Name", "Value", spec_value("experiment_layout", "protocol_spec.contents.fastq.available_patterns")) }}
 
+Required Header Attributes
+--------------------------
+
 ::: fastq_spec_docs header
