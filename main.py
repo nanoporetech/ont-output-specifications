@@ -51,3 +51,15 @@ def define_env(env):
         return tabulate.tabulate(
             list_values, headers=[key_title, value_title], tablefmt="pipe"
         )
+
+    @env.macro
+    def warning(message: str) -> str:
+        """
+        Create a warning block.
+
+        :param message: The message to display in the warning block.
+        """
+        return (
+            '<span class="admonition warning"><p class="admonition-title">'
+            f"{message}</p></span>"
+        )

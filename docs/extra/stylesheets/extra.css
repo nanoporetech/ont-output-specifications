@@ -180,17 +180,17 @@
   }
 
   h4.doc-fieldname_RG code {
-    color: #ffb5a7;
+    color: #e98e7c;
     background-color: #f8edeb;
-    border: 1px solid #ffb5a7;
+    border: 1px solid #e98e7c;
 
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 
   h4.doc-fieldname_PG code {
-    color: #bab3ac;
-    background-color: #f5efe9;
-    border: 1px solid #bab3ac;
+    color: #51a2d1;
+    background-color: #fbfdfe;
+    border: 1px solid #51a2d1;
 
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
