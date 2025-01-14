@@ -5,7 +5,7 @@ import re
 
 import yaml
 
-from doc_utils import SpecProcessor
+from doc_utils import SpecProcessor, CommonFieldLoader, FastqField
 
 
 class BamDocProcessor(SpecProcessor):
@@ -30,7 +30,8 @@ class BamDocProcessor(SpecProcessor):
             block = block[m.end() :]  # removes the first line
 
         block, theRest = self.detab(block)
-        print(block)
+
+        common_fields = CommonFieldLoader()
 
         if m:
             doc_type = m.group(1)
@@ -39,11 +40,13 @@ class BamDocProcessor(SpecProcessor):
             autodoc_div.set("class", self.CLASSNAME)
 
             if doc_type == "header":
-                self.render_fastq_header(autodoc_div)
+                self.render_fastq_header(autodoc_div, common_fields)
             else:
                 raise ValueError(f"Unknown doc type: {doc_type}")
 
-    def render_fastq_header(self, parent: etree.Element) -> None:
+    def render_fastq_header(
+        self, parent: etree.Element, common_fields: CommonFieldLoader
+    ) -> None:
         # Read the input file
         with open("fastq/header-spec.yaml", "r") as f:
             input_spec = yaml.load(f, Loader=yaml.FullLoader)
@@ -65,6 +68,13 @@ class BamDocProcessor(SpecProcessor):
                     self.add_key_value(
                         field_content, "Only When", header_item["only_when"], code=True
                     )
+
+                common_item = common_fields.find_common_field(
+                    FastqField(header_item["name"])
+                )
+                if common_item:
+                    self.add_common_section(field_content, common_item, "fastq")
+
                 if "examples" in header_item:
                     self.add_table(
                         field_content,

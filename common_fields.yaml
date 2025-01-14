@@ -1,0 +1,53 @@
+common_fields:
+  runid:
+    fastq: runid
+    bam:
+      area: RG
+      field: DS
+      comment: "``runid`` section of RG."
+  ch:
+    fastq: ch
+    bam:
+      area: read_tags
+      field: ch
+  start_time:
+    fastq: start_time
+    bam:
+      area: read_tags
+      field: st
+  flow_cell_id:
+    fastq: flow_cell_id
+    bam:
+      area: RG
+      field: PU
+  sample_id:
+    fastq: sample_id
+    bam:
+      area: RG
+      field: LB
+  barcode:
+    fastq: barcode
+    bam:
+      area: RG
+      field: SM
+  barcode_alias:
+    fastq: barcode_alias
+    bam:
+      area: RG
+      field: al
+  parent_read_id:
+    fastq: parent_read_id
+    bam:
+      area: read_tags
+      field: pi
+  basecall_model_version_id:
+    fastq: basecall_model_version_id
+    bam:
+      area: RG
+      field: DS
+      comment: "``basecall_model`` section of RG."
+  basecall_gpu:
+    fastq: basecall_gpu
+    bam:
+      area: PG
+      field: DS

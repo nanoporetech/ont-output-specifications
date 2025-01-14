@@ -5,7 +5,7 @@ import re
 
 import yaml
 
-from doc_utils import SpecProcessor
+from doc_utils import SpecProcessor, CommonFieldLoader, BamField
 
 
 class BamDocProcessor(SpecProcessor):
@@ -32,7 +32,8 @@ class BamDocProcessor(SpecProcessor):
             block = block[m.end() :]  # removes the first line
 
         block, theRest = self.detab(block)
-        print(block)
+
+        common_fields = CommonFieldLoader()
 
         if m:
             doc_type = m.group(1)
@@ -42,13 +43,15 @@ class BamDocProcessor(SpecProcessor):
             autodoc_div.set("class", self.CLASSNAME)
 
             if doc_type == "header_records":
-                self.render_bam_headers(autodoc_div, sub_type)
+                self.render_bam_headers(autodoc_div, sub_type, common_fields)
             elif doc_type == "read_tags":
-                self.render_bam_read_tags(autodoc_div)
+                self.render_bam_read_tags(autodoc_div, common_fields)
             else:
                 raise ValueError(f"Unknown doc type: {doc_type}")
 
-    def render_bam_headers(self, parent: etree.Element, header_type: str) -> None:
+    def render_bam_headers(
+        self, parent: etree.Element, header_type: str, common_fields: CommonFieldLoader
+    ) -> None:
         # Read the input file
         with open("bam/spec.yaml", "r") as f:
             input_spec = yaml.load(f, Loader=yaml.FullLoader)
@@ -65,6 +68,13 @@ class BamDocProcessor(SpecProcessor):
                         )
                     if header_item["required"]:
                         self.add_required(field_content)
+
+                    common_item = common_fields.find_common_field(
+                        BamField(header_type, header_item["field"])
+                    )
+                    if common_item:
+                        self.add_common_section(field_content, common_item, "bam")
+
                     if "examples" in header_item:
                         self.add_table(
                             field_content,
@@ -73,7 +83,9 @@ class BamDocProcessor(SpecProcessor):
                         )
                     self.add_field_content(field_content, header_item["description"])
 
-    def render_bam_read_tags(self, parent: etree.Element) -> None:
+    def render_bam_read_tags(
+        self, parent: etree.Element, common_fields: CommonFieldLoader
+    ) -> None:
         # Read the input file
         with open("bam/spec.yaml", "r") as f:
             input_spec = yaml.load(f, Loader=yaml.FullLoader)
@@ -92,6 +104,12 @@ class BamDocProcessor(SpecProcessor):
                     self.add_key_value(
                         field_content, "Only When", header_item["only_when"], code=True
                     )
+
+                common_item = common_fields.find_common_field(
+                    BamField("read_tags", header_item["tag"])
+                )
+                if common_item:
+                    self.add_common_section(field_content, common_item, "bam")
                 self.add_field_content(field_content, header_item["description"])
 
 

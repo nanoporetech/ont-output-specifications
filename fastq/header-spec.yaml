@@ -10,12 +10,6 @@ file:
       required: true
       examples:
         - e4994c62-93f9-439a-bc8f-d20c95a137a5
-    - name: read
-      description: |
-        A per-channel read counter. This number will increase for each read on a given channel, but
-        the numbers of written-out reads will not usually be consecutive.
-        It will always be at least 1.
-      required: true
     - name: ch
       description: |
         The number of the channel the read was acquired on. The first channel is 1.

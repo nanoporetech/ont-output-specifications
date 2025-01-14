@@ -1,6 +1,79 @@
+from dataclasses import dataclass
+from typing import Any
+
 from markdown import Markdown
 from markdown.blockprocessors import BlockProcessor
 from xml.etree import ElementTree as etree
+
+import yaml
+
+
+@dataclass
+class BamField:
+    area: str
+    field: str
+
+
+@dataclass
+class FastqField:
+    field: str
+
+
+@dataclass
+class CommonField:
+    fields: dict[str, Any]
+
+    def build(self, parent: etree.Element, without: str = None):
+        NICE_MAP = {
+            "bam": "Bam",
+            "fastq": "Fastq",
+        }
+        for name, field in self.fields.items():
+            if name == without:
+                continue
+
+            value_elem = etree.SubElement(parent, "code")
+            value_elem.set("class", "doc-common-value")
+            value_elem.text = f"{NICE_MAP[name]}: "
+
+            if name == "bam":
+                value_elem = etree.SubElement(value_elem, "span")
+                value_elem.text = f"[{field['field']}](bam.md#{field['field'].lower()})"
+            elif name == "fastq":
+                value_elem = etree.SubElement(value_elem, "span")
+                value_elem.text = f"[{field}](fastq.md#{field.lower()})"
+
+
+class CommonFieldLoader:
+    def __init__(self):
+        with open("./common_fields.yaml", "r") as f:
+            self.common_fields = yaml.load(f, Loader=yaml.FullLoader)
+
+    def find_common_field(
+        self,
+        source_file: BamField | FastqField,
+    ) -> CommonField:
+        """
+        Find a common field for a given source file
+
+        :param source_file: The source file to find a common field for
+        """
+        with open("./common_fields.yaml", "r") as f:
+            common_fields = yaml.load(f, Loader=yaml.FullLoader)
+
+            for name, value in common_fields["common_fields"].items():
+                if isinstance(source_file, BamField):
+                    if (
+                        "bam" in value
+                        and value["bam"]["area"] == source_file.area
+                        and value["bam"]["field"] == source_file.field
+                    ):
+                        return CommonField(fields=value)
+                elif isinstance(source_file, FastqField):
+                    if "fastq" in value and value["fastq"] == source_file.field:
+                        return CommonField(fields=value)
+
+        return None
 
 
 class SpecProcessor(BlockProcessor):
@@ -39,6 +112,17 @@ class SpecProcessor(BlockProcessor):
 
     def add_required(self, parent: etree.Element):
         self.add_key_value(parent, "Required", "")
+
+    def add_common_section(
+        self, parent: etree.Element, common_item: CommonField, source_area: str
+    ):
+        root = etree.SubElement(parent, "div")
+
+        required_elem = etree.SubElement(root, "strong")
+        required_elem.set("class", "doc-keyvalue")
+        required_elem.text = "Common fields "
+
+        common_item.build(root, without=source_area)
 
     def add_key_value(self, parent: etree.Element, key, value, code=False):
         root = etree.SubElement(parent, "div")
