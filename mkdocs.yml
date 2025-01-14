@@ -83,6 +83,7 @@ plugins:
 markdown_extensions:
   - bam_field_docs
   - fastq_field_docs
+  - pattern_docs
   - admonition # Add nice Note, Warning, Error areas
   - toc:
       permalink: true
