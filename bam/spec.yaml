@@ -3,87 +3,94 @@ file:
   header_records:
     - type: RG
       field: ID
-      content: A group identifier keyed specifically to a run, basecall model, and barcode (if enabled)
       regex: "([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})_([a-z0-9_@\\.])+(_([A-Za-z0-9_@\\.]+))?"
       required: true
       examples:
         - "e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_barcode02"
         - "e4994c62-93f9-439a-bc8f-d20c95a137a5_unknown_barcode02"
         - "e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_29d8704b"
-      comments: |
+      description: |
+        A group identifier keyed specifically to a run, basecall model, and barcode (if enabled)
+
         ``model_version_id`` if missing shall be replaced with the text "unknown"
 
         ``barcode_data::arrangement`` if missing the suffix will not be appended.
     - type: RG
       field: DT
-      content: The start time of the sequencing run.
       regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}\+\d{2}:\d{2}
       required: false
       examples:
         - "2025-01-06T10:06:36.778368+00:00"
-      comments: |
-        Correctly formatted as ISO8601
+      description: |
+        The start time of the sequencing run.
+
+        Correctly formatted as ISO8601.
     - type: RG
       field: DS
-      content: "``runid``, ``basecall_model`` and optionally ``modbase_models`` formatted into a space separated string"
       regex: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([A-Za-z0-9_@\\.]+))?"
       examples:
         - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0
         - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0 modbase_models=rna004_130bps_hac@v5.1.0_inosine_m6A@v1
       required: true
-      comments: |
+      description: |
+        ``runid``, ``basecall_model`` and optionally ``modbase_models`` formatted into a space separated string.
+
         `runid` contains the ``protocol_run_id`` from the minknow experiment that generated the bam files.
         Note, ``modbase_models`` only appears if modbase calling was performed, and contains a comma separated list of dorado modbase model names used.
     - type: RG
       field: LB
-      content: The sample library identifier.
       regex: "([a-zA-Z0-9_@\\.]+)"
       required: false
-      comments: Included only if data is present.
+      description: |
+        The sample library identifier. Included only if data is present.
     - type: RG
       field: PL
       regex: ONT
-      content: ONT
+      description: The string "ONT".
       required: true
     - type: RG
       field: PM
       regex: "[A-Z-0-9]+"
-      content: The device identifier used for sequencing.
+      description: The device identifier used for sequencing.
       required: false
       examples:
         - "MN12345"
     - type: RG
       field: PU
-      content: The unique identifier for the flowcell.
+      description: The unique identifier for the flowcell.
       regex: "[A-Z0-9-]+"
       examples:
         - "FAB12345"
       required: false
     - type: RG
       field: SM
-      content: The barcode identified for the read.
       regex: "barcode([0-9]+)"
       required: false
-      comment: Included only if data is present and the arrangement is not "unclassified"
+      description: |
+        The barcode identified for the read.
+
+        Included only if data is present and the arrangement is not "unclassified"
       examples:
         - "barcode01"
     - type: RG
       field: al
-      content: User specicied identifier used for the barcode, if available, otherwise the arrangement name.
       regex: "([a-zA-Z0-9_@\\.]+)"
       examples:
         - "my_sample"
         - "sample01"
       required: false
-      comment: |
+      description: |
+        User specicied identifier used for the barcode, if available, otherwise the arrangement name.
+
         This will be the same barcode descriptor guppy uses for generating the output folder names,
         which is the sample sheet alias if available otherwise defaulting to the arrangement name.
     - type: PG
       field: ID
-      content: <program_id>{_<unique_id}>}
       regex: "(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?"
       required: true
-      comments: |
+      description: |
+        ``<program_id>{_<unique_id>}``
+
         The SAM specification requires this field to be unique within a file, and may be modified on merging to ensure
         uniqueness. Where the program_id would not be unique within the file, e.g. when the input is a bam/sam file
         with the program_id already present, then the @PG record will have the lowest zero based suffix that can be
@@ -99,27 +106,28 @@ file:
         minimap2 (if used in the application) "aligner"
     - type: PG
       field: PN
-      content: |
+      description: |
         "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
       regex: "(dorado|minimap2|ont_basecall_client|minknow)"
       required: true
     - type: PG
       field: CL
-      content: command line of invoked application
+      description: Command line of invoked application
       required: false
       comments: |
         For dorado/core_cpp/minknow application records, the command line used to invoke the application including the application name.
         For minimap records this field will be omitted, as it was not directly invoked from the command line.
     - type: PG
       field: VN
-      content: <program_version>
+      description: "<program_version>"
       required: true
       comments: Version number of the application or minimap version for minimap PG records
     - type: PG
       field: DS
-      content: gpu:<gpu_name>
       required: false
-      comments: |
+      description: |
+        ``gpu:<gpu_name>``
+
         Each GPU type used by the basecaller will appear once, as we’re only interested in the GPU types, not the total
         number of them.
         For a PromethION the tag would say (e.g) DS:gpu:NVIDIA A100 80GB PCIe. If there are multiple GPU types on the
@@ -128,78 +136,78 @@ file:
   read_tags:
     - tag: "RG"
       type: Z
-      comment: ID of the read group to which this read belongs. If present its value must match the ID field of a Read Group record in the header section.
+      description: ID of the read group to which this read belongs. If present its value must match the ID field of a Read Group record in the header section.
     - tag: "qs"
       type: f
-      comment: Read mean basecall qscore
+      description: Read mean basecall qscore
     - tag: "mx"
       type: i
-      comment: "read mux meta: read_data::mux"
+      description: "read mux meta: read_data::mux"
     - tag: "ch"
       type: i
-      comment: "read channel meta: read_data::channel"
+      description: "read channel meta: read_data::channel"
     - tag: "rn"
       type: i
-      comment: "Read number meta: read_data::read_number"
+      description: "Read number meta: read_data::read_number"
     - tag: "st"
       type: Z
-      comment: "Read start time metadata field: <read_data::time_stamp>"
+      description: "Read start time metadata field: <read_data::time_stamp>"
     - tag: "f5"
       type: Z
       required: false
-      comment: "fast5 file name read_data::filename. N.B. filename only so any personally identifiable data in the path is not written."
+      description: "fast5 file name read_data::filename. N.B. filename only so any personally identifiable data in the path is not written."
     - tag: "ns"
       type: i
-      comment: "the number of samples in the signal (read_data::duration)"
+      description: "the number of samples in the signal (read_data::duration)"
     - tag: "ts"
       type: i
-      comment: |
+      description: |
         "<read_data::trimmed_samples> the number of samples trimmed from the start of the signal (equivalent to read_data::duration - read_data::trimmed_duration)"
     - tag: "mv"
       type: B
       value: c
-      comment: "sequence to signal move table (this has already been done as per Move table format for BAM file output)"
+      description: "sequence to signal move table (this has already been done as per Move table format for BAM file output)"
     - tag: "sm"
       type: f
-      comment: "scaling median: basecall_data::scaling_median"
+      description: "scaling median: basecall_data::scaling_median"
     - tag: "sd"
       type: f
-      comment: "scaling dispersion (also sometimes referred to as mad, spread): basecall_data::scaling_med_abs_dev"
+      description: "scaling dispersion (also sometimes referred to as mad, spread): basecall_data::scaling_med_abs_dev"
     - tag: "sv"
       type: Z
-      comment: |
+      description: |
         "med_mad" or "quantile", depending on which scaling method was used by the basecaller: basecall_data::scaling_version"
     - tag: "du"
       type: f
-      comment: "duration of the read (in seconds)"
+      description: "duration of the read (in seconds)"
     - tag: "pi"
       type: Z
       required: false
-      comment: "parent read id for a split read"
+      description: "parent read id for a split read"
     - tag: "MN"
       type: i
       required: true
       only_when: modified_bases
-      comment: "Length of SEQ field when MM/ML tags were generated."
+      description: "Length of SEQ field when MM/ML tags were generated."
     - tag: "ML"
       type: B
       value: C
       required: true
       only_when: modified_bases
-      comment: "Base modification probabilities"
+      description: "Base modification probabilities"
     - tag: "MM"
       type: Z
       required: true
       only_when: modified_bases
-      comment: "Base modifications / methylation"
+      description: "Base modifications / methylation"
     - tag: "dx"
       type: i
-      comment: "Duplex read indicator. 1 for duplex reads, 0 for simplex reads without duplex offspring, -1 for simplex reads with duplex offspring."
+      description: "Duplex read indicator. 1 for duplex reads, 0 for simplex reads without duplex offspring, -1 for simplex reads with duplex offspring."
     - tag: "bh"
       type: i
       only_when: bed_file
-      comment: "Number of bed-file hits. This tag is only included if a bed-file was specified when aligning."
+      description: "Number of bed-file hits. This tag is only included if a bed-file was specified when aligning."
     - tag: "pt"
       type: i
       only_when: poly_a_tail_estimation
-      comment: "Estimated number of bases in the polyA/T tail. This tag is only included if --estimate_poly_a was specified by the client"
+      description: "Estimated number of bases in the polyA/T tail. This tag is only included if --estimate_poly_a was specified by the client"

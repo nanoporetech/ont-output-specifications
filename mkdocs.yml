@@ -1,0 +1,98 @@
+site_name: ONT Output Specification
+site_url: !ENV READTHEDOCS_CANONICAL_URL
+
+# Adds the Github Link at top right
+repo_url: https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification
+repo_name: ONT Output Specification
+
+nav:
+  - index.md
+  - File Patterns: file_patterns.md
+  - Read Formats:
+    - Bam: read_formats/bam.md
+    - Fastq: read_formats/fastq.md
+    - Pod5: read_formats/pod5.md
+    - Fast5: read_formats/fast5.md
+  - Software Products:
+    - MinKNOW: software_products/minknow.md
+    - Dorado: software_products/dorado.md
+  - Protocol Formats:
+    - Intro: protocol_formats/intro.md
+    - Final Summary: protocol_formats/final_summary.md
+    - Sequencing Summary: protocol_formats/sequencing_summary.md
+
+theme:
+  name: material
+  font: false
+  features:
+    - navigation.instant # Do not fully reload pages
+    - navigation.sections # Show docs groups as sections instead of nesting as tree
+    - navigation.top # Back to top button
+    - navigation.indexes # Makes the index of a section a page
+
+    - search.suggest
+    - search.highlight
+    - search.share
+
+    - content.tabs.link
+    - content.code.annotate
+    - content.code.copy
+  language: en
+  logo: extra/assets/nanopore.logo.png
+  palette:
+    # Palette toggle for automatic mode
+    - media: "(prefers-color-scheme)"
+      primary: custom
+      accent: custom
+      scheme: ont
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
+
+    # Palette toggle for light mode
+    - media: "(prefers-color-scheme: light)"
+      primary: custom
+      accent: custom
+      scheme: ont
+      # scheme: default
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+      # primary: cyan
+      # accent: blue
+
+    # Palette toggle for dark mode
+    - media: "(prefers-color-scheme: dark)"
+      primary: custom
+      accent: custom
+      scheme: ont-dark
+      # scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to system preference
+      # primary: deep purple
+      # accent: blue
+
+plugins:
+  - search
+  - macros:
+      verbose: false # Set to true to debug the `find` function
+  - mkdocstrings
+
+markdown_extensions:
+  - bam_field_docs
+  - admonition # Add nice Note, Warning, Error areas
+  - toc:
+      permalink: true
+      title: On this page
+
+extra:
+  specification:
+    version: !ENV ONT_SPECIFICATION_VERSION
+    git_url: https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification
+  validator:
+    git_url: https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification-validator
+
+
+extra_css:
+  - extra/stylesheets/extra.css

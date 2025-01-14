@@ -1,4 +1,6 @@
 *venv*
 _build/
-*.generated.rst
 __pycache__/
+.DS_Store
+.ruff_cache/
+public/
