@@ -183,16 +183,38 @@
     color: #ffb5a7;
     background-color: #f8edeb;
     border: 1px solid #ffb5a7;
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 
   h4.doc-fieldname_PG code {
     color: #bab3ac;
-    background-color: #f5ebe0;
+    background-color: #f5efe9;
     border: 1px solid #bab3ac;
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
 
   h4.doc-fieldname_read_tags code {
     color: #fb6f92;
-    background-color: #ffc2d1;
+    background-color: #fadfe5;
     border: 1px solid #fb6f92;
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  h3.doc-fieldname_fastq code {
+    color: #f66b60;
+    background-color: #feeae7;
+    border: 1px solid #f66b60;
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  }
+
+  code.doc-common-value {
+    color: #9381ff;
+    background-color: #f8f7ff;
+    border: 1px solid #9381ff;
+
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   }
