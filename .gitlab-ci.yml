@@ -11,7 +11,7 @@ pre-commit checks:
   stage: .pre
 
 
-.pages:
+pages:
   stage: build
   image: ${CI_REGISTRY}/traque/ont-docker-base/ont-base-python:3.10
   needs: []
@@ -25,13 +25,12 @@ pre-commit checks:
   artifacts:
     paths:
       - public
-
-pages-test:
-  extends:
-    - .pages
-
-pages:
-  extends:
-    - .pages
+  variables:
+    PAGES_PREFIX: ""
+  pages:
+    path_prefix: "$PAGES_PREFIX"
   rules:
-    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH # main branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH # Run on default branch (with default PAGES_PREFIX)
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event" # Conditionally change the prefix for Merge Requests
+      variables:
+        PAGES_PREFIX: "mr-$CI_MERGE_REQUEST_SOURCE_BRANCH_NAME" # Prefix with the mr-<name>, like `mr-fix_issue_123`
