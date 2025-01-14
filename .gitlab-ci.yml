@@ -9,7 +9,8 @@ pre-commit checks:
   extends:
     - .tacklebox pre-commit
   stage: .pre
-
+  rules:
+    - when: always
 
 pages:
   stage: build
@@ -29,7 +30,6 @@ pages:
     PAGES_PREFIX: ""
   pages:
     path_prefix: "$PAGES_PREFIX"
-
   rules:
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH # Run on default branch (with default PAGES_PREFIX)
     - if: $CI_PIPELINE_SOURCE == "merge_request_event" # Conditionally change the prefix for Merge Requests
