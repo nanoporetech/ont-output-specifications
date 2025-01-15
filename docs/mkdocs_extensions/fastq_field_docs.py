@@ -8,7 +8,7 @@ import yaml
 from doc_utils import SpecProcessor, CommonFieldLoader, FastqField
 
 
-class BamDocProcessor(SpecProcessor):
+class FastqDocProcessor(SpecProcessor):
     CLASSNAME = "autodoc"
     RE = re.compile(r"(?:^|\n):::\s+fastq_spec_docs\s+(header)(?:\n|$)")
     RE_SPACES = re.compile("  +")
@@ -87,7 +87,7 @@ class BamDocProcessor(SpecProcessor):
 class MKAutoDocExtension(Extension):
     def extendMarkdown(self, md: Markdown) -> None:
         md.registerExtension(self)
-        processor = BamDocProcessor(md.parser, md=md)
+        processor = FastqDocProcessor(md.parser, md=md)
         md.parser.blockprocessors.register(processor, "fastq_spec_docs", 110)
 
 

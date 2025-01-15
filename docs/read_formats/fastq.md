@@ -8,7 +8,7 @@ Fastq Output
 Paths
 -----
 
-The following path patterns are used by place reads:
+The following path patterns are used to place the data on disk:
 
 
 File           | Path Pattern

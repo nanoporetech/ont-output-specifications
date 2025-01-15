@@ -74,6 +74,11 @@ theme:
         name: Switch to system preference
       # primary: deep purple
       # accent: blue
+  custom_dir: docs/extra
+
+  # 404 page
+  static_templates:
+    - 404.html
 
 plugins:
   - search
@@ -83,6 +88,7 @@ plugins:
 markdown_extensions:
   - bam_field_docs
   - fastq_field_docs
+  - pattern_docs
   - admonition # Add nice Note, Warning, Error areas
   - toc:
       permalink: true
