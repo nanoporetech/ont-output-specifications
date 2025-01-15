@@ -6,8 +6,7 @@ Pod5 is the Nanopore's raw read format, based on [Apache Arrow](https://github.c
 Paths
 -----
 
-The following path patterns are used by place reads:
-
+The following path patterns are used to place the data on disk:
 
 File           | Path Pattern
 -------------- | ------------

@@ -9,8 +9,7 @@ FAST5 files are Hierarchical Data Format 5 files, with specific layout for Nanop
 Paths
 -----
 
-The following path patterns are used by place reads:
-
+The following path patterns are used to place the data on disk:
 
 File           | Path Pattern
 -------------- | ------------
