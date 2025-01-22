@@ -14,9 +14,18 @@ file:
       description: |
         The number of the channel the read was acquired on. The first channel is 1.
       required: true
+      regex: "[0-9]+"
+      examples:
+        - "1"
+        - "512"
+        - "3000"
     - name: start_time
       description: |
         The time the read started in RFC3339 format.
+      regex: "((?:(\\d{4}-\\d{2}-\\d{2})T(\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?))(Z|[\\+-]\\d{2}:\\d{2})?)"
+      examples:
+        - "2025-01-13T10:45:28.681306+00:00"
+        - "2016-01-19T15:21:32.59+02:00"
       required: true
     - name: flow_cell_id
       regex: "[A-Z0-9-]+"
@@ -31,36 +40,58 @@ file:
       description: |
         Set by the user in the GUI as "Experiment ID".
       required: true
+      regex: "[a-zA-Z0-9_\\.-]+"
+      examples:
+        - "My_Group"
+        - "my-group-1"
     - name: sample_id
       description: |
         Set by the user in the GUI as "Sample ID".
       required: true
+      regex: "[a-zA-Z0-9_\\.-]+"
+      examples:
+        - "My_Sample"
+        - "my-sample-1"
     - name: barcode
       description: |
         The barcode assigned to this read by guppy (eg: ``"barcode01"``). Omitted completely (both key
         and value) if barcoding is not running.
       required: true
+      regex: "barcode([0-9]+)"
+      examples:
+        - "barcode01"
     - name: barcode_alias
       description: |
         The user-supplied alias for the barcode. Omitted completely (both key and value) if
         barcoding is not running. The same as ``barcode`` if the user did not supply an alias.
       required: true
+      regex: "([a-zA-Z0-9_@\\.]+)"
+      examples:
+        - "my_sample"
+        - "sample01"
     - name: parent_read_id
       description: |
         The ``read_id`` of the read which was the source of this fastq entry. This may be the same as the
         fastq entry id if no read splitting was performed for this read, or will be a new globally
         unique UUID value if this read was split out of another read by guppy.
       required: true
+      regex: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      examples:
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
     - name: basecall_model_version_id
       description: |
         The unique identifier for the basecall model used to generate
         this fastq file, as supplied by the guppy basecaller
         (e.g. ``2021-05-17_dna_r9.4.1_minion_384_d37a2ab9``).
       required: true
+      regex: "[a-z0-9_@\\.]+"
+      examples:
+        - "rna004_130bps_fast@v5.1.0"
     - name: basecall_gpu
       description: |
         A string description of the connected GPU.
       only_when: gpu_calling
       required: true
+      regex: ".*"
       examples:
         - Nvidia_3090

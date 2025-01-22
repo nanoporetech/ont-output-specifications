@@ -5,12 +5,24 @@ include:
 stages:
   - build
 
+variables:
+  PYTHON_IMAGE: ${CI_REGISTRY}/traque/ont-docker-base/ont-base-python:3.12
+
 pre-commit checks:
   extends:
     - .tacklebox pre-commit
   stage: .pre
   rules:
     - when: always
+
+test:
+  stage: .pre
+  image: ${PYTHON_IMAGE}
+  tags:
+    - linux
+  script:
+    - pip install pytest
+    - pytest ./test/ -s
 
 pages:
   stage: build
