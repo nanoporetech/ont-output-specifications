@@ -40,12 +40,10 @@ class PatternDocProcessor(SpecProcessor):
             autodoc_div.set("class", self.CLASSNAME)
 
             # Read the input file
-            with open("experiment_layout.yaml", "r") as f:
+            with open("patterns.yaml", "r") as f:
                 input_spec = yaml.load(f, Loader=yaml.FullLoader)
 
-                for name, header_item in input_spec["protocol_spec"][
-                    "available_patterns"
-                ].items():
+                for name, header_item in input_spec["patterns"].items():
                     if header_item["context"] != doc_type:
                         continue
 
@@ -53,6 +51,16 @@ class PatternDocProcessor(SpecProcessor):
                     field_content = self.add_field_heading(
                         parent, "pattern", level, name
                     )
+                    if "regex" in header_item:
+                        self.add_key_value(
+                            field_content, "Regex", header_item["regex"], code=True
+                        )
+                    if "examples" in header_item:
+                        self.add_table(
+                            field_content,
+                            [["Examples"]] + [[k] for k in header_item["examples"]],
+                            code=True,
+                        )
                     self.add_field_content(field_content, header_item["description"])
 
 

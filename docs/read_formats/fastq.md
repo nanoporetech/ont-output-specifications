@@ -65,4 +65,4 @@ Header Patterns
 
 Additional header patterns are available for fastq files on top of the normal [Patterns](../patterns.md).
 
-{{ make_table_from_mapping("Name", "Value", spec_value("experiment_layout", "protocol_spec.contents.fastq.available_patterns")) }}
+{{ make_table_from_mapping("Name", "Value", spec_value("experiment_layout", "protocol_spec.contents.fastq.extra_patterns")) }}
