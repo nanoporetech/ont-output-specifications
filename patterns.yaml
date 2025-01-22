@@ -1,6 +1,6 @@
 patterns:
   asic_id:
-    description: "The unique numeric id stored on the asic"
+    description: "An internal identifier for the ASIC on the flow cell or Flongle adapter"
     context: global
     regex: "[A-F0-9]+"
     examples:
@@ -12,40 +12,41 @@ patterns:
       - FXX12345
       - PXX12345
       - AAA123
-    description: "Identifier programmed on to the flow cell eeprom"
+    description: "Unique identifier printed onto the flow cell, potentially entered by the user."
     context: global
   machine_id:
-    description: "An identifier for the machine which is running. Sometimes the hostname, but potentially derived from other machine information instead."
+    description: "An identifier for the machine MinKNOW is running on. For Oxford Nanopore devices like GridIONs or PromethIONs, this is the serial number printed on the device. For customer-supplied computers, this is the hostname."
     context: global
-    regex: "[A-Za-z0-9-]+"
+    regex: "[A-Za-z0-9-_]+"
     examples:
       - "my-sequencer"
       - "GXB12345"
       - "PCA100090"
   device_id:
-    description: "Identifier for the sequencing device which ran the experiment"
+    description: "Identifier for the flow cell position which ran the experiment."
     context: global
     regex: "[A-Za-z0-9-_]+"
     examples:
       - "X1"
       - "MN12345"
       - "1A"
+      - "P2S-12345-A"
   version_string:
-    description: "Version information for the running software"
+    description: "Version information for the software component that is writing the file."
     context: global
     regex: "[0-9]+\\.[0-9]+\\.[0-9]+(\\.[0-9]+)?(~.+)?"
     examples:
       - "1.2.3"
       - "1.2.3~rc1"
   sample_id:
-    description: "A user defined identifier for the library running in the protocol"
+    description: "A user-supplied identifier for the library running in the protocol"
     context: global
     regex: "[a-zA-Z0-9_\\.-]+"
     examples:
       - "My_Sample"
       - "my-sample-1"
   protocol_group_id:
-    description: "A user defined identifier for a group of protocols"
+    description: "A user-supplied identifier for a group of protocols"
     context: global
     regex: "[a-zA-Z0-9_\\.-]+"
     examples:
@@ -82,33 +83,34 @@ patterns:
     examples:
       - "acde070d"
   protocol_purpose:
-    description: "The purpose of the running protocol, script defined."
+    description: "The purpose of the running protocol."
     context: global
     regex: "[a-zA-Z0-9_]+"
     examples:
       - "sequencing_run"
   batch_number:
-    description: "The index of the file being generated, allowing a set of sequential files to be output, eg: '0', '1', '2'..."
+    description: "The index of the file or folder being generated, allowing a set of sequential files or folders to be output, eg: '0', '1', '2'..."
     context: read
     regex: "[0-9]+"
     examples:
       - "0"
       - "1"
+      - "4000"
   type:
-    description: "The type of the data the read's associated barcode is related to (see protocol.proto, BarcodeUserData.SampleType)"
+    description: "The type of the data the read's associated barcode is related to (one of: ``test_sample``, ``positive_control``, ``negative_control``, ``no_template_control``, ``positive_control_1``, ``positive_control_2``)"
     context: read
     regex: "[a-zA-Z0-9_]+"
     examples:
       - "positive_control"
   alias:
-    description: "The user defined alias for the read's associated barcode"
+    description: "The user-supplied alias for the read's associated barcode"
     context: read
     regex: "[a-zA-Z0-9_\\.-]+"
     examples:
       - "My_Sample_Alias"
       - "my-sample-alias-1"
   basecall_model_version_id:
-    description: "The model version id for the basecall model running"
+    description: "A unique identifier for the basecall model used in the protocol."
     context: read
     regex: "[a-z0-9_@\\.]+"
     examples:
@@ -136,23 +138,28 @@ patterns:
       - "fail"
       - "skip"
   read_start_time:
-    description: "The read start time as an rfc3339 string"
+    description: "The read start time as an RFC 3339 string"
     context: read
-    regex: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}"
+    regex: "((?:(\\d{4}-\\d{2}-\\d{2})T(\\d{2}:\\d{2}:\\d{2}(?:\\.\\d+)?))(Z|[\\+-]\\d{2}:\\d{2})?)"
     examples:
       - "2025-01-13T10:45:28.681306+00:00"
+      - "2016-01-19T15:21:32.59+02:00"
   pore_type:
-    description: "The type of the pore in use for this read"
+    description: "The type of the pore in use for this read, or empty if the protocol does not specify a pore type"
     context: read
-    regex: "[a-zA-Z0-9_\\.]+"
+    regex: "[a-zA-Z0-9_\\.]*"
     examples:
+      - ""
       - "r9.4.1"
+      - "r10.4.1"
   channel_name:
     description: "The 1 indexed number for the channel the read was sequenced on"
     context: read
     regex: "[0-9]+"
     examples:
       - "1"
+      - "512"
+      - "3000"
   read_id:
     description: "A unique UUID for the sequenced read (unique even if the read was split in the basecaller)"
     context: read
