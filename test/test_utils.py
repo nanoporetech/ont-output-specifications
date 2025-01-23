@@ -15,3 +15,7 @@ def test_regex_test():
 
     with pytest.raises(AssertionError):
         regex_utils.test_regex_with_examples("abc", "def", "[0-9]+", None)
+
+    # Ensure partial matches fail
+    with pytest.raises(AssertionError):
+        regex_utils.test_regex_with_examples("abc999", "[a-z]+", None)
