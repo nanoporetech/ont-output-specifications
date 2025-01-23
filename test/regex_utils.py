@@ -10,6 +10,6 @@ def test_regex_with_examples(file, name, regex, examples):
         )
 
     for i, example in enumerate(examples):
-        assert compiled_regex.match(
+        assert compiled_regex.fullmatch(
             example
         ), f"Regex '{name}' in file '{file}' failed to match example {i}: '{example}'"
