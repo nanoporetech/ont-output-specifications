@@ -10,7 +10,7 @@ protocol_spec:
       compressed: true
       batching:
         duration: "3600s"
-      available_patterns:
+      extra_patterns:
         gpu_header_info: "A string description of the connected GPU (without spaces), with fastq attribute name. eg 'basecall_gpu=Nvidia_3090'"
     bam:
       bam_path: "bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam"
@@ -26,79 +26,3 @@ protocol_spec:
       path: "fast5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fast5"
       batching:
         read_count: 4000
-  available_patterns:
-    asic_id:
-      description: "The unique numeric id stored on the asic"
-      context: global
-    flow_cell_id:
-      description: "Identifier programmed on to the flow cell eeprom"
-      context: global
-    machine_id:
-      description: "An identifier for the machine which is running. Sometimes the hostname, but potentially derived from other machine information instead."
-      context: global
-    device_id:
-      description: "Identifier for the sequencing device which ran the experiment"
-      context: global
-    version_string:
-      description: "Version information for the running software"
-      context: global
-    sample_id:
-      description: "A user defined identifier for the library running in the protocol"
-      context: global
-    protocol_group_id:
-      description: "A user defined identifier for a group of protocols"
-      context: global
-    daq_start_time:
-      description: "The time acquisition started, formatted as ':%Y%m%d_%H%M', eg: '20240103_1424'"
-      context: global
-    run_id:
-      description: "The full run id for the running acquisition, eg: 'de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3'"
-      context: global
-    short_run_id:
-      description: "The first 8 characters of the full 'run_id'. eg: 'de9f2c7f'"
-      context: global
-    protocol_run_id:
-      description: "The full protocol run id for the running protocol, eg: 'acde070d-8c4c-4f0d-9d8a-162843c10333'"
-      context: global
-    short_protocol_run_id:
-      description: "The first 8 characters of the run id, eg: 'acde070d'"
-      context: global
-    protocol_purpose:
-      description: "The purpose of the running protocol, script defined. eg: 'sequencing_run'"
-      context: global
-    batch_number:
-      description: "The index of the file being generated, allowing a set of sequential files to be output, eg: '0', '1', '2'..."
-      context: read
-    type:
-      description: "The type of the data the read's associated barcode is related to (see protocol.proto, BarcodeUserData.SampleType), eg 'positive_control'"
-      context: read
-    alias:
-      description: "The user defined alias for the read's associated barcode"
-      context: read
-    basecall_model_version_id:
-      description: "The model version id for the basecall model running"
-      context: read
-    duplex_status:
-      description: "'_simplex' or '_duplex', depending if the read is a duplex or simplex read"
-      context: read
-    basecall_status_skip_or_empty:
-      description: "'skip' if the read has skipped basecalling, '' otherwise"
-      context: read
-    basecall_status:
-      description: "'pass', 'fail' or 'skip' depending on the basecall status of the read"
-      context: read
-    read_start_time:
-      description: "The read start time as an rfc3339 string"
-      context: read
-    pore_type:
-      description: "The type of the pore in use for this read"
-      context: read
-    channel_name:
-      description: "The 1 indexed number for the channel the read was sequenced on"
-      context: read
-    read_id:
-      description: "A unique UUID for the sequenced read (unique even if the read was split in the basecaller)"
-      context: read
-    parent_read_id:
-      description: "A unique UUID for the read sent into the basecaller, potentially duplicated if split in basecaller"
-      context: read

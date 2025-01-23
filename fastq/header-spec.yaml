@@ -19,6 +19,11 @@ file:
         The time the read started in RFC3339 format.
       required: true
     - name: flow_cell_id
+      regex: "[A-Z0-9-]+"
+      examples:
+        - FXX12345
+        - PXX12345
+        - AAA123
       description: |
         The human-readable identifier for the flow cell (eg: FAK54854).
       required: true
