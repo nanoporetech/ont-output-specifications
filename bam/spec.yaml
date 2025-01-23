@@ -43,11 +43,16 @@ file:
       required: false
       description: |
         The sample library identifier. Included only if data is present.
+      examples:
+        - "My_Sample"
+        - "my-sample-1"
     - type: RG
       field: PL
       regex: ONT
       description: The string "ONT".
       required: true
+      examples:
+        - "ONT"
     - type: RG
       field: PM
       regex: "[A-Z-0-9]+"
@@ -87,6 +92,11 @@ file:
     - type: PG
       field: ID
       regex: "(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?"
+      examples:
+        - "dorado_1"
+        - "minimap2"
+        - "ont_basecall_client_3"
+        - "minknow"
       required: true
       description: |
         ``<program_id>{_<unique_id>}``
@@ -109,6 +119,11 @@ file:
       description: |
         "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
       regex: "(dorado|minimap2|ont_basecall_client|minknow)"
+      examples:
+        - "dorado"
+        - "minimap2"
+        - "ont_basecall_client"
+        - "minknow"
       required: true
     - type: PG
       field: CL
@@ -117,22 +132,31 @@ file:
       comments: |
         For dorado/core_cpp/minknow application records, the command line used to invoke the application including the application name.
         For minimap records this field will be omitted, as it was not directly invoked from the command line.
+      regex: ".*"
+      examples:
+        - "dorado basecaller hac pod5s/ > calls.bam"
     - type: PG
       field: VN
       description: "<program_version>"
       required: true
       comments: Version number of the application or minimap version for minimap PG records
+      regex: "[0-9.]+"
+      examples:
+        - "0.9.1"
+        - "5.1.0"
     - type: PG
       field: DS
       required: false
       description: |
-        ``gpu:<gpu_name>``
-
         Each GPU type used by the basecaller will appear once, as we’re only interested in the GPU types, not the total
         number of them.
         For a PromethION the tag would say (e.g) DS:gpu:NVIDIA A100 80GB PCIe. If there are multiple GPU types on the
-        system they will be separated by a vertical bar e.g: DS:gpu:NVIDIA A100 80GB PCIe|Quadro GV100.
+        system they will be separated by a vertical bar.
         If a GPU was not used, or the reads were called on Apple Silicon, this field will not be present.
+      regex: ".*"
+      examples:
+        - "gpu:NVIDIA A100 80GB PCIe"
+        - "gpu:NVIDIA A100 80GB PCIe|Quadro GV100"
   read_tags:
     - tag: "RG"
       type: Z
