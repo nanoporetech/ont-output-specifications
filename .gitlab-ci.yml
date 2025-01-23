@@ -21,7 +21,7 @@ test:
   tags:
     - linux
   script:
-    - pip install pytest
+    - pip install -r ./requirements.txt
     - pytest ./test/ -s
 
 pages:
