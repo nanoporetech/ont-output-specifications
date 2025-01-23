@@ -23,6 +23,8 @@ test:
   script:
     - pip install -r ./requirements.txt
     - pytest ./test/ -s
+  rules:
+    - when: always
 
 pages:
   stage: build
