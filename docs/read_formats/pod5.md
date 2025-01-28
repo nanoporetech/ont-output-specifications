@@ -26,3 +26,8 @@ Option         | Value
 **Bases**      | ``{{spec_value("experiment_layout", "protocol_spec.contents.pod5.batching.bases")}} Bases``
 
 For more information on batching see [Batching](../batching.md).
+
+Minimum Version
+---------------
+
+The minimum version pod5 files are expected to be written is ``{{spec_value("pod5", "file.minimum_version")}}``.
