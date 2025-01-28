@@ -1,7 +1,7 @@
 Batching
 ========
 
-Output can be batched in multiple ways, and depend on the software used to produce the files.
+Output from ONT products can be batched in various ways, depending on the software used to generate the files.
 
 MinKNOW Configuration
 ---------------------
@@ -13,7 +13,7 @@ The UI for MinKNOW allows configuring the batching for bam and fastq based on "T
 ### Default values
 
 The `default_writer.toml` file in ``<minknow_install_dir>/conf/package/shared/default_writer.toml``
-contains default batching parameters, and allows additional control then the UI provides.
+contains default batching parameters, and allows additional control on top of what the UI provides.
 
 #### File format configuration locations
 
