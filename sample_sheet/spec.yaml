@@ -1,0 +1,74 @@
+file:
+  version: 0.1
+  columns:
+    - name: protocol_run_id
+      description: |
+        A random-generated uuid for the sequencing protocol (eg:
+        e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII letters
+        (a-z), digits (0-9) and dashes (-).
+      regex: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      examples:
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
+    - name: position_id
+      description: The device identifier used for sequencing.
+      regex: "[A-Z-0-9]+"
+      examples:
+        - "MN12345"
+    - name: flow_cell_id
+      description: |
+        The human-readable identifier for the flow cell (eg: FAK54854).
+      regex: "[A-Z0-9-]+"
+      examples:
+        - FXX12345
+        - PXX12345
+        - AAA123
+    - name: sample_id
+      description: |
+        Set by the user in the GUI as "Sample ID".
+      regex: "[a-zA-Z0-9_\\.-]+"
+      examples:
+        - "My_Sample"
+        - "my-sample-1"
+    - name: experiment_id
+      description: |
+        Set by the user in the GUI as "Experiment ID".
+      regex: "[a-zA-Z0-9_\\.-]+"
+      examples:
+        - "My_Group"
+        - "my-group-1"
+    - name: flow_cell_product_code
+      description: |
+        The product code of the flow cell used in the experiment
+      regex: "[A-Z0-9-]+"
+      examples:
+        - "FLO-PRO114"
+        - "FLO-MIN114"
+    - name: kit
+      description: |
+        The product code of the kit used in the experiment
+      regex: "[A-Z0-9-]+"
+      examples:
+        - "SQK-LSK114"
+    - name: barcode
+      description: |
+        The barcode identified for the read.
+      regex: "barcode([0-9]+)"
+      examples:
+        - "barcode01"
+      only_when: barcoding
+    - name: alias
+      description: |
+        User specicied identifier used for the barcode, if available, otherwise the arrangement name.
+      regex: "([a-zA-Z0-9_@\\.]+)"
+      examples:
+        - "my_sample"
+        - "sample01"
+      only_when: barcoding
+    - name: type
+      description: |
+        The user specified type of the barcode, or "na", if not available.
+      regex: "na|test_sample|positive_control|negative_control|no_template_control|positive_control_1|positive_control_2"
+      examples:
+        - positive_control
+        - no_template_control
+      only_when: barcoding

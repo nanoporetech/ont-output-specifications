@@ -1,0 +1,368 @@
+file:
+  version: 1.1
+  columns:
+    - name: filename_fastq
+      description: "The name of the fastq file that contains this read."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "PBC012345_pass_unclassified_2abce119_646d7417_0.fastq.gz"
+        - "PBC012345_fail_2abce119_646d7417_0.fastq.gz"
+    - name: filename_fast5
+      description: "The name of the fast5 file that contains this read."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "PBC012345_pass_unclassified_2abce119_646d7417_0.fast5"
+        - "PBC012345_fail_unclassified_2abce119_646d7417_0.fast5"
+        - "PBC012345_fail_2abce119_646d7417_0.fast5"
+    - name: filename_pod5
+      description: "The name of the pod5 file that contains this read."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "PBC012345_pass_unclassified_2abce119_646d7417_0.pod5"
+        - "PBC012345_fail_2abce119_646d7417_0.pod5"
+    - name: filename_bam
+      description: "The name of the bam file that contains this read."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "PBC012345_pass_unclassified_2abce119_646d7417_0.bam"
+        - "PBC012345_fail_2abce119_646d7417_0.bam"
+      only_when: aligning
+    - name: parent_read_id
+      description: |
+        The ``read_id`` of the read which was the source of this entry.
+        This may be the same as the read id if no read splitting was performed
+        for this read, or will be a new globally unique UUID value if this read
+        was split out of another read by the basecaller.
+      regex: "[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}" # accepts uuid4 and uuid5
+      examples:
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
+    - name: read_id
+      description: "A unique UUID for the sequenced read."
+      regex: "[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}" # accepts uuid4 and uuid5
+      examples:
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
+    - name: run_id
+      description: "The unique run identifier for the sequencing run."
+      regex: "[a-f0-9]{40}" # 40 hex chars
+      examples:
+        - de9f2c7fd25e1b3afad3e85a0bd17d9b100db4b3
+    - name: channel
+      description: "The 1 indexed number for the channel the read was sequenced on."
+      regex: "[0-9]+"
+      examples:
+        - "1"
+        - "512"
+        - "3000"
+    - name: mux
+      description: "The 1 indexed number for the mux the read was sequenced on."
+      regex: "1|2|3|4"
+      examples:
+        - "1"
+    - name: minknow_events
+      description: "The number of events detected by MinKNOW for this read."
+      regex: "[0-9]+" # positive integer
+      examples:
+        - "4323"
+    - name: start_time
+      description: "The time the read started in seconds from the start of the run."
+      regex: "[0-9]+\\.[0-9]+" # positive decimal
+      examples:
+        - "10.4"
+    - name: duration
+      description: "The duration of the read in seconds."
+      regex: "[0-9]+\\.[0-9]+" # positive decimal
+      examples:
+        - "5.4"
+
+    # Basecalling fields:
+    - name: passes_filtering
+      description: "Whether the read passed any filtering steps performed."
+      regex: "TRUE|FALSE"
+      examples:
+        - "TRUE"
+        - "FALSE"
+      only_when: basecalling
+    - name: template_start
+      description: "The start time of the template read in seconds from the start of the run."
+      regex: "[0-9]+\\.[0-9]+" # positive decimal
+      examples:
+        - "10.7"
+      only_when: basecalling
+    - name: num_events_template
+      description: "The number of events detected by the basecaller for the template read."
+      regex: "[0-9]+" # positive integer
+      examples:
+        - "1000"
+      only_when: basecalling
+    - name: template_duration
+      description: "The duration of the template read in seconds."
+      regex: "[0-9]+\\.[0-9]+" # positive decimal
+      examples:
+        - "100.3"
+      only_when: basecalling
+    - name: sequence_length_template
+      description: "The length of the template read in bases."
+      regex: "[0-9]+" # positive integer
+      examples:
+        - "6734"
+      only_when: basecalling
+    - name: mean_qscore_template
+      description: "The mean qscore of the template read."
+      regex: "[0-9]+\\.[0-9]+" # positive decimal
+      examples:
+        - "20.4"
+      only_when: basecalling
+    - name: median_template
+      description: "The median of the template read."
+      regex: "-?[0-9]+\\.[0-9]+" # decimal
+      examples:
+        - "0.0"
+    - name: mad_template
+      description: "The median absolute deviation of the template read."
+      regex: "[0-9]+\\.[0-9]+" # positive decimal
+      examples:
+        - "1.0"
+
+
+    # RNA specific fields:
+    - name: poly_tail_length
+      description: "The length of the poly-A tail detected in the read."
+      regex: "-1|[0-9]+" # positive integer or -1 if no tail detected.
+      only_when: poly_a_tail_estimation
+      examples:
+        - "-1"
+        - "100"
+
+    - name: pore_type
+      description: "The type of the pore in use for this read."
+      regex: "[a-zA-Z0-9_\\.]+"
+      examples:
+        - "r9.4.1"
+        - "r10.4.1"
+        - "not_set"
+    - name: experiment_id
+      description: "The user specified identifier for the group of sequencing runs."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "My_Group"
+        - "my-group-1"
+    - name: sample_id
+      description: "The user specified identifier for the sequencing run."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "My_Sample"
+        - "my-sample-1"
+    - name: end_reason
+      description: "The reason the read ended."
+      regex: "signal_positive|signal_negative|mux_change|unblock_mux_change|data_service_unblock_mux_change|analysis_config_change|device_data_error|api_request"
+      examples:
+        - "signal_positive"
+        - "signal_negative"
+
+    # Barcoding fields:
+    - name: alias
+      description: "The user-supplied alias for the barcode."
+      regex: "unclassified|[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "my_sample"
+        - "sample01"
+      only_when: barcoding
+    - name: type
+      description: "The type of the data the read's associated barcode is related to."
+      regex: "na|test_sample|positive_control|negative_control|no_template_control|positive_control_1|positive_control_2"
+      examples:
+        - "test_sample"
+        - "positive_control"
+      only_when: barcoding
+    - name: barcode_arrangement
+      description: "The barcode identified for the read."
+      regex: "unclassified|[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "barcode01"
+        - "unclassified"
+      only_when: barcoding
+    - name: barcode_kit
+      description: "The kit used for barcoding."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "SQK-NDB114-96"
+      only_when: barcoding
+    - name: barcode_variant
+      description: "############################################################### TODO: @mark"
+      regex: "n/a|[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "n/a" # ################################# @mark can you detail ere?
+      only_when: barcoding
+    - name: barcode_score
+      description: "The overall quality score given to the barcode detected."
+      regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
+      examples:
+        - "1.0"
+      only_when: barcoding
+    - name: barcode_front_score
+      description: "The quality score given to the front barcode detected."
+      regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
+      examples:
+        - "1.0"
+      only_when: barcoding
+    - name: barcode_front_foundseq_length
+      description: "The length of the front barcode found"
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "20"
+      only_when: barcoding
+    - name: barcode_front_begin_index
+      description: "The base index in the sequence the front barcode began"
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "0"
+      only_when: barcoding
+    - name: barcode_rear_score
+      description: "The quality score given to the read barcode detected."
+      regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
+      examples:
+        - "1.0"
+      only_when: barcoding
+    - name: barcode_rear_foundseq_length
+      description: "The length of the rear barcode found"
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "10"
+      only_when: barcoding
+    - name: barcode_rear_end_index
+      description: "The base index in the sequence the front barcode began"
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "0"
+      only_when: barcoding
+
+    # Alignment fields:
+    - name: alignment_genome
+      description: "The genome the read was aligned to."
+      regex: "\\+|-|\\*|[A-Za-z0-9\\-_\\.]+" # +,-,* or Ident
+      examples:
+        - "Lambda"
+      only_when: aligning
+    - name: alignment_direction
+      description: "The direction of the alignment."
+      regex: "\\+|-|\\*"
+      examples:
+        - "+"
+        - "*"
+      only_when: aligning
+    - name: alignment_genome_start
+      description: "The start position of the alignment on the genome."
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "0"
+      only_when: aligning
+    - name: alignment_genome_end
+      description: "The end position of the alignment on the genome."
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "100"
+      only_when: aligning
+    - name: alignment_strand_start
+      description: "The start position of the alignment on the strand."
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "0"
+      only_when: aligning
+    - name: alignment_strand_end
+      description: "The end position of the alignment on the strand."
+      regex: "-|[0-9]+" # - or positive integer
+      examples:
+        - "100"
+      only_when: aligning
+    - name: alignment_num_insertions
+      description: "The number of insertions in the alignment."
+      regex: "-|-1|[0-9]+" # - or -1 or positive integer
+      examples:
+        - "4"
+      only_when: aligning
+    - name: alignment_num_deletions
+      description: "The number of deletions in the alignment."
+      regex: "-|-1|[0-9]+" # - or -1 or positive integer
+      examples:
+        - "1"
+      only_when: aligning
+    - name: alignment_num_aligned
+      description: "The number of aligned bases in the alignment."
+      regex: "-|-1|[0-9]+" # - or -1 or positive integer
+      examples:
+        - "100"
+      only_when: aligning
+    - name: alignment_num_correct
+      description: "The number of correct bases in the alignment."
+      regex: "-|-1|[0-9]+" # - or -1 or positive integer
+      examples:
+        - "100"
+      only_when: aligning
+    - name: alignment_identity
+      description: "############################################################### TODO: @mark"
+      regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
+      examples:
+        - "0.99"
+      only_when: aligning
+    - name: alignment_accuracy
+      description: "The accuracy of the alignment."
+      regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
+      examples:
+        - "0.99"
+      only_when: aligning
+    - name: alignment_score
+      description: "The score assigned to the alignment."
+      regex: "-|-?[0-9]+" # Integer
+      examples:
+        - "4"
+      only_when: aligning
+    - name: alignment_coverage
+      description: "The coverage of the alignment."
+      regex: "-|-?[0-9]+\\.[0-9]+" # decimal
+      examples:
+        - "0.99"
+      only_when: aligning
+    - name: alignment_bed_hits
+      description: "The number of hits in the alignment bed file."
+      regex: "-|[0-9]+" # positive integer
+      examples:
+        - "1"
+      only_when: aligning
+    - name: alignment_mapping_quality
+      description: "The mapping quality of the alignment."
+      regex: "-|[0-9]+" # positive integer
+      examples:
+        - "1"
+      only_when: aligning
+    - name: alignment_num_alignments
+      description: "The number of alignments found for the read."
+      regex: "-|[0-9]+" # positive integer
+      examples:
+        - "1"
+      only_when: aligning
+    - name: alignment_num_secondary_alignments
+      description: "The number of secondary alignments found for the read."
+      regex: "-|[0-9]+" # positive integer
+      examples:
+        - "2"
+      only_when: aligning
+    - name: alignment_num_supplementary_alignments
+      description: "The number of supplementary alignments found for the read."
+      regex: "-|[0-9]+" # positive integer
+      examples:
+        - "3"
+      only_when: aligning
+
+    # Duplex fields:
+    - name: duplex_parent_template
+      description: "The parent read id of the template read."
+      regex: "-|[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}" # hyphen, uuid4 or uuid5
+      examples:
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
+      only_when: duplex
+    - name: duplex_parent_complement
+      description: "The parent read id of the complement read."
+      regex: "-|[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}" # hyphen, uuid4 or uuid5
+      examples:
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
+      only_when: duplex

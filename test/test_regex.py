@@ -61,3 +61,45 @@ def test_fastq_regex():
 
         # for name, pattern in patterns["file"]["read_tags"].items():
         # Todo - add regex for string read tags.
+
+
+def test_sequencing_summary_regex():
+    with open("./sequencing_summary/spec.yaml", "r") as f:
+        bam = yaml.safe_load(f)
+
+        for record in bam["file"]["columns"]:
+            if "regex" not in record:
+                raise AssertionError(
+                    f"No regex provided for pattern '{record['name']}'"
+                )
+            if "examples" not in record:
+                raise AssertionError(
+                    f"No examples provided for regex '{record['name']}'"
+                )
+            regex_utils.test_regex_with_examples(
+                "sequencing_summary/spec.yaml",
+                record["name"],
+                record["regex"],
+                record["examples"],
+            )
+
+
+def test_sample_sheet_regex():
+    with open("./sample_sheet/spec.yaml", "r") as f:
+        bam = yaml.safe_load(f)
+
+        for record in bam["file"]["columns"]:
+            if "regex" not in record:
+                raise AssertionError(
+                    f"No regex provided for pattern '{record['name']}'"
+                )
+            if "examples" not in record:
+                raise AssertionError(
+                    f"No examples provided for regex '{record['name']}'"
+                )
+            regex_utils.test_regex_with_examples(
+                "sample_sheet/spec.yaml",
+                record["name"],
+                record["regex"],
+                record["examples"],
+            )
