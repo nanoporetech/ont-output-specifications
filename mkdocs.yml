@@ -12,15 +12,12 @@ nav:
     - Fastq: read_formats/fastq.md
     - Pod5: read_formats/pod5.md
     - Fast5: read_formats/fast5.md
-  - Software Products:
-    - MinKNOW: software_products/minknow.md
-    - Dorado: software_products/dorado.md
-  - Protocol Formats:
-    - Intro: protocol_formats/intro.md
-    - Final Summary: protocol_formats/final_summary.md
-    - Sequencing Summary: protocol_formats/sequencing_summary.md
-  - Patterns: patterns.md
-  - Batching: batching.md
+  - Sequencing Summary: protocol_formats/sequencing_summary.md
+  - Sample Sheet: protocol_formats/sample_sheet.md
+  - MinKNOW:
+    - Format Support: minknow/support.md
+    - Patterns: minknow/patterns.md
+    - Batching: minknow/batching.md
 
 
 theme:
@@ -88,6 +85,7 @@ plugins:
 markdown_extensions:
   - bam_field_docs
   - fastq_field_docs
+  - csv_spec_docs
   - pattern_docs
   - admonition # Add nice Note, Warning, Error areas
   - toc:

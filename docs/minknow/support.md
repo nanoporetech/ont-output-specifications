@@ -29,4 +29,4 @@ These formats are output by MinKNOW by default, and are not configurable.
 Format                                                          | Generation time
 --------------------------------------------------------------- | ---------------
 [Sequencing Summary](../protocol_formats/sequencing_summary.md) | End of sequencing acquisition and basecalling catchup period
-[Final Summary](../protocol_formats/final_summary.md)           | End of sequencing acquisition and basecalling catchup period
+[Sample Sheet](../protocol_formats/sample_sheet.md)           | End of sequencing acquisition and basecalling catchup period
