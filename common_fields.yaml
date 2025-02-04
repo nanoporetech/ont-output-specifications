@@ -10,36 +10,46 @@ common_fields:
     bam:
       area: read_tags
       field: ch
+    sequencing_summary: channel
   start_time:
     fastq: start_time
     bam:
       area: read_tags
       field: st
+    sequencing_summary: start_time
   flow_cell_id:
     fastq: flow_cell_id
     bam:
       area: RG
       field: PU
+    sample_sheet: flow_cell_id
   sample_id:
     fastq: sample_id
     bam:
       area: RG
       field: LB
+    sequencing_summary: sample_id
+    sample_sheet: sample_id
   barcode:
     fastq: barcode
     bam:
       area: RG
       field: SM
+    sequencing_summary: barcode_arrangement
+    sample_sheet: barcode
   barcode_alias:
     fastq: barcode_alias
     bam:
       area: RG
       field: al
+    sequencing_summary: alias
+    sample_sheet: alias
   parent_read_id:
     fastq: parent_read_id
     bam:
       area: read_tags
-      field: pi
+    field: pi
+    sequencing_summary: parent_read_id
   basecall_model_version_id:
     fastq: basecall_model_version_id
     bam:

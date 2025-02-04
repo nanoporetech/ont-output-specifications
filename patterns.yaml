@@ -140,11 +140,11 @@ patterns:
   pore_type:
     description: "The type of the pore in use for this read, or empty if the protocol does not specify a pore type"
     context: read
-    regex: "[a-zA-Z0-9_\\.]*"
+    regex: "[a-zA-Z0-9_\\.]+"
     examples:
-      - ""
       - "r9.4.1"
       - "r10.4.1"
+      - "not_set"
   channel_name:
     description: "The 1 indexed number for the channel the read was sequenced on"
     context: read
