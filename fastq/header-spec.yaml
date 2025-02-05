@@ -54,19 +54,22 @@ file:
         - "my-sample-1"
     - name: barcode
       description: |
-        The barcode assigned to this read by guppy (eg: ``"barcode01"``). ``unclassified`` if barcoding is not running.
+        The barcode assigned to this read by the basecaller (eg: ``"barcode01"``). `unclassified` if no barcode was detected.
+        Empty if barcoding is not running.
       required: true
-      regex: "unclassified|barcode([0-9]+)"
+      regex: "|unclassified|barcode([0-9]+)"
       examples:
+        - ""
         - "unclassified"
         - "barcode01"
     - name: barcode_alias
       description: |
-        The user-supplied alias for the barcode. The same as ``barcode`` if the user did not supply an alias.
+        The user-supplied alias for the barcode. Empty if barcoding is not running. The same as ``barcode``
+        if the user did not supply an alias.
       required: true
-      regex: "unclassified|[a-zA-Z0-9_@\\.]+"
+      regex: "|[a-zA-Z0-9_@\\.]+"
       examples:
-        - "unclassified"
+        - ""
         - "my_sample"
         - "sample01"
     - name: parent_read_id
