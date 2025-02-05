@@ -4,50 +4,71 @@ common_fields:
     bam:
       area: RG
       field: DS
+      link: ds
       comment: "``runid`` section of RG."
+    sequencing_summary: run_id
   ch:
     fastq: ch
     bam:
       area: read_tags
       field: ch
+      link: chi
+    sequencing_summary: channel
   start_time:
     fastq: start_time
     bam:
       area: read_tags
       field: st
+      link: stz
+    sequencing_summary: start_time
   flow_cell_id:
     fastq: flow_cell_id
     bam:
       area: RG
       field: PU
+      link: pu
+    sample_sheet: flow_cell_id
   sample_id:
     fastq: sample_id
     bam:
       area: RG
       field: LB
+      link: lb
+    sequencing_summary: sample_id
+    sample_sheet: sample_id
   barcode:
     fastq: barcode
     bam:
       area: RG
       field: SM
+      link: sm
+    sequencing_summary: barcode_arrangement
+    sample_sheet: barcode
   barcode_alias:
     fastq: barcode_alias
     bam:
       area: RG
       field: al
+      link: al
+    sequencing_summary: alias
+    sample_sheet: alias
   parent_read_id:
     fastq: parent_read_id
     bam:
       area: read_tags
       field: pi
+      link: piz
+    sequencing_summary: parent_read_id
   basecall_model_version_id:
     fastq: basecall_model_version_id
     bam:
       area: RG
       field: DS
+      link: ds
       comment: "``basecall_model`` section of RG."
   basecall_gpu:
     fastq: basecall_gpu
     bam:
       area: PG
       field: DS
+      link: ds_1

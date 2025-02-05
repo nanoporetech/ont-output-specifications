@@ -17,7 +17,7 @@ File         | Path Pattern
 **Bam File** | ``{{spec_value("experiment_layout", "protocol_spec.contents.bam.bam_path")}}``
 **Bai File** | ``{{spec_value("experiment_layout", "protocol_spec.contents.bam.bai_path")}}``
 
-See the [Patterns](../patterns.md) documentation for more information on file patterns.
+See the [Patterns](../minknow/patterns.md) documentation for more information on file patterns.
 
 Read Batching
 -------------
@@ -29,7 +29,7 @@ Option       | Value
 ------------ | -----
 **Duration** | ``{{spec_value("experiment_layout", "protocol_spec.contents.bam.batching.duration")}}``
 
-For more information on batching see [Batching](../batching.md).
+For more information on batching see [Batching](../minknow/batching.md).
 
 Fields
 ------

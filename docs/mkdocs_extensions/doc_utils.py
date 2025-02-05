@@ -20,6 +20,16 @@ class FastqField:
 
 
 @dataclass
+class SampleSheetField:
+    column: str
+
+
+@dataclass
+class SequencingSummaryField:
+    column: str
+
+
+@dataclass
 class CommonField:
     fields: dict[str, Any]
 
@@ -27,6 +37,8 @@ class CommonField:
         NICE_MAP = {
             "bam": "Bam",
             "fastq": "Fastq",
+            "sequencing_summary": "Sequencing Summary",
+            "sample_sheet": "Sample Sheet",
         }
         for name, field in self.fields.items():
             if name == without:
@@ -38,10 +50,22 @@ class CommonField:
 
             if name == "bam":
                 value_elem = etree.SubElement(value_elem, "span")
-                value_elem.text = f"[{field['field']}](bam.md#{field['field'].lower()})"
+                value_elem.text = (
+                    f"[{field['field']}](/read_formats/bam#{field['link'].lower()})"
+                )
             elif name == "fastq":
                 value_elem = etree.SubElement(value_elem, "span")
-                value_elem.text = f"[{field}](fastq.md#{field.lower()})"
+                value_elem.text = f"[{field}](/read_formats/fastq#{field.lower()})"
+            elif name == "sample_sheet":
+                value_elem = etree.SubElement(value_elem, "span")
+                value_elem.text = (
+                    f"[{field}](/protocol_formats/sample_sheet#{field.lower()})"
+                )
+            elif name == "sequencing_summary":
+                value_elem = etree.SubElement(value_elem, "span")
+                value_elem.text = (
+                    f"[{field}](/protocol_formats/sequencing_summary#{field.lower()})"
+                )
 
 
 class CommonFieldLoader:
@@ -51,7 +75,7 @@ class CommonFieldLoader:
 
     def find_common_field(
         self,
-        source_file: BamField | FastqField,
+        source_file: BamField | FastqField | SampleSheetField | SequencingSummaryField,
     ) -> CommonField:
         """
         Find a common field for a given source file
@@ -71,6 +95,18 @@ class CommonFieldLoader:
                         return CommonField(fields=value)
                 elif isinstance(source_file, FastqField):
                     if "fastq" in value and value["fastq"] == source_file.field:
+                        return CommonField(fields=value)
+                elif isinstance(source_file, SampleSheetField):
+                    if (
+                        "sample_sheet" in value
+                        and value["sample_sheet"] == source_file.column
+                    ):
+                        return CommonField(fields=value)
+                elif isinstance(source_file, SequencingSummaryField):
+                    if (
+                        "sequencing_summary" in value
+                        and value["sequencing_summary"] == source_file.column
+                    ):
                         return CommonField(fields=value)
 
         return None

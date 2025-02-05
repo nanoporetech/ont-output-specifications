@@ -15,7 +15,7 @@ File           | Path Pattern
 -------------- | ------------
 **Fastq File** | ``{{spec_value("experiment_layout", "protocol_spec.contents.fastq.path")}}``
 
-See the [Patterns](../patterns.md) documentation for more information on file patterns.
+See the [Patterns](../minknow/patterns.md) documentation for more information on file patterns.
 
 Read Batching
 -------------
@@ -27,7 +27,7 @@ Option       | Value
 ------------ | -----
 **Duration** | ``{{spec_value("experiment_layout", "protocol_spec.contents.fastq.batching.duration")}}``
 
-For more information on batching see [Batching](../batching.md).
+For more information on batching see [Batching](../minknow/batching.md).
 
 Record Structure
 ----------------
@@ -63,6 +63,6 @@ Required Header Attributes
 Header Patterns
 ---------------
 
-Additional header patterns are available for fastq files on top of the normal [Patterns](../patterns.md).
+Additional header patterns are available for fastq files on top of the normal [Patterns](../minknow/patterns.md).
 
 {{ make_table_from_mapping("Name", "Value", spec_value("experiment_layout", "protocol_spec.contents.fastq.extra_patterns")) }}
