@@ -140,10 +140,11 @@ file:
       description: "<program_version>"
       required: true
       comments: Version number of the application or minimap version for minimap PG records
-      regex: "[0-9.]+"
+      regex: "[0-9a-z.~\\-]+"
       examples:
         - "0.9.1"
         - "5.1.0"
+        - "6.2.0~pre-a7305ca"
     - type: PG
       field: DS
       required: false
