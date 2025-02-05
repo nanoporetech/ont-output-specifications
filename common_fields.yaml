@@ -6,6 +6,7 @@ common_fields:
       field: DS
       link: ds
       comment: "``runid`` section of RG."
+    sequencing_summary: run_id
   ch:
     fastq: ch
     bam:
