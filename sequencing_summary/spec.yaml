@@ -112,16 +112,6 @@ file:
       examples:
         - "20.4"
       only_when: basecalling
-    - name: median_template
-      description: "The median of the template read."
-      regex: "-?[0-9]+\\.[0-9]+" # decimal
-      examples:
-        - "0.0"
-    - name: mad_template
-      description: "The median absolute deviation of the template read."
-      regex: "[0-9]+\\.[0-9]+" # positive decimal
-      examples:
-        - "1.0"
 
 
     # RNA specific fields:
