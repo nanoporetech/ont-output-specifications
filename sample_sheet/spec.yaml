@@ -55,7 +55,7 @@ file:
       regex: "barcode([0-9]+)"
       examples:
         - "barcode01"
-      only_when: barcoding
+      only_when: has_input_sample_sheet
     - name: alias
       description: |
         User specicied identifier used for the barcode, if available, otherwise the arrangement name.
@@ -63,7 +63,7 @@ file:
       examples:
         - "my_sample"
         - "sample01"
-      only_when: barcoding
+      only_when: has_input_sample_sheet
     - name: type
       description: |
         The user specified type of the barcode, or "na", if not available.
@@ -71,4 +71,4 @@ file:
       examples:
         - positive_control
         - no_template_control
-      only_when: barcoding
+      only_when: has_input_sample_sheet
