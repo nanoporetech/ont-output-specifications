@@ -164,6 +164,7 @@ file:
       description: "The user-supplied alias for the barcode."
       regex: "unclassified|[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
+        - "unclassified"
         - "my_sample"
         - "sample01"
       only_when: barcoding
@@ -175,183 +176,211 @@ file:
         - "positive_control"
       only_when: barcoding
     - name: barcode_arrangement
-      description: "The barcode identified for the read."
-      regex: "unclassified|[A-Za-z0-9\\-_\\.]+" # Ident
+      description: "The barcode identified for the read. If barcoding was not performed for the read ``-`` is returned."
+      regex: "-|unclassified|[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
+        - "-"
         - "barcode01"
         - "unclassified"
       only_when: barcoding
     - name: barcode_kit
-      description: "The kit used for barcoding."
-      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      description: "The kit used for barcoding. If barcoding was not performed for the read ``-`` is returned."
+      regex: "-|[A-Za-z0-9\\-_\\.]+" # - or Ident
       examples:
+        - "-"
         - "SQK-NDB114-96"
       only_when: barcoding
     - name: barcode_variant
-      description: "The arrangement variant of the found barcode"
-      regex: "n/a|var1|var2" # Ident
+      description: "The arrangement variant of the found barcode. If barcoding was not performed for the read ``-`` is returned."
+      regex: "n/a|var1|var2" # - or Ident
       examples:
+        - "-"
         - "n/a"
         - "var1"
         - "var2"
       only_when: barcoding
     - name: barcode_score
-      description: "The overall quality score given to the barcode detected."
+      description: "The overall quality score given to the barcode detected. If barcoding was not performed for the read ``-`` is returned."
       regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
       examples:
+        - "-"
         - "1.0"
       only_when: barcoding
     - name: barcode_front_score
-      description: "The quality score given to the front barcode detected."
+      description: "The quality score given to the front barcode detected. If barcoding was not performed for the read ``-`` is returned."
       regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
       examples:
+        - "-"
         - "1.0"
       only_when: barcoding
     - name: barcode_front_foundseq_length
-      description: "The length of the front barcode found"
+      description: "The length of the front barcode found. If barcoding was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
+        - "-"
         - "20"
       only_when: barcoding
     - name: barcode_front_begin_index
-      description: "The base index in the sequence the front barcode began"
+      description: "The base index in the sequence the front barcode began. If barcoding was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
+        - "-"
         - "0"
       only_when: barcoding
     - name: barcode_rear_score
-      description: "The quality score given to the read barcode detected."
+      description: "The quality score given to the read barcode detected. If barcoding was not performed for the read ``-`` is returned."
       regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
       examples:
+        - "-"
         - "1.0"
       only_when: barcoding
     - name: barcode_rear_foundseq_length
-      description: "The length of the rear barcode found"
+      description: "The length of the rear barcode found. If barcoding was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
+        - "-"
         - "10"
       only_when: barcoding
     - name: barcode_rear_end_index
-      description: "The base index in the sequence the front barcode began"
+      description: "The base index in the sequence the front barcode began. If barcoding was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
+        - "-"
         - "0"
       only_when: barcoding
 
     # Alignment fields:
     - name: alignment_genome
-      description: "The genome the read was aligned to."
+      description: "The genome the read was aligned to. If alignment was not performed for the read ``-`` is returned."
       regex: "\\+|-|\\*|[A-Za-z0-9\\-_\\.]+" # +,-,* or Ident
       examples:
+        - "-"
         - "Lambda"
       only_when: aligning
     - name: alignment_direction
-      description: "The direction of the alignment."
+      description: "The direction of the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "\\+|-|\\*"
       examples:
+        - "-"
         - "+"
         - "*"
       only_when: aligning
     - name: alignment_genome_start
-      description: "The start position of the alignment on the genome."
+      description: "The start position of the alignment on the genome. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
         - "0"
       only_when: aligning
     - name: alignment_genome_end
-      description: "The end position of the alignment on the genome."
+      description: "The end position of the alignment on the genome. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
+        - "-"
         - "100"
       only_when: aligning
     - name: alignment_strand_start
-      description: "The start position of the alignment on the strand."
+      description: "The start position of the alignment on the strand. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
+        - "-"
         - "0"
       only_when: aligning
     - name: alignment_strand_end
-      description: "The end position of the alignment on the strand."
+      description: "The end position of the alignment on the strand. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # - or positive integer
       examples:
+        - "-"
         - "100"
       only_when: aligning
     - name: alignment_num_insertions
-      description: "The number of insertions in the alignment."
+      description: "The number of insertions in the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-1|[0-9]+" # - or -1 or positive integer
       examples:
+        - "-"
         - "4"
       only_when: aligning
     - name: alignment_num_deletions
-      description: "The number of deletions in the alignment."
+      description: "The number of deletions in the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-1|[0-9]+" # - or -1 or positive integer
       examples:
+        - "-"
         - "1"
       only_when: aligning
     - name: alignment_num_aligned
-      description: "The number of aligned bases in the alignment."
+      description: "The number of aligned bases in the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-1|[0-9]+" # - or -1 or positive integer
       examples:
+        - "-"
         - "100"
       only_when: aligning
     - name: alignment_num_correct
-      description: "The number of correct bases in the alignment."
+      description: "The number of correct bases in the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-1|[0-9]+" # - or -1 or positive integer
       examples:
+        - "-"
         - "100"
       only_when: aligning
     - name: alignment_identity
-      description: "The identity score of the alignment."
+      description: "The identity score of the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
       examples:
+        - "-"
         - "0.99"
       only_when: aligning
     - name: alignment_accuracy
-      description: "The accuracy of the alignment."
+      description: "The accuracy of the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-?[0-9]+\\.[0-9]+" # - or decimal
       examples:
+        - "-"
         - "0.99"
       only_when: aligning
     - name: alignment_score
-      description: "The score assigned to the alignment."
+      description: "The score assigned to the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-?[0-9]+" # Integer
       examples:
+        - "-"
         - "4"
       only_when: aligning
     - name: alignment_coverage
-      description: "The coverage of the alignment."
+      description: "The coverage of the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|-?[0-9]+\\.[0-9]+" # decimal
       examples:
+        - "-"
         - "0.99"
       only_when: aligning
     - name: alignment_bed_hits
-      description: "The number of hits in the alignment bed file."
+      description: "The number of hits in the alignment bed file. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # positive integer
       examples:
+        - "-"
         - "1"
       only_when: aligning
     - name: alignment_mapping_quality
-      description: "The mapping quality of the alignment."
+      description: "The mapping quality of the alignment. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # positive integer
       examples:
+        - "-"
         - "1"
       only_when: aligning
     - name: alignment_num_alignments
-      description: "The number of alignments found for the read."
+      description: "The number of alignments found for the read. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # positive integer
       examples:
+        - "-"
         - "1"
       only_when: aligning
     - name: alignment_num_secondary_alignments
-      description: "The number of secondary alignments found for the read."
+      description: "The number of secondary alignments found for the read. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # positive integer
       examples:
+        - "-"
         - "2"
       only_when: aligning
     - name: alignment_num_supplementary_alignments
-      description: "The number of supplementary alignments found for the read."
+      description: "The number of supplementary alignments found for the read. If alignment was not performed for the read ``-`` is returned."
       regex: "-|[0-9]+" # positive integer
       examples:
+        - "-"
         - "3"
       only_when: aligning
 
