@@ -81,6 +81,15 @@ plugins:
   - search
   - macros:
       verbose: false # Set to true to debug the `find` function
+  - mike:
+      # These fields are all optional; the defaults are as below...
+      alias_type: symlink
+      redirect_template: null
+      deploy_prefix: ''
+      canonical_version: null
+      version_selector: true
+      css_dir: css
+      javascript_dir: js
 
 markdown_extensions:
   - bam_field_docs
@@ -98,6 +107,8 @@ extra:
     git_url: https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification
   validator:
     git_url: https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification-validator
+  version:
+    provider: mike
 
 
 extra_css:
