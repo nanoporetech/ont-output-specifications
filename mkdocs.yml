@@ -104,8 +104,6 @@ markdown_extensions:
 extra:
   specification:
     git_url: https://github.com/nanoporetech/ont-output-specifications
-  validator:
-    git_url: https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification-validator
   version:
     provider: mike
 
