@@ -5,3 +5,6 @@ mkdocstrings
 pytest
 pyyaml
 tabulate
+
+# To manage github pages
+mike
