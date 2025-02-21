@@ -17,10 +17,11 @@ file:
         ``barcode_data::arrangement`` if missing the suffix will not be appended.
     - type: RG
       field: DT
-      regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\.\d{6}\+\d{2}:\d{2}
+      regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|\.\d{6}\+\d{2}:\d{2})
       required: false
       examples:
         - "2025-01-06T10:06:36.778368+00:00"
+        - "2025-01-06T10:06:36Z"
       description: |
         The start time of the sequencing run.
 
@@ -91,11 +92,11 @@ file:
         which is the sample sheet alias if available otherwise defaulting to the arrangement name.
     - type: PG
       field: ID
-      regex: "(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?"
+      regex: "(basecaller|barcoder|aligner|dorado_aligner|minknow)(_[0-9]+)?"
       examples:
-        - "dorado_1"
-        - "minimap2"
-        - "ont_basecall_client_3"
+        - "aligner_1"
+        - "basecaller"
+        - "dorado_aligner_3"
         - "minknow"
       required: true
       description: |
@@ -109,6 +110,7 @@ file:
         record for itself it will also output an additional @PG record for minimap
         dorado aligner records will have the ID "dorado_aligner" to disambiguate from minimap aligner records.
         Programs will identify themselves as follows
+        minknow "minknow"
         ont_basecall_client "basecaller"
         dorado basecaller "basecaller"
         dorado barcoder "barcoder"
@@ -140,11 +142,12 @@ file:
       description: "<program_version>"
       required: true
       comments: Version number of the application or minimap version for minimap PG records
-      regex: "[0-9a-z.~\\-]+"
+      regex: "[0-9a-z.~\\+\\-]+"
       examples:
         - "0.9.1"
         - "5.1.0"
         - "6.2.0~pre-a7305ca"
+        - "0.0.0.28546+10c25eb94"
     - type: PG
       field: DS
       required: false
