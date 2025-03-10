@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+import html
 from typing import Any
 
 from markdown import Markdown
@@ -171,7 +172,7 @@ class SpecProcessor(BlockProcessor):
             value_elem = etree.SubElement(root, "code")
         else:
             value_elem = etree.SubElement(root, "span")
-        value_elem.text = value
+        value_elem.text = self.html_escape_string(value)
 
     def add_table(self, parent: etree.Element, data: list[list[str]], code=False):
         root = etree.SubElement(parent, "div")
@@ -194,3 +195,8 @@ class SpecProcessor(BlockProcessor):
 
         table_body = etree.SubElement(table_elem, "tbody")
         render_rows(table_body, data[1:], "td", code=code)
+
+    def html_escape_string(self, string: str) -> str:
+        escaped = html.escape(string)
+        escaped = escaped.replace("\\", "&#92;")
+        return escaped
