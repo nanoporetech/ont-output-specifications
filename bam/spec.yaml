@@ -81,7 +81,7 @@ file:
         - "barcode01"
     - type: RG
       field: al
-      regex: "([a-zA-Z0-9_@\\.]+)"
+      regex: "unclassified|[A-Za-z0-9\\-_\\.]+"
       examples:
         - "my_sample"
         - "sample01"

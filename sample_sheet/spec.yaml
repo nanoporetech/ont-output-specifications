@@ -59,7 +59,7 @@ file:
     - name: alias
       description: |
         User specicied identifier used for the barcode, if available, otherwise the arrangement name.
-      regex: "([a-zA-Z0-9_@\\.]+)"
+      regex: "[A-Za-z0-9\\-_\\.]+"
       examples:
         - "my_sample"
         - "sample01"
