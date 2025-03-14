@@ -71,7 +71,8 @@ file:
     - type: RG
       field: SM
       regex: "barcode([0-9]+)"
-      required: false
+      only_when: barcoding
+      required: true
       description: |
         The barcode identified for the read.
 
@@ -84,7 +85,8 @@ file:
       examples:
         - "my_sample"
         - "sample01"
-      required: false
+      only_when: barcoding
+      required: true
       description: |
         User specicied identifier used for the barcode, if available, otherwise the arrangement name.
 
