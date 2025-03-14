@@ -56,7 +56,7 @@ def test_fastq_regex():
                     f"No examples provided for regex '{record['name']}'"
                 )
             regex_utils.test_regex_with_examples(
-                "bam/spec.yaml", record["name"], record["regex"], record["examples"]
+                "fastq/spec.yaml", record["name"], record["regex"], record["examples"]
             )
 
         # for name, pattern in patterns["file"]["read_tags"].items():
