@@ -1,0 +1,1869 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="../..">
+      
+      
+        <link rel="next" href="../fastq/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
+    
+    
+      
+        <title>Bam - ONT Output Specification</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.6f8fc17f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+    
+      <link rel="stylesheet" href="../../extra/stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="ont" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bam-output" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="ONT Output Specification" class="md-header__button md-logo" aria-label="ONT Output Specification" data-md-component="logo">
+      
+  <img src="../../extra/assets/nanopore.logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            ONT Output Specification
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Bam
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme)" data-md-color-scheme="ont" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m14.3 16-.7-2h-3.2l-.7 2H7.8L11 7h2l3.2 9zM20 8.69V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12zm-9.15 3.96h2.3L12 9z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="ont" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="ont-dark" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to system preference"  type="radio" name="__palette" id="__palette_2">
+    
+      <label class="md-header__button md-icon" title="Switch to system preference" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ONT Output Specification
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="ONT Output Specification" class="md-nav__button md-logo" aria-label="ONT Output Specification" data-md-component="logo">
+      
+  <img src="../../extra/assets/nanopore.logo.png" alt="logo">
+
+    </a>
+    ONT Output Specification
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    ONT Output Specification
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Introduction
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Read Formats
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Read Formats
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Bam
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Bam
+  </span>
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Batching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dt" class="md-nav__link">
+    <span class="md-ellipsis">
+      DT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ds" class="md-nav__link">
+    <span class="md-ellipsis">
+      DS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lb" class="md-nav__link">
+    <span class="md-ellipsis">
+      LB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pl" class="md-nav__link">
+    <span class="md-ellipsis">
+      PL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pm" class="md-nav__link">
+    <span class="md-ellipsis">
+      PM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pu" class="md-nav__link">
+    <span class="md-ellipsis">
+      PU
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sm" class="md-nav__link">
+    <span class="md-ellipsis">
+      SM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#al" class="md-nav__link">
+    <span class="md-ellipsis">
+      al
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Program Groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Program Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pn" class="md-nav__link">
+    <span class="md-ellipsis">
+      PN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cl" class="md-nav__link">
+    <span class="md-ellipsis">
+      CL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vn" class="md-nav__link">
+    <span class="md-ellipsis">
+      VN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ds_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Tags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Tags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      RG:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      qs:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      mx:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stz" class="md-nav__link">
+    <span class="md-ellipsis">
+      st:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f5z" class="md-nav__link">
+    <span class="md-ellipsis">
+      f5:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mvbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      mv:B:c
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piz" class="md-nav__link">
+    <span class="md-ellipsis">
+      pi:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mni" class="md-nav__link">
+    <span class="md-ellipsis">
+      MN:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      ML:B:C
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmz" class="md-nav__link">
+    <span class="md-ellipsis">
+      MM:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      dx:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bhi" class="md-nav__link">
+    <span class="md-ellipsis">
+      bh:i:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fastq/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fastq
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pod5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Pod5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../fast5/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fast5
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol_formats/sequencing_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sequencing Summary
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../protocol_formats/sample_sheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample Sheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    MinKNOW
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            MinKNOW
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../minknow/support/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Format Support
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../minknow/patterns/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Patterns
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../minknow/batching/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Batching
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      Paths
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#read-batching" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Batching
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#fields" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fields
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Fields">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#read-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id" class="md-nav__link">
+    <span class="md-ellipsis">
+      ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dt" class="md-nav__link">
+    <span class="md-ellipsis">
+      DT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ds" class="md-nav__link">
+    <span class="md-ellipsis">
+      DS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lb" class="md-nav__link">
+    <span class="md-ellipsis">
+      LB
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pl" class="md-nav__link">
+    <span class="md-ellipsis">
+      PL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pm" class="md-nav__link">
+    <span class="md-ellipsis">
+      PM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pu" class="md-nav__link">
+    <span class="md-ellipsis">
+      PU
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sm" class="md-nav__link">
+    <span class="md-ellipsis">
+      SM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#al" class="md-nav__link">
+    <span class="md-ellipsis">
+      al
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#program-groups" class="md-nav__link">
+    <span class="md-ellipsis">
+      Program Groups
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Program Groups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#id_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pn" class="md-nav__link">
+    <span class="md-ellipsis">
+      PN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cl" class="md-nav__link">
+    <span class="md-ellipsis">
+      CL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vn" class="md-nav__link">
+    <span class="md-ellipsis">
+      VN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ds_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      DS
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#read-tags" class="md-nav__link">
+    <span class="md-ellipsis">
+      Read Tags
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Read Tags">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rgz" class="md-nav__link">
+    <span class="md-ellipsis">
+      RG:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#qsi" class="md-nav__link">
+    <span class="md-ellipsis">
+      qs:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      mx:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stz" class="md-nav__link">
+    <span class="md-ellipsis">
+      st:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#f5z" class="md-nav__link">
+    <span class="md-ellipsis">
+      f5:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mvbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      mv:B:c
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#piz" class="md-nav__link">
+    <span class="md-ellipsis">
+      pi:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mni" class="md-nav__link">
+    <span class="md-ellipsis">
+      MN:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mlbc" class="md-nav__link">
+    <span class="md-ellipsis">
+      ML:B:C
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mmz" class="md-nav__link">
+    <span class="md-ellipsis">
+      MM:Z:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dxi" class="md-nav__link">
+    <span class="md-ellipsis">
+      dx:i:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bhi" class="md-nav__link">
+    <span class="md-ellipsis">
+      bh:i:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="bam-output">Bam Output<a class="headerlink" href="#bam-output" title="Permanent link">&para;</a></h1>
+<p><strong>Format Version:</strong> 0.1</p>
+<p><a href="https://en.wikipedia.org/wiki/Binary_Alignment_Map">Binary Alignment Map</a> (BAM) is the comprehensive raw data of genome sequencing; it consists of the lossless, compressed binary representation of the Sequence Alignment Map-files.</p>
+<p>Bam files generated by minknow are compliant with the <a href="https://samtools.github.io/hts-specs/SAMv1.pdf">Sam Specification</a>, and can be manipulated using <a href="http://www.htslib.org/">Sam Tools</a>.</p>
+<h2 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
+<p>The following path patterns are used to place the data on disk:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Path Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bam File</strong></td>
+<td><code>bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam</code></td>
+</tr>
+<tr>
+<td><strong>Bai File</strong></td>
+<td><code>bam{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.bam.bai</code></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a href="../../minknow/patterns/">Patterns</a> documentation for more information on file patterns.</p>
+<h2 id="read-batching">Read Batching<a class="headerlink" href="#read-batching" title="Permanent link">&para;</a></h2>
+<p>The following batching options are used by default:</p>
+<table>
+<thead>
+<tr>
+<th>Option</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Duration</strong></td>
+<td><code>3600s</code></td>
+</tr>
+</tbody>
+</table>
+<p>For more information on batching see <a href="../../minknow/batching/">Batching</a>.</p>
+<h2 id="fields">Fields<a class="headerlink" href="#fields" title="Permanent link">&para;</a></h2>
+<h3 id="read-groups">Read Groups<a class="headerlink" href="#read-groups" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="id"><code>ID</code><a class="headerlink" href="#id" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})<em>([a-z0-9</em>@&#92;.])+(<em>([A-Za-z0-9</em>@&#92;.]+))?</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_barcode02</code></td>
+</tr>
+<tr>
+<td><code>e4994c62-93f9-439a-bc8f-d20c95a137a5_unknown_barcode02</code></td>
+</tr>
+<tr>
+<td><code>e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_29d8704b</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>A group identifier keyed specifically to a run, basecall model, and barcode (if enabled)</p>
+<p><code>model_version_id</code> if missing shall be replaced with the text "unknown"</p>
+<p><code>barcode_data::arrangement</code> if missing the suffix will not be appended.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="dt"><code>DT</code><a class="headerlink" href="#dt" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>&#92;d{4}-&#92;d{2}-&#92;d{2}T&#92;d{2}:&#92;d{2}:&#92;d{2}(Z|&#92;.&#92;d{6}&#92;+&#92;d{2}:&#92;d{2})</code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2025-01-06T10:06:36.778368+00:00</code></td>
+</tr>
+<tr>
+<td><code>2025-01-06T10:06:36Z</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>The start time of the sequencing run.</p>
+<p>Correctly formatted as ISO8601.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="ds"><code>DS</code><a class="headerlink" href="#ds" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})&#92;s+basecall_model=([a-z0-9_@&#92;.]+)(&#92;s+modbase_models=([A-Za-z0-9_@&#92;.]+))?</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#runid">runid</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#run_id">run_id</a></span></code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0</code></td>
+</tr>
+<tr>
+<td><code>runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0 modbase_models=rna004_130bps_hac@v5.1.0_inosine_m6A@v1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p><code>runid</code>, <code>basecall_model</code> and optionally <code>modbase_models</code> formatted into a space separated string.</p>
+<p><code>runid</code> contains the <code>protocol_run_id</code> from the minknow experiment that generated the bam files.
+Note, <code>modbase_models</code> only appears if modbase calling was performed, and contains a comma separated list of dorado modbase model names used.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="lb"><code>LB</code><a class="headerlink" href="#lb" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#sample_id">sample_id</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#sample_id">sample_id</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#sample_id">sample_id</a></span></code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>My_Sample</code></td>
+</tr>
+<tr>
+<td><code>my-sample-1</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>The sample library identifier. Included only if data is present.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="pl"><code>PL</code><a class="headerlink" href="#pl" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>ONT</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>ONT</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>The string "ONT".</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="pm"><code>PM</code><a class="headerlink" href="#pm" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z-0-9]+</code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MN12345</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>The device identifier used for sequencing.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="pu"><code>PU</code><a class="headerlink" href="#pu" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z0-9-]+</code></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#flow_cell_id">flow_cell_id</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#flow_cell_id">flow_cell_id</a></span></code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FAB12345</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>The unique identifier for the flowcell.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="sm"><code>SM</code><a class="headerlink" href="#sm" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>barcode([0-9]+)</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#barcode">barcode</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#barcode_arrangement">barcode_arrangement</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#barcode">barcode</a></span></code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>barcode01</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>The barcode identified for the read.</p>
+<p>Included only if data is present and the arrangement is not "unclassified"</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_RG" id="al"><code>al</code><a class="headerlink" href="#al" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>unclassified|[A-Za-z0-9&#92;-_&#92;.]+</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#barcode_alias">barcode_alias</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#alias">alias</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#alias">alias</a></span></code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>my_sample</code></td>
+</tr>
+<tr>
+<td><code>sample01</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>User specicied identifier used for the barcode, if available, otherwise the arrangement name.</p>
+<p>This will be the same barcode descriptor guppy uses for generating the output folder names,
+which is the sample sheet alias if available otherwise defaulting to the arrangement name.</p></div>
+</div>
+</div>
+<h3 id="program-groups">Program Groups<a class="headerlink" href="#program-groups" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="doc-signature">
+<h4 class="doc-fieldname_PG" id="id_1"><code>ID</code><a class="headerlink" href="#id_1" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>(basecaller|barcoder|aligner|dorado_aligner|minknow)(_[0-9]+)?</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aligner_1</code></td>
+</tr>
+<tr>
+<td><code>basecaller</code></td>
+</tr>
+<tr>
+<td><code>dorado_aligner_3</code></td>
+</tr>
+<tr>
+<td><code>minknow</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p><code>&lt;program_id&gt;{_&lt;unique_id&gt;}</code></p>
+<p>The SAM specification requires this field to be unique within a file, and may be modified on merging to ensure
+uniqueness. Where the program_id would not be unique within the file, e.g. when the input is a bam/sam file
+with the program_id already present, then the @PG record will have the lowest zero based suffix that can be
+appended to the ID to ensure its uniqueness, e.g. "_0".
+Where an application has used the minimap aligner on reads contained in the file, as well as outputting a @PG
+record for itself it will also output an additional @PG record for minimap
+dorado aligner records will have the ID "dorado_aligner" to disambiguate from minimap aligner records.
+Programs will identify themselves as follows
+minknow "minknow"
+ont_basecall_client "basecaller"
+dorado basecaller "basecaller"
+dorado barcoder "barcoder"
+dorado aligner "dorado_aligner"
+minimap2 (if used in the application) "aligner"</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_PG" id="pn"><code>PN</code><a class="headerlink" href="#pn" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>(dorado|minimap2|ont_basecall_client|minknow)</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dorado</code></td>
+</tr>
+<tr>
+<td><code>minimap2</code></td>
+</tr>
+<tr>
+<td><code>ont_basecall_client</code></td>
+</tr>
+<tr>
+<td><code>minknow</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>"dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_PG" id="cl"><code>CL</code><a class="headerlink" href="#cl" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>.*</code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>dorado basecaller hac pod5s/ &gt; calls.bam</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>Command line of invoked application</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_PG" id="vn"><code>VN</code><a class="headerlink" href="#vn" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>[0-9a-z.~&#92;+&#92;-]+</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>0.9.1</code></td>
+</tr>
+<tr>
+<td><code>5.1.0</code></td>
+</tr>
+<tr>
+<td><code>6.2.0~pre-a7305ca</code></td>
+</tr>
+<tr>
+<td><code>0.0.0.28546+10c25eb94</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p><program_version></p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_PG" id="ds_1"><code>DS</code><a class="headerlink" href="#ds_1" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>.*</code></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#basecall_gpu">basecall_gpu</a></span></code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gpu:NVIDIA A100 80GB PCIe</code></td>
+</tr>
+<tr>
+<td><code>gpu:NVIDIA A100 80GB PCIe|Quadro GV100</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>Each GPU type used by the basecaller will appear once, as we’re only interested in the GPU types, not the total
+number of them.
+For a PromethION the tag would say (e.g) DS:gpu:NVIDIA A100 80GB PCIe. If there are multiple GPU types on the
+system they will be separated by a vertical bar.
+If a GPU was not used, or the reads were called on Apple Silicon, this field will not be present.</p></div>
+</div>
+</div>
+<h3 id="read-tags">Read Tags<a class="headerlink" href="#read-tags" title="Permanent link">&para;</a></h3>
+<div class="autodoc">
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="rgz"><code>RG</code><em>:Z: </em><a class="headerlink" href="#rgz" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><p>ID of the read group to which this read belongs. If present its value must match the ID field of a Read Group record in the header section.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="qsi"><code>qs</code><em>:i: </em><a class="headerlink" href="#qsi" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><p>Read mean basecall qscore</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="mxi"><code>mx</code><em>:i: </em><a class="headerlink" href="#mxi" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><p>read mux meta: read_data::mux</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="stz"><code>st</code><em>:Z: </em><a class="headerlink" href="#stz" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#start_time">start_time</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#start_time">start_time</a></span></code></div>
+<div><p>Read start time metadata field: <read_data::time_stamp></p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="f5z"><code>f5</code><em>:Z: </em><a class="headerlink" href="#f5z" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><p>fast5 file name read_data::filename. N.B. filename only so any personally identifiable data in the path is not written.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="mvbc"><code>mv</code><em>:B:c </em><a class="headerlink" href="#mvbc" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><p>sequence to signal move table</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="piz"><code>pi</code><em>:Z: </em><a class="headerlink" href="#piz" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#parent_read_id">parent_read_id</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#parent_read_id">parent_read_id</a></span></code></div>
+<div><p>parent read id for a split read</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="mni"><code>MN</code><em>:i: </em><a class="headerlink" href="#mni" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>modified_bases</code></div>
+<div><p>Length of SEQ field when MM/ML tags were generated.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="mlbc"><code>ML</code><em>:B:C </em><a class="headerlink" href="#mlbc" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>modified_bases</code></div>
+<div><p>Base modification probabilities</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="mmz"><code>MM</code><em>:Z: </em><a class="headerlink" href="#mmz" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>modified_bases</code></div>
+<div><p>Base modifications / methylation</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="dxi"><code>dx</code><em>:i: </em><a class="headerlink" href="#dxi" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Only When </strong><code>duplex</code></div>
+<div><p>Duplex read indicator. 1 for duplex reads, 0 for simplex reads without duplex offspring, -1 for simplex reads with duplex offspring.</p></div>
+</div>
+<div class="doc-signature">
+<h4 class="doc-fieldname_read_tags" id="bhi"><code>bh</code><em>:i: </em><a class="headerlink" href="#bhi" title="Permanent link">&para;</a></h4>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Only When </strong><code>bed_file</code></div>
+<div><p>Number of bed-file hits. This tag is only included if a bed-file was specified when aligning.</p></div>
+</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.instant", "navigation.sections", "navigation.top", "navigation.indexes", "search.suggest", "search.highlight", "search.share", "content.tabs.link", "content.code.annotate", "content.code.copy"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"provider": "mike"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
+      
+    
+  </body>
+</html>
