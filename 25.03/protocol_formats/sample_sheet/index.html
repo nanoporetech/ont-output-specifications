@@ -1005,7 +1005,7 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <h3 class="doc-fieldname_fastq" id="sample_id"><code>sample_id</code><a class="headerlink" href="#sample_id" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_46-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#sample_id">sample_id</a></span></code><code class="doc-common-value">Bam: <span><a href="/read_formats/bam#lb">LB</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#sample_id">sample_id</a></span></code></div>
 <div>
@@ -1031,7 +1031,7 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <h3 class="doc-fieldname_fastq" id="experiment_id"><code>experiment_id</code><a class="headerlink" href="#experiment_id" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_46-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1127,7 +1127,7 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <h3 class="doc-fieldname_fastq" id="alias"><code>alias</code><a class="headerlink" href="#alias" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>([a-zA-Z0-9_@46]+)</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Only When </strong><code>has_input_sample_sheet</code></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#barcode_alias">barcode_alias</a></span></code><code class="doc-common-value">Bam: <span><a href="/read_formats/bam#al">al</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#alias">alias</a></span></code></div>

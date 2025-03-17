@@ -1077,7 +1077,7 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <h3 class="doc-fieldname_fastq" id="start_time"><code>start_time</code><a class="headerlink" href="#start_time" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>((?:(\d{4}-\d{2}-\d{2})T(\d{2}:\d{2}:\d{2}(?:46\d+)?))(Z|[43-]\d{2}:\d{2})?)</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>((?:(&#92;d{4}-&#92;d{2}-&#92;d{2})T(&#92;d{2}:&#92;d{2}:&#92;d{2}(?:&#92;.&#92;d+)?))(Z|[&#92;+-]&#92;d{2}:&#92;d{2})?)</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Bam: <span><a href="/read_formats/bam#stz">st</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#start_time">start_time</a></span></code></div>
 <div>
@@ -1132,7 +1132,7 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <h3 class="doc-fieldname_fastq" id="protocol_group_id"><code>protocol_group_id</code><a class="headerlink" href="#protocol_group_id" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_46-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1157,7 +1157,7 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <h3 class="doc-fieldname_fastq" id="sample_id"><code>sample_id</code><a class="headerlink" href="#sample_id" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_46-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Bam: <span><a href="/read_formats/bam#lb">LB</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#sample_id">sample_id</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#sample_id">sample_id</a></span></code></div>
 <div>
@@ -1183,8 +1183,9 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <h3 class="doc-fieldname_fastq" id="barcode"><code>barcode</code><a class="headerlink" href="#barcode" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>|unclassified|barcode([0-9]+)</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>unclassified|barcode([0-9]+)</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>barcoding</code></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Bam: <span><a href="/read_formats/bam#sm">SM</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#barcode_arrangement">barcode_arrangement</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#barcode">barcode</a></span></code></div>
 <div>
 <table>
@@ -1195,9 +1196,6 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </thead>
 <tbody>
 <tr>
-<td><code></code></td>
-</tr>
-<tr>
 <td><code>unclassified</code></td>
 </tr>
 <tr>
@@ -1206,15 +1204,15 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </tbody>
 </table>
 </div>
-<div><p>The barcode assigned to this read by the basecaller (eg: <code>"barcode01"</code>). <code>unclassified</code> if no barcode was detected.
-Empty if barcoding is not running.</p></div>
+<div><p>The barcode assigned to this read by the basecaller (eg: <code>"barcode01"</code>). <code>unclassified</code> if no barcode was detected.</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="barcode_alias"><code>barcode_alias</code><a class="headerlink" href="#barcode_alias" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>|[a-zA-Z0-9_@46]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>unclassified|[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>barcoding</code></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Bam: <span><a href="/read_formats/bam#al">al</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#alias">alias</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#alias">alias</a></span></code></div>
 <div>
 <table>
@@ -1224,9 +1222,6 @@ Empty if barcoding is not running.</p></div>
 </tr>
 </thead>
 <tbody>
-<tr>
-<td><code></code></td>
-</tr>
 <tr>
 <td><code>my_sample</code></td>
 </tr>
@@ -1268,7 +1263,7 @@ unique UUID value if this read was split out of another read by guppy.</p></div>
 <h3 class="doc-fieldname_fastq" id="basecall_model_version_id"><code>basecall_model_version_id</code><a class="headerlink" href="#basecall_model_version_id" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[a-z0-9_@46]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-z0-9_@&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Bam: <span><a href="/read_formats/bam#ds">DS</a></span></code></div>
 <div>

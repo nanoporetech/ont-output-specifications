@@ -1500,7 +1500,7 @@
 <h4 class="doc-fieldname_RG" id="id"><code>ID</code><a class="headerlink" href="#id" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})<em>([a-z0-9</em>@.])+(<em>([A-Za-z0-9</em>@.]+))?</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})<em>([a-z0-9</em>@&#92;.])+(<em>([A-Za-z0-9</em>@&#92;.]+))?</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1530,7 +1530,7 @@
 <h4 class="doc-fieldname_RG" id="dt"><code>DT</code><a class="headerlink" href="#dt" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}46\d{6}43\d{2}:\d{2}</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>&#92;d{4}-&#92;d{2}-&#92;d{2}T&#92;d{2}:&#92;d{2}:&#92;d{2}(Z|&#92;.&#92;d{6}&#92;+&#92;d{2}:&#92;d{2})</code></div>
 <div>
 <table>
 <thead>
@@ -1542,6 +1542,9 @@
 <tr>
 <td><code>2025-01-06T10:06:36.778368+00:00</code></td>
 </tr>
+<tr>
+<td><code>2025-01-06T10:06:36Z</code></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1552,7 +1555,7 @@
 <h4 class="doc-fieldname_RG" id="ds"><code>DS</code><a class="headerlink" href="#ds" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\s+basecall_model=([a-z0-9_@46]+)(\s+modbase_models=([A-Za-z0-9_@46]+))?</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})&#92;s+basecall_model=([a-z0-9_@&#92;.]+)(&#92;s+modbase_models=([A-Za-z0-9_@&#92;.]+))?</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#runid">runid</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#run_id">run_id</a></span></code></div>
 <div>
@@ -1580,7 +1583,7 @@ Note, <code>modbase_models</code> only appears if modbase calling was performed,
 <h4 class="doc-fieldname_RG" id="lb"><code>LB</code><a class="headerlink" href="#lb" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_46-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#sample_id">sample_id</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#sample_id">sample_id</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#sample_id">sample_id</a></span></code></div>
 <div>
 <table>
@@ -1671,6 +1674,7 @@ Note, <code>modbase_models</code> only appears if modbase calling was performed,
 </div>
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>barcode([0-9]+)</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#barcode">barcode</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#barcode_arrangement">barcode_arrangement</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#barcode">barcode</a></span></code></div>
 <div>
 <table>
@@ -1693,7 +1697,8 @@ Note, <code>modbase_models</code> only appears if modbase calling was performed,
 <h4 class="doc-fieldname_RG" id="al"><code>al</code><a class="headerlink" href="#al" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>([a-zA-Z0-9_@46]+)</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>unclassified|[A-Za-z0-9&#92;-_&#92;.]+</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#barcode_alias">barcode_alias</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#alias">alias</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#alias">alias</a></span></code></div>
 <div>
 <table>
@@ -1723,7 +1728,7 @@ which is the sample sheet alias if available otherwise defaulting to the arrange
 <h4 class="doc-fieldname_PG" id="id_1"><code>ID</code><a class="headerlink" href="#id_1" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>(dorado|minimap2|ont_basecall_client|minknow)(_[0-9]+)?</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>(basecaller|barcoder|aligner|dorado_aligner|minknow)(_[0-9]+)?</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1734,13 +1739,13 @@ which is the sample sheet alias if available otherwise defaulting to the arrange
 </thead>
 <tbody>
 <tr>
-<td><code>dorado_1</code></td>
+<td><code>aligner_1</code></td>
 </tr>
 <tr>
-<td><code>minimap2</code></td>
+<td><code>basecaller</code></td>
 </tr>
 <tr>
-<td><code>ont_basecall_client_3</code></td>
+<td><code>dorado_aligner_3</code></td>
 </tr>
 <tr>
 <td><code>minknow</code></td>
@@ -1757,6 +1762,7 @@ Where an application has used the minimap aligner on reads contained in the file
 record for itself it will also output an additional @PG record for minimap
 dorado aligner records will have the ID "dorado_aligner" to disambiguate from minimap aligner records.
 Programs will identify themselves as follows
+minknow "minknow"
 ont_basecall_client "basecaller"
 dorado basecaller "basecaller"
 dorado barcoder "barcoder"
@@ -1819,7 +1825,7 @@ minimap2 (if used in the application) "aligner"</p></div>
 <h4 class="doc-fieldname_PG" id="vn"><code>VN</code><a class="headerlink" href="#vn" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[0-9a-z.~45]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[0-9a-z.~&#92;+&#92;-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1837,6 +1843,9 @@ minimap2 (if used in the application) "aligner"</p></div>
 </tr>
 <tr>
 <td><code>6.2.0~pre-a7305ca</code></td>
+</tr>
+<tr>
+<td><code>0.0.0.28546+10c25eb94</code></td>
 </tr>
 </tbody>
 </table>
