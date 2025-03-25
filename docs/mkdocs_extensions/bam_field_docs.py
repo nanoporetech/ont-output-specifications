@@ -68,6 +68,13 @@ class BamDocProcessor(SpecProcessor):
                         )
                     if header_item["required"]:
                         self.add_required(field_content)
+                    if "only_when" in header_item:
+                        self.add_key_value(
+                            field_content,
+                            "Only When",
+                            header_item["only_when"],
+                            code=True,
+                        )
 
                     common_item = common_fields.find_common_field(
                         BamField(header_type, header_item["field"])
