@@ -72,7 +72,7 @@ file:
       field: SM
       regex: "barcode([0-9]+)"
       only_when: barcoding
-      required: true
+      required: false
       description: |
         The barcode identified for the read.
 
@@ -86,9 +86,11 @@ file:
         - "my_sample"
         - "sample01"
       only_when: barcoding
-      required: true
+      required: false
       description: |
         User specicied identifier used for the barcode, if available, otherwise the arrangement name.
+
+        Included only if data is present and the arrangement is not "unclassified"
 
         This will be the same barcode descriptor guppy uses for generating the output folder names,
         which is the sample sheet alias if available otherwise defaulting to the arrangement name.
