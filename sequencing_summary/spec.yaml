@@ -7,6 +7,7 @@ file:
       examples:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.fastq.gz"
         - "PBC012345_fail_2abce119_646d7417_0.fastq.gz"
+      only_when: online
     - name: filename_fast5
       description: "The name of the fast5 file that contains this read."
       regex: "[A-Za-z0-9\\-_\\.]+" # Ident
@@ -14,19 +15,36 @@ file:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.fast5"
         - "PBC012345_fail_unclassified_2abce119_646d7417_0.fast5"
         - "PBC012345_fail_2abce119_646d7417_0.fast5"
+      only_when: online
     - name: filename_pod5
       description: "The name of the pod5 file that contains this read."
       regex: "[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.pod5"
         - "PBC012345_fail_2abce119_646d7417_0.pod5"
+      only_when: online
     - name: filename_bam
       description: "The name of the bam file that contains this read."
       regex: "[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.bam"
         - "PBC012345_fail_2abce119_646d7417_0.bam"
-      only_when: aligning
+      only_when: online
+    - name: input_filename
+      description: "The name of the input fast5 or pod5 file."
+      regex: "[A-Za-z0-9\\-_\\.]+" # Ident
+      examples:
+        - "PBC012345_pass_unclassified_2abce119_646d7417_0.pod5"
+        - "PBC012345_fail_2abce119_646d7417_0.fast5"
+      only_when: offline
+    - name: batch_id
+      description: Identifies the batch of reads this read belongs to.
+      regex: "[0-9]+"
+      examples:
+        - "1"
+        - "512"
+        - "3000"
+      only_when: offline
     - name: parent_read_id
       description: |
         The ``read_id`` of the read which was the source of this entry.
@@ -144,7 +162,7 @@ file:
         - "my-sample-1"
     - name: end_reason
       description: "The reason the read ended."
-      regex: "signal_positive|signal_negative|mux_change|unblock_mux_change|data_service_unblock_mux_change|analysis_config_change|device_data_error|api_request"
+      regex: "unknown|signal_positive|signal_negative|mux_change|unblock_mux_change|data_service_unblock_mux_change|analysis_config_change|device_data_error|api_request"
       examples:
         - "signal_positive"
         - "signal_negative"
