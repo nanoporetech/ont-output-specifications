@@ -1674,7 +1674,7 @@ Note, <code>modbase_models</code> only appears if modbase calling was performed,
 </div>
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>barcode([0-9]+)</code></div>
-<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>barcoding</code></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#barcode">barcode</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#barcode_arrangement">barcode_arrangement</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#barcode">barcode</a></span></code></div>
 <div>
 <table>
@@ -1698,7 +1698,7 @@ Note, <code>modbase_models</code> only appears if modbase calling was performed,
 </div>
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>unclassified|[A-Za-z0-9&#92;-_&#92;.]+</code></div>
-<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>barcoding</code></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">Fastq: <span><a href="/read_formats/fastq#barcode_alias">barcode_alias</a></span></code><code class="doc-common-value">Sequencing Summary: <span><a href="/protocol_formats/sequencing_summary#alias">alias</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#alias">alias</a></span></code></div>
 <div>
 <table>
@@ -1718,6 +1718,7 @@ Note, <code>modbase_models</code> only appears if modbase calling was performed,
 </table>
 </div>
 <div><p>User specicied identifier used for the barcode, if available, otherwise the arrangement name.</p>
+<p>Included only if data is present and the arrangement is not "unclassified"</p>
 <p>This will be the same barcode descriptor guppy uses for generating the output folder names,
 which is the sample sheet alias if available otherwise defaulting to the arrangement name.</p></div>
 </div>
