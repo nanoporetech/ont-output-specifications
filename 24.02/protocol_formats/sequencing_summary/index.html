@@ -521,6 +521,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#input_filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      input_filename
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#parent_read_id" class="md-nav__link">
     <span class="md-ellipsis">
       parent_read_id
@@ -1241,6 +1259,24 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#input_filename" class="md-nav__link">
+    <span class="md-ellipsis">
+      input_filename
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#batch_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      batch_id
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#parent_read_id" class="md-nav__link">
     <span class="md-ellipsis">
       parent_read_id
@@ -1765,6 +1801,7 @@
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>online</code></div>
 <div>
 <table>
 <thead>
@@ -1790,6 +1827,7 @@
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>online</code></div>
 <div>
 <table>
 <thead>
@@ -1818,6 +1856,7 @@
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>online</code></div>
 <div>
 <table>
 <thead>
@@ -1843,7 +1882,7 @@
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div><strong class="doc-keyvalue">Only When </strong><code>aligning</code></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>online</code></div>
 <div>
 <table>
 <thead>
@@ -1862,6 +1901,61 @@
 </table>
 </div>
 <div><p>The name of the bam file that contains this read.</p></div>
+</div>
+<div class="doc-signature">
+<h3 class="doc-fieldname_fastq" id="input_filename"><code>input_filename</code><a class="headerlink" href="#input_filename" title="Permanent link">&para;</a></h3>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>offline</code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PBC012345_pass_unclassified_2abce119_646d7417_0.pod5</code></td>
+</tr>
+<tr>
+<td><code>PBC012345_fail_2abce119_646d7417_0.fast5</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>The name of the input fast5 or pod5 file.</p></div>
+</div>
+<div class="doc-signature">
+<h3 class="doc-fieldname_fastq" id="batch_id"><code>batch_id</code><a class="headerlink" href="#batch_id" title="Permanent link">&para;</a></h3>
+</div>
+<div class="doc-docstring">
+<div><strong class="doc-keyvalue">Regex </strong><code>[0-9]+</code></div>
+<div><strong class="doc-keyvalue">Required </strong><span></span></div>
+<div><strong class="doc-keyvalue">Only When </strong><code>offline</code></div>
+<div>
+<table>
+<thead>
+<tr>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>1</code></td>
+</tr>
+<tr>
+<td><code>512</code></td>
+</tr>
+<tr>
+<td><code>3000</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div><p>Identifies the batch of reads this read belongs to.</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="parent_read_id"><code>parent_read_id</code><a class="headerlink" href="#parent_read_id" title="Permanent link">&para;</a></h3>
@@ -2374,7 +2468,7 @@ was split out of another read by the basecaller.</p></div>
 <h3 class="doc-fieldname_fastq" id="end_reason"><code>end_reason</code><a class="headerlink" href="#end_reason" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>signal_positive|signal_negative|mux_change|unblock_mux_change|data_service_unblock_mux_change|analysis_config_change|device_data_error|api_request</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>unknown|signal_positive|signal_negative|mux_change|unblock_mux_change|data_service_unblock_mux_change|analysis_config_change|device_data_error|api_request</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
