@@ -7,7 +7,7 @@ patterns:
       - "433146BC99436123"
       - "123455434"
   flow_cell_id:
-    regex: "[A-Z0-9-]+"
+    regex: "[A-Z0-9_-]+"
     examples:
       - FXX12345
       - PXX12345

@@ -17,7 +17,7 @@ file:
     - name: flow_cell_id
       description: |
         The human-readable identifier for the flow cell (eg: FAK54854).
-      regex: "[A-Z0-9-]+"
+      regex: "[A-Z0-9_-]+"
       examples:
         - FXX12345
         - PXX12345
