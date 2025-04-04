@@ -28,7 +28,7 @@ file:
         - "2016-01-19T15:21:32.59+02:00"
       required: true
     - name: flow_cell_id
-      regex: "[A-Z0-9-]+"
+      regex: "[A-Z0-9_-]+"
       examples:
         - FXX12345
         - PXX12345

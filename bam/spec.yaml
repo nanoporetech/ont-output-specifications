@@ -64,7 +64,7 @@ file:
     - type: RG
       field: PU
       description: The unique identifier for the flowcell.
-      regex: "[A-Z0-9-]+"
+      regex: "[A-Z0-9_-]+"
       examples:
         - "FAB12345"
       required: false
