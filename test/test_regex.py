@@ -103,3 +103,24 @@ def test_sample_sheet_regex():
                 record["regex"],
                 record["examples"],
             )
+
+
+def test_output_hash_regex():
+    with open("./output_hash_file/spec.yaml", "r") as f:
+        bam = yaml.safe_load(f)
+
+        for record in bam["file"]["columns"]:
+            if "regex" not in record:
+                raise AssertionError(
+                    f"No regex provided for pattern '{record['name']}'"
+                )
+            if "examples" not in record:
+                raise AssertionError(
+                    f"No examples provided for regex '{record['name']}'"
+                )
+            regex_utils.test_regex_with_examples(
+                "sample_sheet/spec.yaml",
+                record["name"],
+                record["regex"],
+                record["examples"],
+            )

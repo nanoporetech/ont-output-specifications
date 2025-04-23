@@ -1,0 +1,59 @@
+file:
+  version: 1.1
+  columns:
+    - name: runid
+      description: |
+        A random-generated uuid for the sequencing protocol (eg:
+        e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII letters
+        (a-z), digits (0-9) and dashes (-). This maps to the `protocol_run_id` in the pod5 file.
+      regex: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+      examples:
+        - e4994c62-93f9-439a-bc8f-d20c95a137a5
+    - name: protocol_group_id
+      description: |
+        Set by the user in the GUI as "Experiment ID".
+      regex: "[a-zA-Z0-9_\\.-]+"
+      examples:
+        - "My_Group"
+        - "my-group-1"
+    - name: flow_cell_id
+      regex: "[A-Z0-9-]+"
+      examples:
+        - FXX12345
+        - PXX12345
+        - AAA123
+      description: |
+        The human-readable identifier for the flow cell (eg: FAK54854).
+    - name: sample_id
+      description: |
+        Set by the user in the GUI as "Sample ID".
+      regex: "[a-zA-Z0-9_\\.-]+"
+      examples:
+        - "My_Sample"
+        - "my-sample-1"
+    - name: file_hash
+      description: The sha256 hash of the file
+      regex: "[0-9a-f]{64}"
+      examples:
+        - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
+    - name: file_path
+      description: The protocol relative path to the output file.
+      examples:
+        - bam_pass/foo.bam
+      regex: "[a-zA-Z0-9_@\\./]+"
+    - name: barcode
+      description: The barcode for the data in the file
+      regex: "|unclassified|barcode([0-9]+)"
+      examples:
+        - ""
+        - "unclassified"
+        - "barcode01"
+    - name: barcode_alias
+      description: |
+        The user-supplied alias for the barcode. Empty if barcoding is not running. The same as ``barcode``
+        if the user did not supply an alias.
+      regex: "|[a-zA-Z0-9_@\\.]+"
+      examples:
+        - ""
+        - "my_sample"
+        - "sample01"
