@@ -26,3 +26,5 @@ protocol_spec:
       path: "fast5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fast5"
       batching:
         read_count: 4000
+    output_hash_file:
+      path: "output_hash_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.csv"

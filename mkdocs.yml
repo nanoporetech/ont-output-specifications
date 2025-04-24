@@ -14,6 +14,7 @@ nav:
     - Fast5: read_formats/fast5.md
   - Sequencing Summary: protocol_formats/sequencing_summary.md
   - Sample Sheet: protocol_formats/sample_sheet.md
+  - Output Hash File: protocol_formats/output_hash_file.md
   - MinKNOW:
     - Format Support: minknow/support.md
     - Patterns: minknow/patterns.md
