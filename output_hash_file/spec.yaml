@@ -40,7 +40,8 @@ file:
       description: The protocol relative path to the output file.
       examples:
         - bam_pass/foo.bam
-      regex: "[a-zA-Z0-9_@\\./]+"
+        - sequencing_summary_FLG-TEST01_d6b3339f.txt
+      regex: "[a-zA-Z0-9_@\\./-]+"
     - name: barcode
       description: The barcode for the data in the file
       regex: "|unclassified|barcode([0-9]+)"
