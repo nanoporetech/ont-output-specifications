@@ -141,6 +141,38 @@ file:
         - "-1"
         - "100"
 
+    - name: poly_tail_start
+      description: "The start sample of the poly-A tail detected in the read."
+      regex: "-1|[0-9]+" # positive integer or -1 if no tail detected.
+      only_when: poly_a_tail_estimation
+      examples:
+        - "-1"
+        - "100"
+
+    - name: poly_tail_end
+      description: "The end sample of the poly-A tail detected in the read."
+      regex: "-1|[0-9]+" # positive integer or -1 if no tail detected.
+      only_when: poly_a_tail_estimation
+      examples:
+        - "-1"
+        - "100"
+
+    - name: poly_tail2_start
+      description: "The start sample of the split poly-A tail detected in the read."
+      regex: "-1|[0-9]+" # positive integer or -1 if no split tail detected.
+      only_when: poly_a_tail_estimation
+      examples:
+        - "-1"
+        - "100"
+
+    - name: poly_tail2_end
+      description: "The end sample of the split poly-A tail detected in the read."
+      regex: "-1|[0-9]+" # positive integer or -1 if no split tail detected.
+      only_when: poly_a_tail_estimation
+      examples:
+        - "-1"
+        - "100"
+
     - name: pore_type
       description: "The type of the pore in use for this read."
       regex: "[a-zA-Z0-9_\\.]+"

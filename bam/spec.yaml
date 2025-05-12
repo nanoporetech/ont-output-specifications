@@ -243,3 +243,10 @@ file:
       type: i
       only_when: poly_a_tail_estimation
       description: "Estimated number of bases in the polyA/T tail. This tag is only included if --estimate_poly_a was specified by the client"
+    - tag: "pa"
+      type: B
+      value: i
+      only_when: poly_a_tail_estimation
+      description: |
+        PolyA/T tail range information - <anchor position|range1 start|range1 end|range2_start|range2_end>.
+        This tag is only included if --estimate_poly_a was specified by the client
