@@ -194,7 +194,7 @@ file:
         - "my-sample-1"
     - name: end_reason
       description: "The reason the read ended."
-      regex: "unknown|signal_positive|signal_negative|mux_change|unblock_mux_change|data_service_unblock_mux_change|analysis_config_change|device_data_error|api_request"
+      regex: "unknown|signal_positive|signal_negative|mux_change|unblock_mux_change|data_service_unblock_mux_change|analysis_config_change|device_data_error|api_request|paused"
       examples:
         - "signal_positive"
         - "signal_negative"
