@@ -1,6 +1,6 @@
-# minknow-output-specification
+# ONT Output Specifications
 
-This project is intended to contain parsable definitions of ont software (specifically minknow, dorado, and epi2me) interchange formats.
+This project is intended to contain parsable definitions of ONT software (specifically MinKNOW, Dorado, and EPI2ME) interchange formats.
 
 ## Deploying new docs
 

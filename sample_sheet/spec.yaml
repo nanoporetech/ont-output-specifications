@@ -58,7 +58,7 @@ file:
       only_when: has_input_sample_sheet
     - name: alias
       description: |
-        User specicied identifier used for the barcode, if available, otherwise the arrangement name.
+        User specified identifier used for the barcode, if available, otherwise the arrangement name.
       regex: "[A-Za-z0-9\\-_\\.]+"
       examples:
         - "my_sample"

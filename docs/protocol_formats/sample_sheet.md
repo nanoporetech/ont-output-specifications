@@ -7,7 +7,7 @@ Sample sheets are used in multiple ways inside MinKNOW, either as a way to confi
 Output Columns
 --------------
 
-The following fields document fields minknow will write at the end of a sequencing run.
+The following fields document fields MinKNOW will write at the end of a sequencing run.
 
 ::: csv_spec_docs sample_sheet
 
@@ -28,8 +28,8 @@ Column                     | Notes
 
 ### Notes
 
-If ``position_id`` and ``flow_cell_id`` are both defined the flow_cell_id will be validated against the EEPROM value. ``flow_cell_id`` will be set against the ``user_specified_flow_cell_id`` when starting a protocol.
+If ``position_id`` and ``flow_cell_id`` are both defined, the ``flow_cell_id`` will be validated against the EEPROM value. The ``flow_cell_id`` will be set against the ``user_specified_flow_cell_id`` when starting a protocol.
 
 All rows must contain the same ``experiment_id`` value, therefore, the sample sheet will only have a single ``experiment_id`` defined overall but the entries on each row are validated.
 
-If expansions kits are additionally defined they should be space separated, eg: ``SQK-LSK109 EXP-NBD104 EXP-NBD114`` or ``OND-SQK-LP0096S``. The sample sheet must contain exactly one sequencing kit, but can contain 0, 1, or many, expansion kits. The sequencing kit must be specified before any expansion kits.
+If expansions kits are additionally defined they should be space separated, e.g., ``SQK-LSK109 EXP-NBD104 EXP-NBD114`` or ``OND-SQK-LP0096S``. The sample sheet must contain exactly one sequencing kit, but can contain 0, 1, or many, expansion kits. The sequencing kit must be specified before any expansion kits.

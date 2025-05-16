@@ -88,7 +88,7 @@ file:
       only_when: barcoding
       required: false
       description: |
-        User specicied identifier used for the barcode, if available, otherwise the arrangement name.
+        User specified identifier used for the barcode, if available, otherwise the arrangement name.
 
         Included only if data is present and the arrangement is not "unclassified"
 

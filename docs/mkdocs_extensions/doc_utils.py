@@ -41,8 +41,8 @@ class CommonField:
 
     def build(self, parent: etree.Element, without: str = None):
         NICE_MAP = {
-            "bam": "Bam",
-            "fastq": "Fastq",
+            "bam": "BAM",
+            "fastq": "FASTQ",
             "sequencing_summary": "Sequencing Summary",
             "sample_sheet": "Sample Sheet",
         }

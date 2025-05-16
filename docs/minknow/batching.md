@@ -8,7 +8,7 @@ MinKNOW Configuration
 
 ### UI
 
-The UI for MinKNOW allows configuring the batching for bam and fastq based on "Time elapsed" and "Read count".
+The UI for MinKNOW allows configuring the batching for BAM and FASTQ based on "Time elapsed" and "Read count".
 
 ### Default values
 
@@ -17,12 +17,12 @@ contains default batching parameters, and allows additional control on top of wh
 
 #### File format configuration locations
 
-In the ``default_writer.toml`` config file batching for pod5 and fast5 can be controlled:
+In the ``default_writer.toml`` config file batching for POD5 and .fast5 can be controlled:
 
 File Type | Config Location
 --------- | ---------------
-Pod5      | ``[writer_configuration.read_pod5]``
-Fast5     | ``[writer_configuration.read_fast5]``
+POD5      | ``[writer_configuration.read_pod5]``
+.fast5     | ``[writer_configuration.read_fast5]``
 
 
 #### Batching Examples
