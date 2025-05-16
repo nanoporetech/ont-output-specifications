@@ -2,7 +2,7 @@
 
 This project is intended to contain parsable definitions of ont software (specifically minknow, dorado, and epi2me) interchange formats.
 
-# Deploying new docs
+## Deploying new docs
 
 Use [Mike](https://github.com/jimporter/mike) to deploy a new branch.
 
@@ -21,3 +21,17 @@ You can also update the ``latest`` alias if the branch you are deploying is the 
 ```
 
 These commands commit to the ``gh-pages`` on your local git repository. You can then push the ``gh-pages`` branch to the appropriate remote.
+
+## Development
+
+You can set up a local developer build of the documentation by first preparing a python local environment:
+
+```bash
+pip install -r ./requirements.txt
+```
+
+Then start the documentation in dev mode:
+
+```bash
+PYTHONPATH=./docs/mkdocs_extensions/ mkdocs serve
+```
