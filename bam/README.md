@@ -1,3 +1,3 @@
-# Bam tag Specification
+# BAM tag specification
 
-This spec was copied and transformed from: https://nanoporetech.atlassian.net/wiki/spaces/DEVIC/pages/11962428/BAM+File+Read+Group+and+Program+Header+Sections
+This contains a specification for BAM files output by software from Oxford Nanopore Technologies.

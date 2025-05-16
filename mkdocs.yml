@@ -1,17 +1,17 @@
-site_name: ONT Output Specification
+site_name: ONT Output Specifications
 site_url: !ENV READTHEDOCS_CANONICAL_URL
 
 # Adds the Github Link at top right
-repo_url: https://git.oxfordnanolabs.local/informatics-spec/ont-output-specification
-repo_name: ONT Output Specification
+repo_url: https://github.com/nanoporetech/ont-output-specifications
+repo_name: ONT Output Specifications
 
 nav:
   - index.md
   - Read Formats:
-    - Bam: read_formats/bam.md
-    - Fastq: read_formats/fastq.md
-    - Pod5: read_formats/pod5.md
-    - Fast5: read_formats/fast5.md
+    - BAM: read_formats/bam.md
+    - FASTQ: read_formats/fastq.md
+    - POD5: read_formats/pod5.md
+    - .fast5 (deprecated): read_formats/fast5.md
   - Sequencing Summary: protocol_formats/sequencing_summary.md
   - Sample Sheet: protocol_formats/sample_sheet.md
   - Output Hash File: protocol_formats/output_hash_file.md

@@ -8,8 +8,8 @@ Raw Output Formats
 
 Format                              | Supported                                | Default | Generation time
 ----------------------------------- | ---------------------------------------- | ------- | ---------------
-[Pod5](../read_formats/pod5.md)     | ✓                                        | ✓       | As batch is filled, during acquisition and basecalling catchup
-[Fast5](../read_formats/fast5.md)   | <span>✓</span> {{warning("Deprecated")}} | ✗       | As batch is filled, during acquisition and basecalling catchup
+[POD5](../read_formats/pod5.md)     | ✓                                        | ✓       | As batch is filled, during acquisition and basecalling catchup
+[.fast5](../read_formats/fast5.md)   | <span>✓</span> {{warning("Deprecated")}} | ✗       | As batch is filled, during acquisition and basecalling catchup
 
 
 Basecalled Output Formats
@@ -18,8 +18,8 @@ Basecalled Output Formats
 
 Format                              | Supported | Default | Generation time
 ----------------------------------- | --------- | ------- | ---------------
-[Bam](../read_formats/bam.md)       | ✓         | ✗       | As batch is filled, during acquisition and basecalling catchup
-[Fastq](../read_formats/fastq.md)   | ✓         | ✓       | As batch is filled, during acquisition and basecalling catchup
+[BAM](../read_formats/bam.md)       | ✓         | ✗       | As batch is filled, during acquisition and basecalling catchup
+[FASTQ](../read_formats/fastq.md)   | ✓         | ✓       | As batch is filled, during acquisition and basecalling catchup
 
 Other data formats
 ------------------

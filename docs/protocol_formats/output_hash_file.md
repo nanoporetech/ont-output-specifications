@@ -1,7 +1,7 @@
 Output Hash File
 ================
 
-The output hash file is csv file, containing one row per output minknow file. It is intended to confirm integrity of the written output data.
+The output hash file is a CSV file, containing one row per output MinKNOW file. It is intended to confirm the integrity of the written output data.
 
 Paths
 -----
