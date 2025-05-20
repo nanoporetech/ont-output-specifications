@@ -2,7 +2,7 @@ file:
   version: 1.1
   columns:
     - name: filename_fastq
-      description: "The name of the fastq file that contains this read."
+      description: "The name of the FASTQ file that contains this read."
       regex: "[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.fastq.gz"
@@ -17,28 +17,28 @@ file:
         - "PBC012345_fail_2abce119_646d7417_0.fast5"
       only_when: online
     - name: filename_pod5
-      description: "The name of the pod5 file that contains this read."
+      description: "The name of the POD5 file that contains this read."
       regex: "[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.pod5"
         - "PBC012345_fail_2abce119_646d7417_0.pod5"
       only_when: online
     - name: filename_bam
-      description: "The name of the bam file that contains this read."
+      description: "The name of the BAM file that contains this read."
       regex: "[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.bam"
         - "PBC012345_fail_2abce119_646d7417_0.bam"
       only_when: online
     - name: input_filename
-      description: "The name of the input fast5 or pod5 file."
+      description: "The name of the input .fast5 or POD5 file."
       regex: "[A-Za-z0-9\\-_\\.]+" # Ident
       examples:
         - "PBC012345_pass_unclassified_2abce119_646d7417_0.pod5"
         - "PBC012345_fail_2abce119_646d7417_0.fast5"
       only_when: offline
     - name: batch_id
-      description: Identifies the batch of reads this read belongs to.
+      description: Identifies the batch of reads to which this read belongs.
       regex: "[0-9]+"
       examples:
         - "1"
@@ -389,7 +389,7 @@ file:
         - "0.99"
       only_when: aligning
     - name: alignment_bed_hits
-      description: "The number of hits in the alignment bed file. If alignment was not performed for the read a value of ``-`` is used."
+      description: "The number of hits in the alignment BED file. If alignment was not performed for the read a value of ``-`` is used."
       regex: "-|[0-9]+" # positive integer
       examples:
         - "-"

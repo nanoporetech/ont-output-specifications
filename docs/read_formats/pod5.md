@@ -1,7 +1,7 @@
 POD5 Outputs
 ============
 
-POD5 is Oxford Nanopore Technology's raw read format, based on [Apache Arrow](https://github.com/apache/arrow). Its specification is part of the  [repository which implements the format](https://github.com/nanoporetech/pod5-file-format). You can also find documentation for the format [here](https://pod5-file-format.readthedocs.io/).
+POD5 is Oxford Nanopore Technologies raw read format, based on [Apache Arrow](https://github.com/apache/arrow). Its specification is part of the  [repository which implements the format](https://github.com/nanoporetech/pod5-file-format). You can also find documentation for the format [here](https://pod5-file-format.readthedocs.io/).
 
 Specification
 -------------
@@ -13,13 +13,13 @@ Paths
 
 The following path patterns are used to place the data on disk:
 
-File           | Path Pattern
+File           | Path pattern
 -------------- | ------------
-**POD5 File** | ``{{spec_value("experiment_layout", "protocol_spec.contents.pod5.path")}}``
+**POD5 file** | ``{{spec_value("experiment_layout", "protocol_spec.contents.pod5.path")}}``
 
 See the [Patterns](../minknow/patterns.md) documentation for more information on file patterns.
 
-Read Batching
+Read batching
 -------------
 
 The following batching options are used by default:
@@ -32,7 +32,7 @@ Option         | Value
 
 For more information on batching see [Batching](../minknow/batching.md).
 
-Minimum Version
+Minimum version
 ---------------
 
 The minimum version POD5 files are expected to be written is ``{{spec_value("pod5", "file.minimum_version")}}``.

@@ -36,8 +36,8 @@ file:
       description: |
         ``runid``, ``basecall_model`` and optionally ``modbase_models`` formatted into a space separated string.
 
-        `runid` contains the ``protocol_run_id`` from the minknow experiment that generated the bam files.
-        Note, ``modbase_models`` only appears if modbase calling was performed, and contains a comma separated list of dorado modbase model names used.
+        `runid` contains the ``protocol_run_id`` from the MinKNOW experiment that generated the BAM files.
+        Note, ``modbase_models`` only appears if modbase calling was performed, and contains a comma separated list of Dorado modbase model names used.
     - type: RG
       field: LB
       regex: "[a-zA-Z0-9_\\.-]+"
@@ -88,11 +88,11 @@ file:
       only_when: barcoding
       required: false
       description: |
-        User specified identifier used for the barcode, if available, otherwise the arrangement name.
+        User-specified identifier used for the barcode, if available, otherwise the arrangement name.
 
         Included only if data is present and the arrangement is not "unclassified"
 
-        This will be the same barcode descriptor guppy uses for generating the output folder names,
+        This will be the same barcode descriptor Dorado uses for generating the output folder names,
         which is the sample sheet alias if available otherwise defaulting to the arrangement name.
     - type: PG
       field: ID
@@ -107,23 +107,23 @@ file:
         ``<program_id>{_<unique_id>}``
 
         The SAM specification requires this field to be unique within a file, and may be modified on merging to ensure
-        uniqueness. Where the program_id would not be unique within the file, e.g. when the input is a bam/sam file
+        uniqueness. Where the program_id would not be unique within the file, e.g. when the input is a BAM/SAM file
         with the program_id already present, then the @PG record will have the lowest zero based suffix that can be
         appended to the ID to ensure its uniqueness, e.g. "_0".
         Where an application has used the minimap aligner on reads contained in the file, as well as outputting a @PG
         record for itself it will also output an additional @PG record for minimap
-        dorado aligner records will have the ID "dorado_aligner" to disambiguate from minimap aligner records.
+        Dorado aligner records will have the ID "dorado_aligner" to disambiguate from minimap aligner records.
         Programs will identify themselves as follows
-        minknow "minknow"
-        ont_basecall_client "basecaller"
-        dorado basecaller "basecaller"
-        dorado barcoder "barcoder"
-        dorado aligner "dorado_aligner"
-        minimap2 (if used in the application) "aligner"
+        MinKNOW "minknow"
+        ``ont_basecall_client`` "basecaller"
+        ``dorado basecaller``: "basecaller"
+        ``dorado barcoder``: "barcoder"
+        ``dorado aligner``: "dorado_aligner"
+        ``minimap2``: (if used in the application) "aligner"
     - type: PG
       field: PN
       description: |
-        "dorado" for dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
+        "dorado" for Dorado application program records. "minimap2" for minimap program records with ID:aligner. "ont_basecall_client", etc.
       regex: "(dorado|minimap2|ont_basecall_client|minknow)"
       examples:
         - "dorado"
@@ -156,9 +156,9 @@ file:
       field: DS
       required: false
       description: |
-        Each GPU type used by the basecaller will appear once, as we’re only interested in the GPU types, not the total
+        Each GPU type used by the basecaller will appear once, as we are only interested in the GPU types, not the total
         number of them.
-        For a PromethION the tag would say (e.g) DS:gpu:NVIDIA A100 80GB PCIe. If there are multiple GPU types on the
+        For a PromethION the tag would say e.g DS:gpu:NVIDIA A100 80GB PCIe. If there are multiple GPU types on the
         system they will be separated by a vertical bar.
         If a GPU was not used, or the reads were called on Apple Silicon, this field will not be present.
       regex: ".*"
@@ -238,7 +238,7 @@ file:
     - tag: "bh"
       type: i
       only_when: bed_file
-      description: "Number of bed-file hits. This tag is only included if a bed-file was specified when aligning."
+      description: "Number of BED file hits. This tag is only included if a BED file was specified when aligning."
     - tag: "pt"
       type: i
       only_when: poly_a_tail_estimation

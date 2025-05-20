@@ -1,7 +1,7 @@
-FASTQ Output
-============
+FASTQ
+=====
 
-**Format Version:** {{spec_value("fastq", "file.version")}}
+**Format version:** {{spec_value("fastq", "file.version")}}
 
 [FASTQ](https://en.wikipedia.org/wiki/FASTQ_format) is a text-based format for storing both a biological sequence (usually nucleotide sequence) and its corresponding quality scores.
 
@@ -11,13 +11,13 @@ Paths
 The following path patterns are used to place the data on disk:
 
 
-File           | Path Pattern
+File           | Path pattern
 -------------- | ------------
-**FASTQ File** | ``{{spec_value("experiment_layout", "protocol_spec.contents.fastq.path")}}``
+**FASTQ file** | ``{{spec_value("experiment_layout", "protocol_spec.contents.fastq.path")}}``
 
 See the [Patterns](../minknow/patterns.md) documentation for more information on file patterns.
 
-Read Batching
+Read batching
 -------------
 
 The following batching options are used by default:
@@ -29,10 +29,10 @@ Option       | Value
 
 For more information on batching see [Batching](../minknow/batching.md).
 
-Record Structure
+Record structure
 ----------------
 
-ONT FASTQ records contain a key value section after the required unique read id. This should be treated as an unordered set of values.
+Oxford Nanopore Technologies FASTQ records contain a key value section after the required unique read id. This should be treated as an unordered set of values.
 
 The approximate structure of a record is:
 
@@ -54,13 +54,13 @@ QQQQ
 
 Attributes included in the key value section are listed below.
 
-Required Header Attributes
+Required header attributes
 --------------------------
 
 ::: fastq_spec_docs header
 
 
-Header Patterns
+Header patterns
 ---------------
 
 Additional header patterns are available for FASTQ files on top of the normal [Patterns](../minknow/patterns.md).

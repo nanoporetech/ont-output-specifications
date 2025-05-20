@@ -1,10 +1,10 @@
-Sample Sheet
+Sample sheet
 ============
 
 Sample sheets are used in multiple ways inside MinKNOW, either as a way to configure a sequencing run, or as a document of the configuration of the sequencing run.
 
 
-Output Columns
+Output columns
 --------------
 
 The following fields document fields MinKNOW will write at the end of a sequencing run.
@@ -12,7 +12,7 @@ The following fields document fields MinKNOW will write at the end of a sequenci
 ::: csv_spec_docs sample_sheet
 
 
-Input Columns
+Input columns
 -------------
 
 When passing a sample sheet into MinKNOW, different rules apply to the columns - not all are required.
