@@ -1776,7 +1776,7 @@
   
 
 
-<h1 id="sequencing-summary">Sequencing Summary<a class="headerlink" href="#sequencing-summary" title="Permanent link">&para;</a></h1>
+<h1 id="sequencing-summary">Sequencing summary<a class="headerlink" href="#sequencing-summary" title="Permanent link">&para;</a></h1>
 <p>The sequencing summary is a TSV file, containing one row per read. It is intended to allow fast analysis of the results of a sequencing run.</p>
 <h2 id="columns">Columns<a class="headerlink" href="#columns" title="Permanent link">&para;</a></h2>
 <div class="autodoc">
@@ -1804,7 +1804,7 @@
 </tbody>
 </table>
 </div>
-<div><p>The name of the fastq file that contains this read.</p></div>
+<div><p>The name of the FASTQ file that contains this read.</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="filename_fast5"><code>filename_fast5</code><a class="headerlink" href="#filename_fast5" title="Permanent link">&para;</a></h3>
@@ -1859,7 +1859,7 @@
 </tbody>
 </table>
 </div>
-<div><p>The name of the pod5 file that contains this read.</p></div>
+<div><p>The name of the POD5 file that contains this read.</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="filename_bam"><code>filename_bam</code><a class="headerlink" href="#filename_bam" title="Permanent link">&para;</a></h3>
@@ -1885,7 +1885,7 @@
 </tbody>
 </table>
 </div>
-<div><p>The name of the bam file that contains this read.</p></div>
+<div><p>The name of the BAM file that contains this read.</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="input_filename"><code>input_filename</code><a class="headerlink" href="#input_filename" title="Permanent link">&para;</a></h3>
@@ -2406,7 +2406,7 @@ was split out of another read by the basecaller.</p></div>
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#sample_id">sample_id</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#lb">LB</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#sample_id">sample_id</a></span></code></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#sample_id">sample_id</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#lb">LB</a></span></code><code class="doc-common-value">Sample sheet: <span><a href="/protocol_formats/sample_sheet#sample_id">sample_id</a></span></code></div>
 <div>
 <table>
 <thead>
@@ -2458,7 +2458,7 @@ was split out of another read by the basecaller.</p></div>
 <div><strong class="doc-keyvalue">Regex </strong><code>unclassified|[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Only When </strong><code>barcoding</code></div>
-<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#barcode_alias">barcode_alias</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#al">al</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#alias">alias</a></span></code></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#barcode_alias">barcode_alias</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#al">al</a></span></code><code class="doc-common-value">Sample sheet: <span><a href="/protocol_formats/sample_sheet#alias">alias</a></span></code></div>
 <div>
 <table>
 <thead>
@@ -2514,7 +2514,7 @@ was split out of another read by the basecaller.</p></div>
 <div><strong class="doc-keyvalue">Regex </strong><code>-|unclassified|[A-Za-z0-9&#92;-_&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div><strong class="doc-keyvalue">Only When </strong><code>barcoding</code></div>
-<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#barcode">barcode</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#sm">SM</a></span></code><code class="doc-common-value">Sample Sheet: <span><a href="/protocol_formats/sample_sheet#barcode">barcode</a></span></code></div>
+<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#barcode">barcode</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#sm">SM</a></span></code><code class="doc-common-value">Sample sheet: <span><a href="/protocol_formats/sample_sheet#barcode">barcode</a></span></code></div>
 <div>
 <table>
 <thead>
@@ -3165,7 +3165,7 @@ was split out of another read by the basecaller.</p></div>
 </tbody>
 </table>
 </div>
-<div><p>The number of hits in the alignment bed file. If alignment was not performed for the read a value of <code>-</code> is used.</p></div>
+<div><p>The number of hits in the alignment BED file. If alignment was not performed for the read a value of <code>-</code> is used.</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="alignment_mapping_quality"><code>alignment_mapping_quality</code><a class="headerlink" href="#alignment_mapping_quality" title="Permanent link">&para;</a></h3>
