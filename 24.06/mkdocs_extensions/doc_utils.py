@@ -38,8 +38,8 @@ class CommonField:
         NICE_MAP = {
             "bam": "BAM",
             "fastq": "FASTQ",
-            "sequencing_summary": "Sequencing Summary",
-            "sample_sheet": "Sample Sheet",
+            "sequencing_summary": "Sequencing summary",
+            "sample_sheet": "Sample sheet",
         }
         for name, field in self.fields.items():
             if name == without:
