@@ -5,7 +5,7 @@ file:
       description: |
         A random-generated uuid for the sequencing protocol (eg:
         e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII letters
-        (a-z), digits (0-9) and dashes (-). This maps to the `protocol_run_id` in the pod5 file.
+        (a-z), digits (0-9) and dashes (-). This maps to the `protocol_run_id` in the POD5 file.
       regex: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
       required: true
       examples:
@@ -73,9 +73,9 @@ file:
       only_when: barcoding
     - name: parent_read_id
       description: |
-        The ``read_id`` of the read which was the source of this fastq entry. This may be the same as the
-        fastq entry id if no read splitting was performed for this read, or will be a new globally
-        unique UUID value if this read was split out of another read by guppy.
+        The ``read_id`` of the read which was the source of this FASTQ entry. This may be the same as the
+        FASTQ entry id if no read splitting was performed for this read, or will be a new globally
+        unique UUID value if this read was split out of another read by the basecaller.
       required: true
       regex: "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
       examples:
@@ -83,7 +83,7 @@ file:
     - name: basecall_model_version_id
       description: |
         The unique identifier for the basecall model used to generate
-        this fastq file, as supplied by the guppy basecaller
+        this FASTQ file, as supplied by the basecaller
         (e.g. ``2021-05-17_dna_r9.4.1_minion_384_d37a2ab9``).
       required: true
       regex: "[a-z0-9_@\\.]+"

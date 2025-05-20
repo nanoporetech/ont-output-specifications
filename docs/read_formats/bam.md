@@ -1,7 +1,7 @@
-BAM Output
-==========
+BAM
+===
 
-**Format Version:** {{spec_value("bam", "file.version")}}
+**Format version:** {{spec_value("bam", "file.version")}}
 
 [Binary Alignment Map](https://en.wikipedia.org/wiki/Binary_Alignment_Map) (BAM) is the comprehensive raw data of genome sequencing; it consists of the lossless, compressed binary representation of the Sequence Alignment Map-files.
 
@@ -12,14 +12,14 @@ Paths
 
 The following path patterns are used to place the data on disk:
 
-File         | Path Pattern
+File         | Path pattern
 ------------ | ------------
-**BAM File** | ``{{spec_value("experiment_layout", "protocol_spec.contents.bam.bam_path")}}``
-**BAI File** | ``{{spec_value("experiment_layout", "protocol_spec.contents.bam.bai_path")}}``
+**BAM file** | ``{{spec_value("experiment_layout", "protocol_spec.contents.bam.bam_path")}}``
+**BAI file** | ``{{spec_value("experiment_layout", "protocol_spec.contents.bam.bai_path")}}``
 
 See the [Patterns](../minknow/patterns.md) documentation for more information on file patterns.
 
-Read Batching
+Read batching
 -------------
 
 The following batching options are used by default:
@@ -34,14 +34,14 @@ For more information on batching see [Batching](../minknow/batching.md).
 Fields
 ------
 
-### Read Groups
+### Read groups
 
 ::: bam_spec_docs header_records RG
 
-### Program Groups
+### Program groups
 
 ::: bam_spec_docs header_records PG
 
-### Read Tags
+### Read tags
 
 ::: bam_spec_docs read_tags

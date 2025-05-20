@@ -1,9 +1,9 @@
 Batching
 ========
 
-Output from ONT products can be batched in various ways, depending on the software used to generate the files.
+Output from Oxford Nanopore Technologies products can be batched in various ways, depending on the software used to generate the files.
 
-MinKNOW Configuration
+MinKNOW configuration
 ---------------------
 
 ### UI
@@ -25,7 +25,7 @@ POD5      | ``[writer_configuration.read_pod5]``
 .fast5     | ``[writer_configuration.read_fast5]``
 
 
-#### Batching Examples
+#### Batching examples
 
 The following examples can be used to replace existing batching options for a file format, to change how a file type is batched.
 

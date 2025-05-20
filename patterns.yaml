@@ -146,7 +146,7 @@ patterns:
       - "r10.4.1"
       - "not_set"
   channel_name:
-    description: "The 1 indexed number for the channel the read was sequenced on"
+    description: "The 1 indexed number for the channel on which the read was sequenced."
     context: read
     regex: "[0-9]+"
     examples:

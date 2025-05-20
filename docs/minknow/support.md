@@ -3,7 +3,7 @@ MinKNOW
 
 MinKNOW supports outputting reads as either raw or basecalled data. The following sections describe the different formats and how to use them.
 
-Raw Output Formats
+Raw output formats
 ------------------
 
 Format                              | Supported                                | Default | Generation time
@@ -12,7 +12,7 @@ Format                              | Supported                                |
 [.fast5](../read_formats/fast5.md)   | <span>✓</span> {{warning("Deprecated")}} | ✗       | As batch is filled, during acquisition and basecalling catchup
 
 
-Basecalled Output Formats
+Basecalled output formats
 -------------------------
 
 

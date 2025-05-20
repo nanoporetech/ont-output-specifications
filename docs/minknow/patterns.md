@@ -5,7 +5,7 @@ A pattern is a token replaced by the true value at program runtime. These patter
 
 Patterns are used to construct file names and header values in the specification for all file formats. See [BAM](../read_formats/bam.md) for an example.
 
-Available Patterns
+Available patterns
 ------------------
 
 ### Global
