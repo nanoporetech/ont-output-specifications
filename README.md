@@ -2,6 +2,10 @@
 
 This project is intended to contain parsable definitions of ONT software (specifically MinKNOW, Dorado, and EPI2ME) interchange formats.
 
+## Public docs
+
+The rendered documentation is [available here](https://nanoporetech.github.io/ont-output-specifications/latest/)
+
 ## Deploying new docs
 
 Use [Mike](https://github.com/jimporter/mike) to deploy a new branch.
