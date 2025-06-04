@@ -1,9 +1,11 @@
 protocol_spec:
   root:
-    - pattern: "{protocol_group_id}/{sample_id}/"
-      active_when: "pooling_enabled = true"
-    - pattern: "{protocol_group_id}/{sample_id}/{start_time}_{device_id}_{flow_cell_id}_{short_protocol_run_id}/"
-      active_when: "pooling_enabled = false"
+    pooling:
+      pattern: "/data/{protocol_group_id}/{sample_id}/"
+      example: "/data/Sample_Group/Sample/"
+    no_pooling:
+      pattern: "/data/{protocol_group_id}/{sample_id}/{start_time}_{device_id}_{flow_cell_id}_{short_protocol_run_id}/"
+      example: "/data/Sample_Group/Sample/20250603_1201_3E_PAA12345_e05460c6/"
   contents:
     fastq:
       path: "fastq{basecall_status}{duplex_status}/{alias}/{flow_cell_id}{basecall_status}{duplex_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.fastq.gz"
@@ -28,3 +30,13 @@ protocol_spec:
         read_count: 4000
     output_hash_file:
       path: "output_hash_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.csv"
+    sequencing_summary:
+      path: "sequencing_summary_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.txt"
+    html_report:
+      path: "report_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.html"
+    final_summary:
+      path: "final_summary_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.txt"
+    sample_sheet:
+      path: "sample_sheet_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.csv"
+    barcode_alignment_report:
+      path: "barcode_alignment_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.tsv"

@@ -16,6 +16,7 @@ nav:
   - Sample Sheet: protocol_formats/sample_sheet.md
   - Output Hash File: protocol_formats/output_hash_file.md
   - MinKNOW:
+    - Output Structure: minknow/output_structure.md
     - Format Support: minknow/support.md
     - Patterns: minknow/patterns.md
     - Batching: minknow/batching.md

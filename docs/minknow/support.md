@@ -28,5 +28,8 @@ These formats are output by MinKNOW by default, and are not configurable.
 
 Format                                                          | Generation time
 --------------------------------------------------------------- | ---------------
-[Sequencing Summary](../protocol_formats/sequencing_summary.md) | End of sequencing acquisition and basecalling catchup period
-[Sample Sheet](../protocol_formats/sample_sheet.md)           | End of sequencing acquisition and basecalling catchup period
+[Sequencing Summary](../protocol_formats/sequencing_summary.md) | End of sequencing acquisition and basecalling catchup period.
+[Sample Sheet](../protocol_formats/sample_sheet.md)             | Beginning of sequencing run.
+[Output Hash File](../../protocol_formats/output_hash_file)     | Once hashed files have been written for the sequencing run.
+Final Summary                                                   | Once all files have been written for the sequencing run.
+Barcode Alignment Report                                        | End of sequencing acquisition and basecalling catchup period.
