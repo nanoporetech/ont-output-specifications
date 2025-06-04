@@ -1,10 +1,12 @@
-# ONT Output Specifications
+# Oxford Nanopore Output Specifications
 
-This project is intended to contain parsable definitions of ONT software (specifically MinKNOW, Dorado, and EPI2ME) interchange formats.
+This project is intended to contain parsable definitions of Oxford Nanopore software (specifically MinKNOW, Dorado, and EPI2ME) interchange formats.
+
+Currently, this project primarily contains MinKNOW outputs. Further specifications, including additional outputs from EPI2ME and [standalone Dorado](https://github.com/nanoporetech/dorado), are planned for a future release. Until then, details of these projects can be found in the [EPI2ME Docs](https://epi2me.nanoporetech.com/epi2me-docs/quickstart/) and [Dorado Docs](https://dorado-docs.readthedocs.io/en/latest/).
 
 ## Public docs
 
-The rendered documentation is [available here](https://nanoporetech.github.io/ont-output-specifications/latest/)
+The rendered documentation is [available here](https://nanoporetech.github.io/ont-output-specifications/latest/).
 
 ## Deploying new docs
 
