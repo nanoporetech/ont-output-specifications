@@ -1,9 +1,9 @@
-site_name: ONT Output Specifications
+site_name: Oxford Nanopore Output Specifications
 site_url: !ENV READTHEDOCS_CANONICAL_URL
 
 # Adds the Github Link at top right
 repo_url: https://github.com/nanoporetech/ont-output-specifications
-repo_name: ONT Output Specifications
+repo_name: Oxford Nanopore Output Specifications
 
 nav:
   - index.md
