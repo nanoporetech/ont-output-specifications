@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="../sequencing_summary/">
+        <link rel="prev" href="../sample_sheet/">
       
       
-        <link rel="next" href="../output_hash_file/">
+        <link rel="next" href="../../minknow/output_structure/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Sample Sheet - Oxford Nanopore Output Specifications</title>
+        <title>Output Hash File - Oxford Nanopore Output Specifications</title>
       
     
     
@@ -68,7 +68,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#sample-sheet" class="md-skip">
+        <a href="#output-hash-file" class="md-skip">
           Skip to content
         </a>
       
@@ -107,7 +107,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Sample Sheet
+              Output Hash File
             
           </span>
         </div>
@@ -444,6 +444,26 @@
       
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../sample_sheet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Sample Sheet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
     
   
   
@@ -460,7 +480,7 @@
           
   
   <span class="md-ellipsis">
-    Sample Sheet
+    Output Hash File
   </span>
   
 
@@ -471,7 +491,7 @@
         
   
   <span class="md-ellipsis">
-    Sample Sheet
+    Output Hash File
   </span>
   
 
@@ -495,28 +515,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#output-columns" class="md-nav__link">
+  <a href="#paths" class="md-nav__link">
     <span class="md-ellipsis">
-      Output columns
+      Paths
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Output columns">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Columns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Columns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#protocol_run_id" class="md-nav__link">
+  <a href="#runid" class="md-nav__link">
     <span class="md-ellipsis">
-      protocol_run_id
+      runid
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#position_id" class="md-nav__link">
+  <a href="#protocol_group_id" class="md-nav__link">
     <span class="md-ellipsis">
-      position_id
+      protocol_group_id
     </span>
   </a>
   
@@ -541,27 +570,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#experiment_id" class="md-nav__link">
+  <a href="#file_hash" class="md-nav__link">
     <span class="md-ellipsis">
-      experiment_id
+      file_hash
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#flow_cell_product_code" class="md-nav__link">
+  <a href="#file_path" class="md-nav__link">
     <span class="md-ellipsis">
-      flow_cell_product_code
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kit" class="md-nav__link">
-    <span class="md-ellipsis">
-      kit
+      file_path
     </span>
   </a>
   
@@ -577,42 +597,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#alias" class="md-nav__link">
+  <a href="#barcode_alias" class="md-nav__link">
     <span class="md-ellipsis">
-      alias
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#type" class="md-nav__link">
-    <span class="md-ellipsis">
-      type
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#input-columns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Input columns
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Input columns">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
+      barcode_alias
     </span>
   </a>
   
@@ -627,26 +614,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../output_hash_file/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Output Hash File
-  </span>
-  
-
-      </a>
     </li>
   
 
@@ -821,28 +788,37 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#output-columns" class="md-nav__link">
+  <a href="#paths" class="md-nav__link">
     <span class="md-ellipsis">
-      Output columns
+      Paths
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Output columns">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#columns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Columns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Columns">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#protocol_run_id" class="md-nav__link">
+  <a href="#runid" class="md-nav__link">
     <span class="md-ellipsis">
-      protocol_run_id
+      runid
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#position_id" class="md-nav__link">
+  <a href="#protocol_group_id" class="md-nav__link">
     <span class="md-ellipsis">
-      position_id
+      protocol_group_id
     </span>
   </a>
   
@@ -867,27 +843,18 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#experiment_id" class="md-nav__link">
+  <a href="#file_hash" class="md-nav__link">
     <span class="md-ellipsis">
-      experiment_id
+      file_hash
     </span>
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#flow_cell_product_code" class="md-nav__link">
+  <a href="#file_path" class="md-nav__link">
     <span class="md-ellipsis">
-      flow_cell_product_code
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#kit" class="md-nav__link">
-    <span class="md-ellipsis">
-      kit
+      file_path
     </span>
   </a>
   
@@ -903,42 +870,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#alias" class="md-nav__link">
+  <a href="#barcode_alias" class="md-nav__link">
     <span class="md-ellipsis">
-      alias
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#type" class="md-nav__link">
-    <span class="md-ellipsis">
-      type
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#input-columns" class="md-nav__link">
-    <span class="md-ellipsis">
-      Input columns
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Input columns">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#notes" class="md-nav__link">
-    <span class="md-ellipsis">
-      Notes
+      barcode_alias
     </span>
   </a>
   
@@ -967,13 +901,29 @@
   
 
 
-<h1 id="sample-sheet">Sample sheet<a class="headerlink" href="#sample-sheet" title="Permanent link">&para;</a></h1>
-<p>Sample sheets are used in multiple ways inside MinKNOW, either as a way to configure a sequencing run, or as a document of the configuration of the sequencing run.</p>
-<h2 id="output-columns">Output columns<a class="headerlink" href="#output-columns" title="Permanent link">&para;</a></h2>
-<p>The following fields document fields MinKNOW will write at the end of a sequencing run.</p>
+<h1 id="output-hash-file">Output Hash File<a class="headerlink" href="#output-hash-file" title="Permanent link">&para;</a></h1>
+<p>The output hash file is a CSV file, containing one row per output MinKNOW file. It is intended to confirm the integrity of the written output data.</p>
+<h2 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
+<p>The following path patterns are used to place the data on disk:</p>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Path Pattern</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Output Hash File</strong></td>
+<td><code>output_hash_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.csv</code></td>
+</tr>
+</tbody>
+</table>
+<p>See the <a href="../../minknow/patterns/">Patterns</a> documentation for more information on file patterns.</p>
+<h2 id="columns">Columns<a class="headerlink" href="#columns" title="Permanent link">&para;</a></h2>
 <div class="autodoc">
 <div class="doc-signature">
-<h3 class="doc-fieldname_fastq" id="protocol_run_id"><code>protocol_run_id</code><a class="headerlink" href="#protocol_run_id" title="Permanent link">&para;</a></h3>
+<h3 class="doc-fieldname_fastq" id="runid"><code>runid</code><a class="headerlink" href="#runid" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}</code></div>
@@ -994,13 +944,13 @@
 </div>
 <div><p>A random-generated uuid for the sequencing protocol (eg:
 e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII letters
-(a-z), digits (0-9) and dashes (-).</p></div>
+(a-z), digits (0-9) and dashes (-). This maps to the <code>protocol_run_id</code> in the pod5 file.</p></div>
 </div>
 <div class="doc-signature">
-<h3 class="doc-fieldname_fastq" id="position_id"><code>position_id</code><a class="headerlink" href="#position_id" title="Permanent link">&para;</a></h3>
+<h3 class="doc-fieldname_fastq" id="protocol_group_id"><code>protocol_group_id</code><a class="headerlink" href="#protocol_group_id" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z-0-9]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1011,20 +961,22 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </thead>
 <tbody>
 <tr>
-<td><code>MN12345</code></td>
+<td><code>My_Group</code></td>
+</tr>
+<tr>
+<td><code>my-group-1</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div><p>The device identifier used for sequencing.</p></div>
+<div><p>Set by the user in the GUI as "Experiment ID".</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="flow_cell_id"><code>flow_cell_id</code><a class="headerlink" href="#flow_cell_id" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z0-9_-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z0-9-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#flow_cell_id">flow_cell_id</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#pu">PU</a></span></code></div>
 <div>
 <table>
 <thead>
@@ -1053,7 +1005,6 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#sample_id">sample_id</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#lb">LB</a></span></code><code class="doc-common-value">Sequencing summary: <span><a href="/protocol_formats/sequencing_summary#sample_id">sample_id</a></span></code></div>
 <div>
 <table>
 <thead>
@@ -1074,10 +1025,10 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 <div><p>Set by the user in the GUI as "Sample ID".</p></div>
 </div>
 <div class="doc-signature">
-<h3 class="doc-fieldname_fastq" id="experiment_id"><code>experiment_id</code><a class="headerlink" href="#experiment_id" title="Permanent link">&para;</a></h3>
+<h3 class="doc-fieldname_fastq" id="file_hash"><code>file_hash</code><a class="headerlink" href="#file_hash" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_&#92;.-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[0-9a-f]{64}</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1088,21 +1039,18 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </thead>
 <tbody>
 <tr>
-<td><code>My_Group</code></td>
-</tr>
-<tr>
-<td><code>my-group-1</code></td>
+<td><code>e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div><p>Set by the user in the GUI as "Experiment ID".</p></div>
+<div><p>The sha256 hash of the file</p></div>
 </div>
 <div class="doc-signature">
-<h3 class="doc-fieldname_fastq" id="flow_cell_product_code"><code>flow_cell_product_code</code><a class="headerlink" href="#flow_cell_product_code" title="Permanent link">&para;</a></h3>
+<h3 class="doc-fieldname_fastq" id="file_path"><code>file_path</code><a class="headerlink" href="#file_path" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z0-9-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[a-zA-Z0-9_@&#92;./-]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
 <div>
 <table>
@@ -1113,46 +1061,22 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </thead>
 <tbody>
 <tr>
-<td><code>FLO-PRO114</code></td>
+<td><code>bam_pass/foo.bam</code></td>
 </tr>
 <tr>
-<td><code>FLO-MIN114</code></td>
+<td><code>sequencing_summary_FLG-TEST01_d6b3339f.txt</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div><p>The product code of the flow cell used in the experiment</p></div>
-</div>
-<div class="doc-signature">
-<h3 class="doc-fieldname_fastq" id="kit"><code>kit</code><a class="headerlink" href="#kit" title="Permanent link">&para;</a></h3>
-</div>
-<div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z0-9-]+</code></div>
-<div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div>
-<table>
-<thead>
-<tr>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>SQK-LSK114</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div><p>The product code of the kit used in the experiment</p></div>
+<div><p>The protocol relative path to the output file.</p></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="barcode"><code>barcode</code><a class="headerlink" href="#barcode" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>barcode([0-9]+)</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>|unclassified|barcode([0-9]+)</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div><strong class="doc-keyvalue">Only When </strong><code>has_input_sample_sheet</code></div>
-<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#barcode">barcode</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#sm">SM</a></span></code><code class="doc-common-value">Sequencing summary: <span><a href="/protocol_formats/sequencing_summary#barcode_arrangement">barcode_arrangement</a></span></code></div>
 <div>
 <table>
 <thead>
@@ -1161,22 +1085,26 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code></code></td>
+</tr>
+<tr>
+<td><code>unclassified</code></td>
+</tr>
 <tr>
 <td><code>barcode01</code></td>
 </tr>
 </tbody>
 </table>
 </div>
-<div><p>The barcode identified for the read.</p></div>
+<div><p>The barcode for the data in the file</p></div>
 </div>
 <div class="doc-signature">
-<h3 class="doc-fieldname_fastq" id="alias"><code>alias</code><a class="headerlink" href="#alias" title="Permanent link">&para;</a></h3>
+<h3 class="doc-fieldname_fastq" id="barcode_alias"><code>barcode_alias</code><a class="headerlink" href="#barcode_alias" title="Permanent link">&para;</a></h3>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[A-Za-z0-9&#92;-_&#92;.]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>|[a-zA-Z0-9_@&#92;.]+</code></div>
 <div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div><strong class="doc-keyvalue">Only When </strong><code>has_input_sample_sheet</code></div>
-<div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#barcode_alias">barcode_alias</a></span></code><code class="doc-common-value">BAM: <span><a href="/read_formats/bam#al">al</a></span></code><code class="doc-common-value">Sequencing summary: <span><a href="/protocol_formats/sequencing_summary#alias">alias</a></span></code></div>
 <div>
 <table>
 <thead>
@@ -1185,6 +1113,9 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><code></code></td>
+</tr>
 <tr>
 <td><code>my_sample</code></td>
 </tr>
@@ -1194,75 +1125,10 @@ e4994c62-93f9-439a-bc8f-d20c95a137a5) This consists only of lower-case ASCII let
 </tbody>
 </table>
 </div>
-<div><p>User-specified identifier used for the barcode, if available, otherwise the arrangement name.</p></div>
-</div>
-<div class="doc-signature">
-<h3 class="doc-fieldname_fastq" id="type"><code>type</code><a class="headerlink" href="#type" title="Permanent link">&para;</a></h3>
-</div>
-<div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>na|test_sample|positive_control|negative_control|no_template_control|positive_control_1|positive_control_2</code></div>
-<div><strong class="doc-keyvalue">Required </strong><span></span></div>
-<div><strong class="doc-keyvalue">Only When </strong><code>has_input_sample_sheet</code></div>
-<div>
-<table>
-<thead>
-<tr>
-<th>Examples</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>positive_control</code></td>
-</tr>
-<tr>
-<td><code>no_template_control</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div><p>The specified type of the barcode, or "na", if not available.</p></div>
+<div><p>The user-supplied alias for the barcode. Empty if barcoding is not running. The same as <code>barcode</code>
+if the user did not supply an alias.</p></div>
 </div>
 </div>
-<h2 id="input-columns">Input columns<a class="headerlink" href="#input-columns" title="Permanent link">&para;</a></h2>
-<p>When passing a sample sheet into MinKNOW, different rules apply to the columns - not all are required.</p>
-<table>
-<thead>
-<tr>
-<th>Column</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>flow_cell_id</code></td>
-<td><strong>Optional</strong> if <code>position_id</code> is specified and the flow cell has <code>flow_cell_id</code> on the EEPROM. Used to identify which position to apply values to.</td>
-</tr>
-<tr>
-<td><code>position_id</code></td>
-<td><strong>Optional</strong> if <code>flow_cell_id</code> is specified. Used to identify which position to apply values to.</td>
-</tr>
-<tr>
-<td><code>sample_id</code></td>
-<td><strong>Optional.</strong> An individual position can only have one sample_id assigned to it when starting a run.</td>
-</tr>
-<tr>
-<td><code>experiment_id</code></td>
-<td>Each row in the sample sheet must contain an experiment_id.</td>
-</tr>
-<tr>
-<td><code>flow_cell_product_code</code></td>
-<td><strong>Required</strong> if the product code is not available on the EEPROM. Used to find the correct protocol to start.</td>
-</tr>
-<tr>
-<td><code>kit</code></td>
-<td><strong>Required</strong> Kit is used to find a protocol to start.</td>
-</tr>
-</tbody>
-</table>
-<h3 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">&para;</a></h3>
-<p>If <code>position_id</code> and <code>flow_cell_id</code> are both defined, the <code>flow_cell_id</code> will be validated against the EEPROM value. The <code>flow_cell_id</code> will be set against the <code>user_specified_flow_cell_id</code> when starting a protocol.</p>
-<p>All rows must contain the same <code>experiment_id</code> value, therefore, the sample sheet will only have a single <code>experiment_id</code> defined overall but the entries on each row are validated.</p>
-<p>If expansions kits are additionally defined they should be space separated, e.g., <code>SQK-LSK109 EXP-NBD104 EXP-NBD114</code> or <code>OND-SQK-LP0096S</code>. The sample sheet must contain exactly one sequencing kit, but can contain 0, 1, or many, expansion kits. The sequencing kit must be specified before any expansion kits.</p>
 
 
 

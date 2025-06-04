@@ -9,6 +9,7 @@ import yaml
 from doc_utils import (
     SpecProcessor,
     CommonFieldLoader,
+    OutputHashFileField,
     SequencingSummaryField,
     SampleSheetField,
 )
@@ -54,6 +55,8 @@ class CsvDocProcessor(SpecProcessor):
             common_field_type = SequencingSummaryField
         elif spec_name == "sample_sheet":
             common_field_type = SampleSheetField
+        elif spec_name == "output_hash_file":
+            common_field_type = OutputHashFileField
         else:
             raise ValueError(f"Unknown doc type: {spec_name}")
 
