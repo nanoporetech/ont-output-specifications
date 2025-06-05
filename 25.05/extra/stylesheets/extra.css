@@ -151,7 +151,7 @@
 
   .md-header__button.md-logo {
     border-radius: 50%;
-    background-color: transparent !important;
+    background-color: white;
     margin: 0.2rem;
     padding: 0.2rem;
   }

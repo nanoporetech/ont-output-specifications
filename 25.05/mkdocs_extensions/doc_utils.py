@@ -21,11 +21,6 @@ class FastqField:
 
 
 @dataclass
-class OutputHashFileField:
-    column: str
-
-
-@dataclass
 class SampleSheetField:
     column: str
 

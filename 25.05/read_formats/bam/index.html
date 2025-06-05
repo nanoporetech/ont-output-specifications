@@ -768,15 +768,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#pabi" class="md-nav__link">
-    <span class="md-ellipsis">
-      pa:B:i
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -912,30 +903,8 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../protocol_formats/output_hash_file/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Output Hash File
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-  
     
     
-      
-        
       
         
       
@@ -955,10 +924,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -969,33 +938,12 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
             <span class="md-nav__icon md-icon"></span>
             MinKNOW
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../minknow/output_structure/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Output Structure
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -1478,15 +1426,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#pabi" class="md-nav__link">
-    <span class="md-ellipsis">
-      pa:B:i
-    </span>
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -1715,7 +1654,7 @@ Note, <code>modbase_models</code> only appears if modbase calling was performed,
 <h4 class="doc-fieldname_RG" id="pu"><code>PU</code><a class="headerlink" href="#pu" title="Permanent link">&para;</a></h4>
 </div>
 <div class="doc-docstring">
-<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z0-9_-]+</code></div>
+<div><strong class="doc-keyvalue">Regex </strong><code>[A-Z0-9-]+</code></div>
 <div><strong class="doc-keyvalue">Common fields </strong><code class="doc-common-value">FASTQ: <span><a href="/read_formats/fastq#flow_cell_id">flow_cell_id</a></span></code><code class="doc-common-value">Sample sheet: <span><a href="/protocol_formats/sample_sheet#flow_cell_id">flow_cell_id</a></span></code></div>
 <div>
 <table>
@@ -2085,14 +2024,6 @@ If a GPU was not used, or the reads were called on Apple Silicon, this field wil
 <div class="doc-docstring">
 <div><strong class="doc-keyvalue">Only When </strong><code>poly_a_tail_estimation</code></div>
 <div><p>Estimated number of bases in the polyA/T tail. This tag is only included if --estimate_poly_a was specified by the client</p></div>
-</div>
-<div class="doc-signature">
-<h4 class="doc-fieldname_read_tags" id="pabi"><code>pa</code><em>:B:i </em><a class="headerlink" href="#pabi" title="Permanent link">&para;</a></h4>
-</div>
-<div class="doc-docstring">
-<div><strong class="doc-keyvalue">Only When </strong><code>poly_a_tail_estimation</code></div>
-<div><p>PolyA/T tail range information - <anchor position|range1 start|range1 end|range2_start|range2_end>.
-This tag is only included if --estimate_poly_a was specified by the client</p></div>
 </div>
 </div>
 
