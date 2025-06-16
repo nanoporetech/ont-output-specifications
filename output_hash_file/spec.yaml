@@ -58,3 +58,21 @@ file:
         - ""
         - "my_sample"
         - "sample01"
+    - name: basecall_status
+      description: |
+        When files are separated by basecall status of their reads, this field will indicate the file's status.
+        pass/fail/skip correspond to files which contain a single basecall_status.
+        not_run corresponds to files which contain reads that did not have the basecaller enabled
+        pass_or_fail corresponds to files which contain reads that were either passed or failed by the basecaller
+        all is for files which don't discriminate against basecall status
+        target is for files which were specifically selected for in the basecall configuration -- this status is not currently used
+      regex: "|pass|fail|skip|not_run|pass_or_fail|all|target"
+      examples:
+        - ""
+        - "pass"
+        - "fail"
+        - "skip"
+        - "not_run"
+        - "pass_or_fail"
+        - "all"
+        - "target"
