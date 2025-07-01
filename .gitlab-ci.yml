@@ -1,0 +1,15 @@
+
+pages:
+  stage: build
+  image: ${CI_REGISTRY}/traque/ont-docker-base/ont-base-python:3.10
+  needs: []
+  tags:
+    - linux
+  script:
+    - mkdir -p public
+    - find . -mindepth 1 -maxdepth 1 ! -name public -exec mv -t public {} +
+  artifacts:
+    paths:
+      - public
+  pages:
+    path_prefix: "gh-pages"
