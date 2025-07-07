@@ -20,6 +20,9 @@ nav:
     - Format Support: minknow/support.md
     - Patterns: minknow/patterns.md
     - Batching: minknow/batching.md
+    - Adaptive Sampling:
+      - AS Decisions: minknow/adaptive_sampling/adaptive_sampling_decisions.md
+      - AS Timings: minknow/adaptive_sampling/adaptive_sampling_timings.md
 
 
 theme:

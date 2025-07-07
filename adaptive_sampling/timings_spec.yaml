@@ -1,0 +1,52 @@
+file:
+  version: 0.1
+  columns:
+    - name: channel
+      description: "The 1 indexed number for the channel the read was sequenced on."
+      regex: "^[0-9]+$" # positive integer
+      examples:
+        - "1"
+        - "512"
+        - "3000"
+    - name: read_id
+      description: "A unique UUID for the sequenced read."
+      regex: "[a-f0-9]{8}-[a-f0-9]{4}-[4-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}" # accepts uuid4 and uuid5
+      examples:
+        - "d3b07384-d9a2-4c93-9fc1-8e2d64b64b63"
+    - name: batch_time
+      description: Time, in seconds, since the epoch. Groups reads that were sent to the basecaller in the same batch.
+      regex: "^[0-9]+(\\.[0-9]+)?$" # positive decimal
+      examples:
+        - "1717337285.653"
+    - name: samples
+      description: Raw data samples sent to the basecaller for this read
+      regex: "^[0-9]+$" # positive integer
+      examples:
+        - "12000"
+    - name: bases
+      description: Basecalled sequence length returned from the basecaller
+      regex: "^[0-9]+$" # positive integer
+      examples:
+        - "843"
+    - name: barcode_arrangement
+      description: If barcoding is enabled this is the assigned barcode classification. Either 'barcode[0-9]+', '[A-Za-z0-9\\-_\\.]+', 'unclassified', or ''
+      regex: "^(barcode[0-9]+|[A-Za-z0-9\\-_\\.]+|unclassified)?$"
+      examples:
+        - "barcode12"
+        - "unclassified"
+        - ""
+    - name: mean_qscore
+      description: Mean quality score for the returned sequence
+      regex: "^[0-9]+(\\.[0-9]+)?$" # positive decimal
+      examples:
+        - "12.7"
+    - name: time_to_package_and_send
+      description: Time between packaging the read for sending to the basecaller and when it was sent.
+      regex: "^[0-9]+$" # positive integer
+      examples:
+        - "356"
+    - name: time_in_basecaller
+      description: Time between sending this read to the basecaller and it returning.
+      regex: "^[0-9]+$" # positive integer
+      examples:
+        - "1428"

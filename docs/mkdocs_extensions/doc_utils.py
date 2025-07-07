@@ -36,6 +36,11 @@ class SequencingSummaryField:
 
 
 @dataclass
+class AdaptiveSamplingField:
+    column: str
+
+
+@dataclass
 class CommonField:
     fields: dict[str, Any]
 

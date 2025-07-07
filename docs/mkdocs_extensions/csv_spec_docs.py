@@ -12,6 +12,7 @@ from doc_utils import (
     OutputHashFileField,
     SequencingSummaryField,
     SampleSheetField,
+    AdaptiveSamplingField,
 )
 
 
@@ -57,11 +58,21 @@ class CsvDocProcessor(SpecProcessor):
             common_field_type = SampleSheetField
         elif spec_name == "output_hash_file":
             common_field_type = OutputHashFileField
+        elif "adaptive_sampling" in spec_name:
+            common_field_type = AdaptiveSamplingField
         else:
             raise ValueError(f"Unknown doc type: {spec_name}")
 
-        doc_path = Path(f"{spec_name}/spec.yaml")
-        if not doc_path.exists():
+        doc_paths = [
+            Path(f"{spec_name}/spec.yaml"),
+            Path(f"{spec_name}/spec.yml"),
+            Path(f"{spec_name}.yaml"),
+            Path(f"{spec_name}.yml"),
+        ]
+        for doc_path in doc_paths:
+            if doc_path.exists():
+                break
+        else:
             raise ValueError(f"Path does not exist: {doc_path}")
 
         # Read the input file
