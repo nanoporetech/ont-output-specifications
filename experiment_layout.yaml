@@ -40,3 +40,7 @@ protocol_spec:
       path: "sample_sheet_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.csv"
     barcode_alignment_report:
       path: "barcode_alignment_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.tsv"
+    adaptive_sampling_timings:
+      path: "adaptive_sampling/AS_timings_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.csv"
+    adaptive_sampling_decisions:
+      path: "adaptive_sampling/AS_decisions_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.csv"

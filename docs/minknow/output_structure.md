@@ -11,7 +11,7 @@ Enabled              | ``{{spec_value("experiment_layout", "protocol_spec.root.p
 
 *The content in curly braces is replaced at sequencing run start with the value from [patterns](../patterns).*
 
-##  Read output
+## Read output
 
 Inside the base output directory MinKNOW creates format‑specific sub‑directories:
 
@@ -19,13 +19,13 @@ Inside the base output directory MinKNOW creates format‑specific sub‑directo
 Format                             | Sub‑directories
 ---------------------------------- | -------------
 [POD5](../../read_formats/pod5/)   | ``pod5/`` & ``pod5_skip``
-[FASTQ](../../read_formats/fastq/) | ``fastq_pass/`` & ``fastq_fail/``
+[FASTQ](../../read_formats/fastq/) | ``fastq_pass/`` & ``fastq_fail/``
 [BAM](../../read_formats/bam/)     | ``bam_pass/`` & ``bam_fail/``
 [.fast5](../../read_formats/pod5/) *(deprecated)* | ``fast5_pass/``, ``fast5_fail/`` & ``fast5_skip/``
 
 See more about specific [format support](../support).
 
-## Report & summary output
+## Report & summary output
 
 Additional sequencing artifacts are written directly to the base protocol path:
 
@@ -37,15 +37,17 @@ HTML Report | ``{{spec_value("experiment_layout", "protocol_spec.contents.html_r
 [Sample Sheet](../../protocol_formats/sample_sheet) | ``{{spec_value("experiment_layout", "protocol_spec.contents.sample_sheet.path")}}``
 Final Summary | ``{{spec_value("experiment_layout", "protocol_spec.contents.final_summary.path")}}``
 Barcode Alignment Report | ``{{spec_value("experiment_layout", "protocol_spec.contents.barcode_alignment_report.path")}}``
+Adaptive Sampling Decisions |  ``{{spec_value("experiment_layout", "protocol_spec.contents.adaptive_sampling_decisions.path")}}``
+Adaptive Sampling Timings |  ``{{spec_value("experiment_layout", "protocol_spec.contents.adaptive_sampling_timings.path")}}``
 
 ## Example directory tree
 
-This example describes an sequencing run with pooling disabled, and POD5, FASTQ and BAM turned on, which has finished sequencing:
+This example describes a sequencing run with pooling disabled, adaptive sampling enabled, and POD5, FASTQ and BAM turned on, which has finished sequencing:
 
 ```
 /data/Sample_Group/Sample/20250603_1201_3E_PAA12345_e05460c6/
 ├── pod5/
-│   ├── PAA12345_fd97ea7b_0f1d7e9e_57.pod5
+│   ├── PAA12345_dca6f6d1_d11637af_57.pod5
 │   └── …
 ├── fastq_pass/
 │   ├── PAA12345_pass_dca6f6d1_d11637af_0.fastq.gz
@@ -55,11 +57,14 @@ This example describes an sequencing run with pooling disabled, and POD5, FASTQ 
 ├── bam_pass/
 │   ├── PAA12345_pass_dca6f6d1_d11637af_0.bam
 │   └── PAA12345_pass_dca6f6d1_d11637af_0.bam.bai
-└── bam_fail/
-|   └── …
-├── sequencing_summary_PAA12345_fd97ea7b_0f1d7e9e.txt
-├── output_hash_PAA12345_fd97ea7b_0f1d7e9e.csv
-├── sample_sheet_PAA12345_fd97ea7b_0f1d7e9e.csv
-├── final_summary_PAA12345_fd97ea7b_0f1d7e9e.txt
-└── barcode_alignment_PAA12345_fd97ea7b_0f1d7e9e.tsv
+├── bam_fail/
+│   └── …
+├── adaptive_sampling/
+│   ├── AS_decisions_PAA12345_dca6f6d1_d11637af.csv
+│   └── AS_timings_PAA12345_dca6f6d1_d11637af.csv
+├── sequencing_summary_PAA12345_dca6f6d1_d11637af.txt
+├── output_hash_PAA12345_dca6f6d1_d11637af.csv
+├── sample_sheet_PAA12345_dca6f6d1_d11637af.csv
+├── final_summary_PAA12345_dca6f6d1_d11637af.txt
+└── barcode_alignment_PAA12345_dca6f6d1_d11637af.tsv
 ```

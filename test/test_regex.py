@@ -124,3 +124,26 @@ def test_output_hash_regex():
                 record["regex"],
                 record["examples"],
             )
+
+
+def test_adaptive_sampling_regex():
+    for file in ["decisions_spec.yaml", "timings_spec.yaml"]:
+        file_path = f"./adaptive_sampling/{file}"
+        with open(file_path) as f:
+            bam = yaml.safe_load(f)
+
+            for record in bam["file"]["columns"]:
+                if "regex" not in record:
+                    raise AssertionError(
+                        f"No regex provided for pattern '{record['name']}'"
+                    )
+                if "examples" not in record:
+                    raise AssertionError(
+                        f"No examples provided for regex '{record['name']}'"
+                    )
+                regex_utils.test_regex_with_examples(
+                    file_path,
+                    record["name"],
+                    record["regex"],
+                    record["examples"],
+                )
