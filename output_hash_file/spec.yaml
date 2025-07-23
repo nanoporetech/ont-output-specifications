@@ -32,8 +32,8 @@ file:
         - "My_Sample"
         - "my-sample-1"
     - name: file_hash
-      description: The sha256 hash of the file
-      regex: "[0-9a-f]{64}"
+      description: The sha256 hash of the file. Can be empty for files which we do not calculate a hash for, e.g. pod5 files
+      regex: "|[0-9a-f]{64}"
       examples:
         - e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855
     - name: file_path
