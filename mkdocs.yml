@@ -24,6 +24,7 @@ nav:
       - AS Decisions: minknow/adaptive_sampling/adaptive_sampling_decisions.md
       - AS Timings: minknow/adaptive_sampling/adaptive_sampling_timings.md
 
+copyright: "© 2020 - 2025 Oxford Nanopore Technologies plc. All rights reserved. Registered Office: Gosling Building, Edmund Halley Road, Oxford Science Park, OX4 4DQ, UK | Registered No. 05386273 | VAT No 336942382. Oxford Nanopore Technologies, the Wheel icon, EPI2ME, Flongle, GridION, Metrichor, MinION, MinIT, MinKNOW, Plongle, PromethION, SmidgION, Ubik and VolTRAX are registered trademarks of Oxford Nanopore Technologies plc in various countries. Oxford Nanopore Technologies products are not intended for use for health assessment or to diagnose, treat, mitigate, cure, or prevent any disease or condition."
 
 theme:
   name: material
@@ -43,6 +44,7 @@ theme:
     - content.code.copy
   language: en
   logo: extra/assets/nanopore.logo.png
+  favicon: extra/assets/favicon.ico
   palette:
     # Palette toggle for automatic mode
     - media: "(prefers-color-scheme)"
