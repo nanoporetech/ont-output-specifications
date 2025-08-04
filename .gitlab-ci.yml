@@ -13,3 +13,21 @@ pages:
       - public
   pages:
     path_prefix: "gh-pages"
+
+upload_to_s3:
+  stage: build
+  image: ${CI_REGISTRY}/traque/ont-docker-base/ont-base-python:3.10
+  tags:
+    - linux
+  before_script:
+    - curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    - unzip awscliv2.zip > /dev/null 2>&1
+    - ./aws/install > /dev/null 2>&1
+  script:
+    - ls
+    # Upload everything except hidden files (e.g. .git/) and delete existing files that are not in the uploaded set
+    - aws s3 sync . s3://software-docs.nanoporetech.com/output-specifications/ --exclude '.*' --delete
+    - aws cloudfront create-invalidation --distribution-id ${AWS_CLOUDFRONT_DISTRIBUTION_ID} --paths "/output-specifications/*"
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "gh-pages"'
+      when: always
