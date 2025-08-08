@@ -6,7 +6,7 @@ Currently, this project primarily contains MinKNOW outputs. Further specificatio
 
 ## Public docs
 
-The rendered documentation is [available here](https://nanoporetech.github.io/ont-output-specifications/latest/).
+The rendered documentation is [available here](https://software-docs.nanoporetech.com/output-specifications).
 
 ## Deploying new docs
 
