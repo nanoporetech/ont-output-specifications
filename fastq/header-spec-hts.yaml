@@ -6,6 +6,11 @@ file:
       required: true
       regex: "([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})_([a-z0-9_@\\.])+(_([A-Za-z0-9_@\\.]+))?"
       description: ID of the read group to which this read belongs. NEEDS CLARIFICATION - replaces `runid`, `model_version_id` in old fastq spec. protocol_group_id is not currently added in BAM files but was in old fastq spec.
+    - tag: "DT"
+      type: Z
+      required: true
+      regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|\.\d{3}\+\d{2}:\d{2})
+      description: The start time of the sequencing run. Correctly formatted as ISO8601.
     - tag: "ch"
       type: i
       required: true
