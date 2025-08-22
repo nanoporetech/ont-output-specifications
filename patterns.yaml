@@ -103,12 +103,14 @@ patterns:
     examples:
       - "positive_control"
   alias:
-    description: "The user-supplied alias for the read's associated barcode"
+    description: "The user-supplied alias for the read's associated barcode, if no alias provided (via sample sheet) this reverts to the barcode name. Empty if barcoding not enabled."
     context: read
-    regex: "[a-zA-Z0-9_\\.-]+"
+    regex: "[a-zA-Z0-9_\\.-]{,40}"
     examples:
       - "My_Sample_Alias"
       - "my-sample-alias-1"
+      - "barcode01"
+      - "unclassified"
   basecall_model_version_id:
     description: "A unique identifier for the basecall model used in the protocol."
     context: read
