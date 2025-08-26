@@ -10,7 +10,7 @@ file:
       type: Z
       required: true
       regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|\.\d{6}\+\d{2}:\d{2})
-      description: The start time of the sequencing run. Correctly formatted as ISO8601.
+      description: The protocol start time of the sequencing run. Correctly formatted as ISO8601.
     - tag: "ch"
       type: i
       required: true
