@@ -4,7 +4,7 @@ protocol_spec:
       pattern: "/data/{protocol_group_id}/{sample_id}/"
       example: "/data/Sample_Group/Sample/"
     no_pooling:
-      pattern: "/data/{protocol_group_id}/{sample_id}/{start_time}_{device_id}_{flow_cell_id}_{short_protocol_run_id}/"
+      pattern: "/data/{protocol_group_id}/{sample_id}/{protocol_start_time}_{device_id}_{flow_cell_id}_{short_protocol_run_id}/"
       example: "/data/Sample_Group/Sample/20250603_1201_3E_PAA12345_e05460c6/"
   contents:
     fastq:
