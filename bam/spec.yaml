@@ -23,7 +23,7 @@ file:
         - "2025-01-06T10:06:36.778368+00:00"
         - "2025-01-06T10:06:36Z"
       description: |
-        The start time of the sequencing run.
+        The protocol start time of the sequencing run.
 
         Correctly formatted as ISO8601.
     - type: RG

@@ -58,6 +58,12 @@ patterns:
     regex: "[0-9]{8}_[0-9]{4}"
     examples:
       - "20240103_1424"
+  protocol_start_time:
+    description: "The time the protocol started, formatted as ``:%Y%m%d_%H%M``."
+    context: global
+    regex: "[0-9]{8}_[0-9]{4}"
+    examples:
+      - "20240103_1424"
   run_id:
     description: "The full run id for the running acquisition."
     context: global
