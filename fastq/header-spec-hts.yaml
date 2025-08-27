@@ -5,7 +5,7 @@ file:
       type: Z
       required: true
       regex: "([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})_([a-z0-9_@\\.])+(_([A-Za-z0-9_@\\.]+))?"
-      description: ID of the read group to which this read belongs. NEEDS CLARIFICATION - replaces `runid`, `model_version_id` in old fastq spec. protocol_group_id is not currently added in BAM files but was in old fastq spec.
+      description: ID of the read group to which this read belongs.
     - tag: "DT"
       type: Z
       required: true
