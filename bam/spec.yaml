@@ -198,6 +198,7 @@ file:
     - tag: "mv"
       type: B
       value: c
+      only_when: moves
       description: "sequence to signal move table (this has already been done as per Move table format for BAM file output)"
     - tag: "sm"
       type: f
