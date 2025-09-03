@@ -23,9 +23,6 @@ export PYTHONPATH=./docs/mkdocs_extensions/
 # Get the current branch name
 branch=$(git rev-parse --abbrev-ref HEAD)
 
-# Strip the 'release/' prefix if present
-branch=${branch#release/}
-
 # Check if branch is `main` if so, set it to `latest`
 if [[ "$branch" == "main" ]]; then
     branch="latest"
@@ -35,6 +32,9 @@ elif [[ ! "$branch" =~ ^release/ ]]; then
     echo "Error: The current branch is not a release branch." >&2
     exit 1
 fi
+
+# Strip the 'release/' prefix if present
+branch=${branch#release/}
 
 echo "Deploying: ${branch}"
 
