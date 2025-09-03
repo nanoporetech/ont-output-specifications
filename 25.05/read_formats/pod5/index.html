@@ -768,21 +768,26 @@
 <h2 id="specification">Specification<a class="headerlink" href="#specification" title="Permanent link">&para;</a></h2>
 <p>The POD5 file format is <a href="https://pod5-file-format.readthedocs.io/en/latest/SPECIFICATION.html">documented here</a>.</p>
 <h2 id="paths">Paths<a class="headerlink" href="#paths" title="Permanent link">&para;</a></h2>
-<p>The following path patterns are used to place the data on disk:</p>
+<p>The following path patterns are used to place the data on disk.</p>
 <table>
 <thead>
 <tr>
-<th>File</th>
+<th>File Path</th>
 <th>Path pattern</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td><strong>POD5 file</strong></td>
+<td><strong>POD5 Default</strong></td>
+<td><code>pod5{basecall_status_skip_or_empty}/{flow_cell_id}{basecall_status_skip_or_empty}_{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5</code></td>
+</tr>
+<tr>
+<td>Split by barcode Enabled</td>
 <td><code>pod5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5</code></td>
 </tr>
 </tbody>
 </table>
+<p><em>Note the pattern used is different when the option to split files by barcode is enabled.</em></p>
 <p>See the <a href="../../minknow/patterns/">Patterns</a> documentation for more information on file patterns.</p>
 <h2 id="read-batching">Read batching<a class="headerlink" href="#read-batching" title="Permanent link">&para;</a></h2>
 <p>The following batching options are used by default:</p>
