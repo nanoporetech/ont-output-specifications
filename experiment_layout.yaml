@@ -20,7 +20,8 @@ protocol_spec:
       batching:
         duration: "3600s"
     pod5:
-      path: "pod5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5"
+      path: "pod5{basecall_status_skip_or_empty}/{flow_cell_id}{basecall_status_skip_or_empty}_{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5"
+      path_split_by_barcode: "pod5{basecall_status}/{alias}/{flow_cell_id}{basecall_status}_{alias_}{short_protocol_run_id}_{short_run_id}_{batch_number}.pod5"
       batching:
         duration: "3600s"
         bases: 500000000

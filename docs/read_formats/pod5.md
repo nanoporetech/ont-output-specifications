@@ -11,11 +11,14 @@ The POD5 file format is [documented here](https://pod5-file-format.readthedocs.i
 Paths
 -----
 
-The following path patterns are used to place the data on disk:
+The following path patterns are used to place the data on disk.
 
-File           | Path pattern
--------------- | ------------
-**POD5 file** | ``{{spec_value("experiment_layout", "protocol_spec.contents.pod5.path")}}``
+File Path                | Path pattern
+------------------------ | ------------
+**POD5 Default**         | ``{{spec_value("experiment_layout", "protocol_spec.contents.pod5.path")}}``
+Split by barcode Enabled | ``{{spec_value("experiment_layout", "protocol_spec.contents.pod5.path_split_by_barcode")}}``
+
+*Note the pattern used is different when the option to split files by barcode is enabled.*
 
 See the [Patterns](../minknow/patterns.md) documentation for more information on file patterns.
 
