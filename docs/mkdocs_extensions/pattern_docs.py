@@ -61,6 +61,10 @@ class PatternDocProcessor(SpecProcessor):
                             [["Examples"]] + [[k] for k in header_item["examples"]],
                             code=True,
                         )
+                    if placeholder := header_item.get("placeholder"):
+                        self.add_key_value(
+                            field_content, "Placeholder", placeholder, code=True
+                        )
                     self.add_field_content(field_content, header_item["description"])
 
 

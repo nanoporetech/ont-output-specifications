@@ -11,6 +11,8 @@ Enabled              | ``{{spec_value("experiment_layout", "protocol_spec.root.p
 
 *The content in curly braces is replaced at sequencing run start with the value from [patterns](../patterns).*
 
+Missing or empty fields will use the `placeholder` value defined therein.
+
 ## Read output
 
 Inside the base output directory MinKNOW creates format‑specific sub‑directories:
