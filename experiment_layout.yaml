@@ -30,15 +30,15 @@ protocol_spec:
       batching:
         read_count: 4000
     output_hash_file:
-      path: "output_hash_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.csv"
+      path: "output_hash_{flow_cell_id}_{protocol_start_time}_{short_protocol_run_id}.csv"
     sequencing_summary:
       path: "sequencing_summary_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.txt"
     html_report:
-      path: "report_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.html"
+      path: "report_{flow_cell_id}_{protocol_start_time}_{short_protocol_run_id}.html"
     final_summary:
       path: "final_summary_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.txt"
     sample_sheet:
-      path: "sample_sheet_{flow_cell_id}_{daq_start_time}_{short_protocol_run_id}.csv"
+      path: "sample_sheet_{flow_cell_id}_{protocol_start_time}_{short_protocol_run_id}.csv"
     barcode_alignment_report:
       path: "barcode_alignment_{flow_cell_id}_{short_protocol_run_id}_{short_run_id}.tsv"
     adaptive_sampling_timings:
