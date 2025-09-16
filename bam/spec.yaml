@@ -17,15 +17,14 @@ file:
         ``barcode_data::arrangement`` if missing the suffix will not be appended.
     - type: RG
       field: DT
-      regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|\.\d{6}\+\d{2}:\d{2})
+      regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|\+\d{2}:\d{2})
       required: false
       examples:
         - "2025-01-06T10:06:36.778368+00:00"
+        - "2025-01-06T10:06:36.778368Z"
+        - "2025-01-06T10:06:36+00:00"
         - "2025-01-06T10:06:36Z"
-      description: |
-        The protocol start time of the sequencing run.
-
-        Correctly formatted as ISO8601.
+      description: The protocol start time of the sequencing run, formatted as rfc3339.
     - type: RG
       field: DS
       regex: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([A-Za-z0-9_@\\.]+))?"
@@ -183,7 +182,7 @@ file:
       description: "Read number meta: read_data::read_number"
     - tag: "st"
       type: Z
-      description: "Read start time metadata field: <read_data::time_stamp>"
+      description: "Read start time metadata field: <read_data::time_stamp>, formatted as rfc3339."
     - tag: "f5"
       type: Z
       required: false
