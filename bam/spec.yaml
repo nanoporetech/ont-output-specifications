@@ -173,23 +173,23 @@ file:
       description: Read mean basecall qscore
     - tag: "mx"
       type: i
-      description: "read mux meta: read_data::mux"
+      description: The mux the read originated (equivalent to read_data::mux).
     - tag: "ch"
       type: i
-      description: "read channel meta: read_data::channel"
+      description: The channel the read originated (equivalent to read_data::read_number).
     - tag: "rn"
       type: i
-      description: "Read number meta: read_data::read_number"
+      description: A per-channel-incrementing number for selected reads
     - tag: "st"
       type: Z
-      description: "Read start time metadata field: <read_data::time_stamp>, formatted as rfc3339."
+      description: The start time of the read. If this read is a split from a parent read, the start time is for the split read, formatted as rfc3339.
     - tag: "f5"
       type: Z
       required: false
       description: "fast5 file name read_data::filename. N.B. filename only so any personally identifiable data in the path is not written."
     - tag: "ns"
       type: i
-      description: "the number of samples in the signal (read_data::duration)"
+      description: The number of samples in the signal
     - tag: "ts"
       type: i
       description: |

@@ -25,7 +25,7 @@ file:
       type: Z
       required: true
       regex: \d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(\.\d+)?(Z|\+\d{2}:\d{2})
-      description: "Read start time metadata field: <read_data::time_stamp>, formatted as rfc3339."
+      description: "Read start time metadata field: <read_data::time_stamp>. If this read is a split from a parent read, the start time is for the split read, formatted as rfc3339."
       examples:
         - "2025-01-06T10:06:36.778368+00:00"
         - "2025-01-06T10:06:36.778368Z"
@@ -94,7 +94,10 @@ file:
       examples:
         - "gpu:NVIDIA A100 80GB PCIe"
         - "gpu:NVIDIA A100 80GB PCIe|Quadro GV100"
-    # All the tags below here were not in the original fastq header spec but are in the BAM read tags, and might be useful to add.
+    - tag: "ns"
+      type: i
+      description: The number of samples in the signal
+      required: false
     - tag: "qs"
       type: f
       required: false
@@ -102,16 +105,37 @@ file:
     - tag: "mx"
       type: i
       required: false
-      description: "read mux meta: read_data::mux"
+      description: The mux the read originated (equivalent to read_data::mux).
     - tag: "rn"
       type: i
       required: false
-      description: "Read number meta: read_data::read_number"
+      description: The channel the read originated (equivalent to read_data::read_number).
     - tag: "ts"
       type: i
       required: false
       description: |
         "<read_data::trimmed_samples> the number of samples trimmed from the start of the signal (equivalent to read_data::duration - read_data::trimmed_duration)"
+    - tag: "sm"
+      type: f
+      description: "scaling median: basecall_data::scaling_median"
+      required: false
+    - tag: "sd"
+      type: f
+      description: "scaling dispersion (also sometimes referred to as mad, spread): basecall_data::scaling_med_abs_dev"
+      required: false
+    - tag: "sv"
+      type: Z
+      description: |
+        "med_mad" or "quantile", depending on which scaling method was used by the basecaller: basecall_data::scaling_version"
+      required: false
+    - tag: "du"
+      type: f
+      description: "duration of the read (in seconds)"
+      required: false
+    - tag: "dx"
+      type: i
+      description: "Duplex read indicator. 1 for duplex reads, 0 for simplex reads without duplex offspring, -1 for simplex reads with duplex offspring."
+      required: false
     - tag: "pt"
       type: i
       required: false
