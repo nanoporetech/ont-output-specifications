@@ -17,6 +17,8 @@ repos:
     rev: v0.4.1
     hooks:
       - id: blackdoc
+        # blackdoc is incompatible with black versions >= 25.9.0
+        additional_dependencies: ["black==25.1.0"]
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.1
     hooks:
