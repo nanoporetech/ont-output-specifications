@@ -27,10 +27,11 @@ file:
       description: The protocol start time of the sequencing run, formatted as rfc3339.
     - type: RG
       field: DS
-      regex: "runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\\s+basecall_model=([a-z0-9_@\\.]+)(\\s+modbase_models=([A-Za-z0-9_@\\.]+))?"
+      regex: runid=([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\s+basecall_model=([a-z0-9_@\.]+)(\s+modbase_models=([A-Za-z0-9_@\.]+)(,[A-Za-z0-9_@\.]+)*)?
       examples:
         - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0
         - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0 modbase_models=rna004_130bps_hac@v5.1.0_inosine_m6A@v1
+        - runid=e4994c62-93f9-439a-bc8f-d20c95a137a5 basecall_model=rna004_130bps_fast@v5.1.0 modbase_models=rna004_130bps_hac@v5.1.0_inosine_m6A@v1,rna004_130bps_hac@v5.2.0_pseU@v1
       required: true
       description: |
         ``runid``, ``basecall_model`` and optionally ``modbase_models`` formatted into a space separated string.
