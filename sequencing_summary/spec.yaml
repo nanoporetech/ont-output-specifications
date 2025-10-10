@@ -134,10 +134,14 @@ file:
 
     # RNA specific fields:
     - name: poly_tail_length
-      description: "The length of the poly-A tail detected in the read."
-      regex: "-1|[0-9]+" # positive integer or -1 if no tail detected.
+      description: |
+        The length of the poly-A tail detected in the read.
+        If poly-A estimation was requested but no tail could be found, the value is set to -1.
+        If poly-A estimation was explicitly disabled for the barcode associated with this read, the value is set to -2.
+      regex: "-2|-1|[0-9]+" # positive integer, -1 if no tail detected, -2 if tail estimation was disabled
       only_when: poly_a_tail_estimation
       examples:
+        - "-2"
         - "-1"
         - "100"
 
