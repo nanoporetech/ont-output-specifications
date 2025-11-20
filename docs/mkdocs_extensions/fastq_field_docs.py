@@ -48,21 +48,22 @@ class FastqDocProcessor(SpecProcessor):
         self, parent: etree.Element, common_fields: CommonFieldLoader
     ) -> None:
         # Read the input file
-        with open("fastq/header-spec.yaml", "r") as f:
+        with open("fastq/header-spec-hts.yaml", "r") as f:
             input_spec = yaml.load(f, Loader=yaml.FullLoader)
 
-            header_type = "fastq"
+            level = 4
+            field_type = "read_tags"
 
-            for header_item in input_spec["file"]["headers"]:
-                level = 3
+            for header_item in input_spec["file"]["read_tags"]:
+                extra = f":{header_item['type']}:{header_item.get('value', '')}"
                 field_content = self.add_field_heading(
-                    parent, header_type, level, header_item["name"]
+                    parent, field_type, level, header_item["tag"], [extra]
                 )
                 if "regex" in header_item:
                     self.add_key_value(
                         field_content, "Regex", header_item["regex"], code=True
                     )
-                if header_item["required"]:
+                if header_item.get("required", False):
                     self.add_required(field_content)
                 if "only_when" in header_item:
                     self.add_key_value(
@@ -70,7 +71,7 @@ class FastqDocProcessor(SpecProcessor):
                     )
 
                 common_item = common_fields.find_common_field(
-                    FastqField(header_item["name"])
+                    FastqField(header_item["tag"])
                 )
                 if common_item:
                     self.add_common_section(field_content, common_item, "fastq")

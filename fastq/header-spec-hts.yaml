@@ -6,6 +6,10 @@ file:
       required: true
       regex: "([0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})_([a-z0-9_@\\.])+(_([A-Za-z0-9_@\\.]+))?"
       description: ID of the read group to which this read belongs.
+      examples:
+        - "e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_barcode02"
+        - "e4994c62-93f9-439a-bc8f-d20c95a137a5_unknown_barcode02"
+        - "e4994c62-93f9-439a-bc8f-d20c95a137a5_rna004_130bps_fast@v5.1.0_29d8704b"
     - tag: "DT"
       type: Z
       required: true
@@ -21,6 +25,8 @@ file:
       required: true
       regex: '[1-9][0-9]*'
       description: "read channel meta: read_data::channel"
+      examples:
+        - "512"
     - tag: "st"
       type: Z
       required: true

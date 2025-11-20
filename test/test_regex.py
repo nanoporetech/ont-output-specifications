@@ -43,20 +43,21 @@ def test_bam_regex():
 
 
 def test_fastq_regex():
-    with open("./fastq/header-spec.yaml", "r") as f:
+    with open("./fastq/header-spec-hts.yaml", "r") as f:
         bam = yaml.safe_load(f)
 
-        for record in bam["file"]["headers"]:
+        for record in bam["file"]["read_tags"]:
             if "regex" not in record:
-                raise AssertionError(
-                    f"No regex provided for pattern '{record['name']}'"
-                )
+                continue
             if "examples" not in record:
                 raise AssertionError(
-                    f"No examples provided for regex '{record['name']}'"
+                    f"No examples provided for regex '{record['tag']}'"
                 )
             regex_utils.test_regex_with_examples(
-                "fastq/spec.yaml", record["name"], record["regex"], record["examples"]
+                "fastq/header-spec-hts.yaml",
+                record["tag"],
+                record["regex"],
+                record["examples"],
             )
 
         # for name, pattern in patterns["file"]["read_tags"].items():

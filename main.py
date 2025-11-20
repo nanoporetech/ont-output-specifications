@@ -8,7 +8,7 @@ def spec_to_path(spec: str) -> Path:
     if spec == "bam":
         return "bam/spec.yaml"
     elif spec == "fastq":
-        return "fastq/header-spec.yaml"
+        return "fastq/header-spec-hts.yaml"
     elif spec == "pod5":
         return "pod5/spec.yaml"
     return Path(f"{spec}.yaml")

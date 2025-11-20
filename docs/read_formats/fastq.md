@@ -58,11 +58,3 @@ Required header attributes
 --------------------------
 
 ::: fastq_spec_docs header
-
-
-Header patterns
----------------
-
-Additional header patterns are available for FASTQ files on top of the normal [Patterns](../minknow/patterns.md).
-
-{{ make_table_from_mapping("Name", "Value", spec_value("experiment_layout", "protocol_spec.contents.fastq.extra_patterns")) }}
