@@ -1326,13 +1326,13 @@
 <h2 id="record-structure">Record structure<a class="headerlink" href="#record-structure" title="Permanent link">&para;</a></h2>
 <p>Oxford Nanopore Technologies FASTQ records contain a key value section after the required unique read id. This should be treated as an unordered set of values.</p>
 <p>The approximate structure of a record is:</p>
-<pre><code>@&lt;read-id&gt;(\s&lt;key&gt;=&lt;value&gt;)*
+<pre><code>@&lt;read-id&gt;(\\t&lt;attr&gt;:&lt;type&gt;:&lt;value&gt;)*
 ATCG...
 +
 QQQQ...
 </code></pre>
 <p>For example:</p>
-<pre><code>@bd8655fb-383c-45cc-bff3-eb1dc86533e0 key1=value1 key2=value2
+<pre><code>@bd8655fb-383c-45cc-bff3-eb1dc86533e0 ch:i:123 du:f:1.23
 ATCG
 +
 QQQQ

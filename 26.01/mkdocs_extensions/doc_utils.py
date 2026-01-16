@@ -154,7 +154,7 @@ class SpecProcessor(BlockProcessor):
     def add_field_content(self, parent: etree.Element, content: str):
         docstring_elem_content = etree.SubElement(parent, "div")
 
-        md = Markdown(extensions=self.md.registeredExtensions)
+        md = Markdown(extensions=self.md.registeredExtensions + ["tables"])
         docstring_elem_content.text = md.convert(content)
 
     def add_required(self, parent: etree.Element):

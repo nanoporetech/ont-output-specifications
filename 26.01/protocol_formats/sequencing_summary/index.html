@@ -2683,7 +2683,53 @@ If poly-A estimation was explicitly disabled for the barcode associated with thi
 </tbody>
 </table>
 </div>
-<div><p>The reason the read ended.</p></div>
+<div><p>The reason the read ended.</p>
+<table>
+<thead>
+<tr>
+<th>End Reason</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>signal_positive</code>/<code>signal_negative</code></td>
+<td>The strand ended naturally as it passed through the pore.</td>
+</tr>
+<tr>
+<td><code>mux_change</code></td>
+<td>The strand ended because there was a scheduled pore scan that interrupted the read.</td>
+</tr>
+<tr>
+<td><code>unblock_mux_change</code></td>
+<td>The strand ended because it was deemed of low quality and purposefully rejected.</td>
+</tr>
+<tr>
+<td><code>data_service_unblock_mux_change</code></td>
+<td>The strand was rejected by adaptive sampling because it did not align to the target sequence when enriching, or the strand matched to the target sequence when depleting.</td>
+</tr>
+<tr>
+<td><code>analysis_config_change</code></td>
+<td>The strand ended because the analysis settings were changed during the run (for example during a pore scan), which stopped all active reads.</td>
+</tr>
+<tr>
+<td><code>device_data_error</code></td>
+<td>The strand ended due to a data error reported by the device.</td>
+</tr>
+<tr>
+<td><code>api_request</code></td>
+<td>The strand ended because an external API request stopped the read (for example during a pore scan).</td>
+</tr>
+<tr>
+<td><code>paused</code></td>
+<td>The strand ended because sequencing was paused.</td>
+</tr>
+<tr>
+<td><code>unknown</code></td>
+<td>The read ended for an unknown reason (this end reason is generally unexpected in real data.)</td>
+</tr>
+</tbody>
+</table></div>
 </div>
 <div class="doc-signature">
 <h3 class="doc-fieldname_fastq" id="alias"><code>alias</code><a class="headerlink" href="#alias" title="Permanent link">&para;</a></h3>
