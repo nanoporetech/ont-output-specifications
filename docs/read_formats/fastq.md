@@ -37,7 +37,7 @@ Oxford Nanopore Technologies FASTQ records contain a key value section after the
 The approximate structure of a record is:
 
 ```
-@<read-id>(\s<key>=<value>)*
+@<read-id>(\\t<attr>:<type>:<value>)*
 ATCG...
 +
 QQQQ...
@@ -46,7 +46,7 @@ QQQQ...
 For example:
 
 ```
-@bd8655fb-383c-45cc-bff3-eb1dc86533e0 key1=value1 key2=value2
+@bd8655fb-383c-45cc-bff3-eb1dc86533e0 ch:i:123 du:f:1.23
 ATCG
 +
 QQQQ
