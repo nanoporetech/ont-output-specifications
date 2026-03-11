@@ -55,7 +55,7 @@ file:
       regex: "barcode([0-9]+)"
       examples:
         - "barcode01"
-      only_when: has_input_sample_sheet
+      only_when: has_input_sample_sheet_with_barcodes
     - name: alias
       description: |
         User-specified identifier used for the barcode, if available, otherwise the arrangement name.
@@ -63,7 +63,7 @@ file:
       examples:
         - "my_sample"
         - "sample01"
-      only_when: has_input_sample_sheet
+      only_when: has_input_sample_sheet_with_barcodes
     - name: type
       description: |
         The specified type of the barcode, or "na", if not available.
@@ -72,3 +72,12 @@ file:
         - positive_control
         - no_template_control
       only_when: has_input_sample_sheet
+    - name: reference
+      description: |
+        File path to reference file for the sample
+      regex: "[A-Za-z0-9\\-_\\.\\\\/:]+\\.fasta"
+      examples:
+        - "my_reference_file.fasta"
+        - "file/path/to/reference.fasta"
+        - "C:\\references\\ref.fasta"
+      only_when: has_input_sample_sheet_with_references
